@@ -262,7 +262,7 @@ const translateTemplateLiterals = (
 
       // Don't translate template literals with expressions (for now) eg `Hello ${name}`
       if (path.value.type == 'TemplateLiteral' && path.value.expressions.length > 0) {
-        console.warn('Skipped processing template literal with expressions');
+        // console.warn('Skipped processing template literal with expressions');
         return false;
       }
 
@@ -323,9 +323,7 @@ const translateTemplateLiterals = (
         functionAST.value.body.body.unshift(hook);
       }
 
-      console.log(
-        `Found not translated template literal in "${componentName}": replacing "${value}" with "${componentName}.${key}".`,
-      );
+      // console.log(`Found not translated template literal in "${componentName}": replacing "${value}" with "${componentName}.${key}".`);
 
       return j.callExpression.from({
         callee: j.identifier('t'),
@@ -365,8 +363,9 @@ const translateJSXAttributes = (
       return true;
     })
     .replaceWith((path) => {
-      // for some reason typescipt doesn't know that we are filtering for StringLiteral above
+      // for some reason typescript doesn't know that we are filtering for StringLiteral above
       if (!j.StringLiteral.check(path.value.value)) return false;
+
       // get the top level react component where the hardcoded text is
       const functionAST = getClosestFunctionAST(j, path);
       if (!functionAST) {
@@ -394,14 +393,22 @@ const translateJSXAttributes = (
         functionAST,
         'useTranslation',
       );
+
       if (useTranslationsCallExpressions.length == 0) {
         const hook = createTranslationHook(j);
-        functionAST.value.body.body.unshift(hook);
+
+        /**
+         * This currently breaks with the following form
+         * export const SettingsProfile = () => (<>...</>);
+         */
+        if (functionAST.value.body.body) {
+          functionAST.value.body.body.unshift(hook);
+        } else {
+          let z;
+        }
       }
 
-      console.log(
-        `Found not translated prop in "${componentName}": replacing "${value}" with "${componentName}.${key}".`,
-      );
+      // console.log(`Found not translated prop in "${componentName}": replacing "${value}" with "${componentName}.${key}".`);
 
       // replace hardcoded text with t('key') call
       return j.jsxAttribute.from({
@@ -419,7 +426,7 @@ const translateJSXAttributes = (
 /**
  * Translates <p>text</p> to <p>{t('text')}</p>
  * @param j jscodeshift
- * @param root parsed AST of provideded source code
+ * @param root parsed AST of provided source code
  * @param translations parsed translation file content (JSON)
  * @param importPackage name of the import package (e.g. react-i18next) to add when translation is added
  */
@@ -465,9 +472,7 @@ const translateJSXTextContent = (
         functionAST.value.body.body.unshift(hook);
       }
 
-      console.log(
-        `Found not translated text in "${componentName}": replacing "${value}" with "${componentName}.${key}".`,
-      );
+      // console.log(`Found not translated text in "${componentName}": replacing "${value}" with "${componentName}.${key}".`);
 
       // Extract the leading and trailing whitespace
       // To preserve the original formatting
@@ -497,9 +502,56 @@ const translateJSXTextContent = (
           ]),
         ),
         trailingWhitespace && j.jsxText(trailingWhitespace),
-      ]
+      ];
     });
 };
+
+/**
+ * Translates
+ *
+ * export const SettingsProfile = () => (
+ *   <Menu>
+ *     Hello
+ *   </Menu>
+ * );
+ *
+ * into
+ *
+ * export const SettingsProfile = () => {
+ *   return (
+ *     <Menu>
+ *       Hello
+ *     </Menu>
+ *   );
+ * };
+ *
+ * @param j jscodeshift
+ * @param root parsed AST of provided source code
+ */
+const transformFunctionComponents = (
+  j: JSCodeshift,
+  root: Collection<any>,
+) => {
+  root
+    .find(j.ArrowFunctionExpression)
+    .filter(path => path.node.body.type === "JSXElement")
+    .replaceWith(path => {
+      const arrowFunc = path.node;
+
+      // Create a new block statement with a return statement
+      const newBody = j.blockStatement([
+        j.returnStatement(arrowFunc.body)
+      ]);
+
+      // Return the modified arrow function with a block body
+      return j.arrowFunctionExpression(
+        arrowFunc.params,
+        newBody,
+        arrowFunc.async
+      );
+    })
+};
+
 
 /**
  * Called by jscodeshift when running the transform
@@ -508,6 +560,18 @@ const translateJSXTextContent = (
  * @param options
  */
 const transform: Transform = (fileInfo, api, options) => {
+  const excludeFiles = [
+    /\.(test|spec)\.tsx$/,
+    /\.(stories)\.tsx$/,
+  ];
+
+  if (excludeFiles.some((regex) => regex.test(fileInfo.path))) {
+    // console.log(`Skipping ${fileInfo.path}`);
+    return;
+  }
+
+  console.log(`Processing ${fileInfo.path}`);
+
   const j = api.jscodeshift;
   const { source } = fileInfo;
   const { translationFilePath, translationRoot, importName } = options;
@@ -525,6 +589,7 @@ const transform: Transform = (fileInfo, api, options) => {
   const translations = readTranslations(translationFilePath, translationRoot);
   const root = j(source);
 
+  transformFunctionComponents(j, root);
   translateJSXTextContent(j, root, translations, importName);
   translateJSXAttributes(j, root, translations, importName);
   translateTemplateLiterals(j, root, translations, importName);
@@ -534,7 +599,7 @@ const transform: Transform = (fileInfo, api, options) => {
   return root.toSource({
     quote: 'single',
     reuseWhitespace: true,
-    wrapColumn: 120
+    wrapColumn: 120,
   });
 };
 

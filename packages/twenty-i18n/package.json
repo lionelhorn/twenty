@@ -2,17 +2,23 @@
   "name": "twenty-i18n",
   "private": true,
   "scripts": {
-    "translate": "node ../../node_modules/jscodeshift/bin/jscodeshift.js --extensions=tsx --parser=tsx --run-in-band -t ./extract-translations-transform.ts ../twenty-front/src/modules/activities/**/*.tsx --translationFilePath=../twenty-front/public/locales/en/common.json --translationRoot=translation --importName=react-i18next",
+    "codemod": "node ../../node_modules/jscodeshift/bin/jscodeshift.js --extensions=tsx --parser=tsx --run-in-band -t utils/extract-translations-transform.ts ../twenty-front/src/**/*.tsx --translationFilePath=../twenty-front/public/locales/en/common.json --importName=react-i18next",
     "format-changed": "../../node_modules/.bin/prettier --write $(git diff --name-only --diff-filter d | grep -e '\\.[tj]sx\\?$' | xargs",
-    "test:no-template-litterals-with-expressions": "node ../../node_modules/jscodeshift/bin/jscodeshift.js --extensions=tsx --parser=tsx --run-in-band -t ./extract-translations-transform.ts ../twenty-front/src/modules/activities/timelineActivities/rows/main-object/components/EventFieldDiffContainer.tsx --translationFilePath=../twenty-front/public/locales/en/common.json --translationRoot=translation --importName=react-i18next",
-    "test:no-empty-string": "node ../../node_modules/jscodeshift/bin/jscodeshift.js --extensions=tsx --parser=tsx --run-in-band -t ./extract-translations-transform.ts ../twenty-front/src/modules/activities/calendar/components/CalendarEventDetails.tsx --translationFilePath=../twenty-front/public/locales/en/common.json --translationRoot=translation --importName=react-i18next"
+    "test:no-template-litterals-with-expressions": "node ../../node_modules/jscodeshift/bin/jscodeshift.js --extensions=tsx --parser=tsx --run-in-band -t utils/extract-translations-transform.ts ../twenty-front/src/modules/activities/timelineActivities/rows/main-object/components/EventFieldDiffContainer.tsx --translationFilePath=../twenty-front/public/locales/en/common.json --importName=react-i18next",
+    "test:no-empty-string": "node ../../node_modules/jscodeshift/bin/jscodeshift.js --extensions=tsx --parser=tsx --run-in-band -t utils/extract-translations-transform.ts ../twenty-front/src/modules/activities/calendar/components/CalendarEventDetails.tsx --translationFilePath=../twenty-front/public/locales/en/common.json --importName=react-i18next",
+    "test:issue1": "node ../../node_modules/jscodeshift/bin/jscodeshift.js --extensions=tsx --parser=tsx --run-in-band -t utils/extract-translations-transform.ts ../twenty-front/src/pages/settings/SettingsProfile.tsx --translationFilePath=../twenty-front/public/locales/en/common.json --importName=react-i18next",
+    "translate": "tsx ./utils/translate-deepl.ts"
   },
   "dependencies": {
     "ast-types": "^0.14.2",
+    "deepl-node": "^1.13.1",
+    "dot-prop": "^9.0.0",
+    "dotenv": "16.4.5",
     "jscodeshift": "17.0.0",
     "json-stable-stringify": "^1.0.2",
     "lodash": "^4.17.21",
-    "slugify": "^1.6.5"
+    "slugify": "^1.6.5",
+    "tsx": "^4.19.0"
   },
   "devDependencies": {
     "@types/jscodeshift": "^0.11.5",

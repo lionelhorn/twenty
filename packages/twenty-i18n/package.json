@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "translate": "node ../../node_modules/jscodeshift/bin/jscodeshift.js --extensions=tsx --parser=tsx --run-in-band -t ./extract-translations-transform.ts ../twenty-front/src/modules/activities/**/*.tsx --translationFilePath=../twenty-front/public/locales/en/common.json --translationRoot=translation --importName=react-i18next",
+    "format-changed": "../../node_modules/.bin/prettier --write $(git diff --name-only --diff-filter d | grep -e '\\.[tj]sx\\?$' | xargs",
     "test:no-template-litterals-with-expressions": "node ../../node_modules/jscodeshift/bin/jscodeshift.js --extensions=tsx --parser=tsx --run-in-band -t ./extract-translations-transform.ts ../twenty-front/src/modules/activities/timelineActivities/rows/main-object/components/EventFieldDiffContainer.tsx --translationFilePath=../twenty-front/public/locales/en/common.json --translationRoot=translation --importName=react-i18next",
     "test:no-empty-string": "node ../../node_modules/jscodeshift/bin/jscodeshift.js --extensions=tsx --parser=tsx --run-in-band -t ./extract-translations-transform.ts ../twenty-front/src/modules/activities/calendar/components/CalendarEventDetails.tsx --translationFilePath=../twenty-front/public/locales/en/common.json --translationRoot=translation --importName=react-i18next"
   },
@@ -15,6 +16,8 @@
   },
   "devDependencies": {
     "@types/jscodeshift": "^0.11.5",
-    "@types/lodash": "^4.14.191"
+    "@types/lodash": "^4.14.191",
+    "husky": "^9.1.5",
+    "lint-staged": "^15.2.10"
   }
 }

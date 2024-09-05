@@ -7,7 +7,8 @@
     "build": "VITE_DISABLE_TYPESCRIPT_CHECKER=true VITE_DISABLE_ESLINT_CHECKER=true NODE_OPTIONS=--max-old-space-size=3000 npx vite build && sh ./scripts/inject-runtime-env.sh",
     "build:sourcemaps": "VITE_BUILD_SOURCEMAP=true VITE_DISABLE_TYPESCRIPT_CHECKER=true VITE_DISABLE_ESLINT_CHECKER=true NODE_OPTIONS=--max-old-space-size=6000 npx vite build && sh ./scripts/inject-runtime-env.sh",
     "start:prod": "NODE_ENV=production npx vite --host",
-    "tsup": "npx tsup"
+    "tsup": "npx tsup",
+    "format:staged": "../../node_modules/.bin/lint-staged"
   },
   "engines": {
     "node": "^18.17.1",
@@ -32,5 +33,10 @@
   "dependencies": {
     "@xyflow/react": "^12.0.4",
     "transliteration": "^2.3.5"
+  },
+  "lint-staged": {
+    "*.tsx": [
+      "prettier --write"
+    ]
   }
 }

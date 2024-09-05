@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Decorator } from '@storybook/react';
 import { useRecoilState } from 'recoil';
 
@@ -10,6 +11,8 @@ import { profilingSessionStatusState } from '~/testing/profiling/states/profilin
 import { getTestArray } from '~/testing/profiling/utils/getTestArray';
 
 export const ProfilerDecorator: Decorator = (Story, { id, parameters }) => {
+  const { t } = useTranslation();
+
   const numberOfTests = parameters.numberOfTests ?? 2;
   const numberOfRuns = parameters.numberOfRuns ?? 2;
   const warmUpRounds = parameters.warmUpRounds ?? 5;
@@ -36,7 +39,8 @@ export const ProfilerDecorator: Decorator = (Story, { id, parameters }) => {
         profilingId={id}
       />
       <div>
-        Profiling {numberOfTests} times the component {parameters.componentName}{' '}
+        {t('profilerDecorator.profiling')} {numberOfTests}{' '}
+        {t('profilerDecorator.times-the-component')} {parameters.componentName}{' '}
         :
       </div>
       {skip ? (
@@ -45,17 +49,19 @@ export const ProfilerDecorator: Decorator = (Story, { id, parameters }) => {
         <>
           <ProfilingReporter />
           <div style={{ visibility: 'hidden', width: 0, height: 0 }}>
-            {testArray.map((_, index) => (
-              <ProfilerWrapper
-                key={id + index}
-                componentName={parameters.componentName}
-                runName={currentRunName}
-                testIndex={index}
-                profilingId={id}
-              >
-                <Story />
-              </ProfilerWrapper>
-            ))}
+            {testArray.map((_, index) => {
+              return (
+                <ProfilerWrapper
+                  key={id + index}
+                  componentName={parameters.componentName}
+                  runName={currentRunName}
+                  testIndex={index}
+                  profilingId={id}
+                >
+                  <Story />
+                </ProfilerWrapper>
+              );
+            })}
           </div>
           {profilingSessionStatus === 'finished' && (
             <div data-testid="profiling-session-finished" />

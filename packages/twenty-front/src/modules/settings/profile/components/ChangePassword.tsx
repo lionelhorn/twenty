@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useRecoilValue } from 'recoil';
 import { H2Title } from 'twenty-ui';
 
@@ -8,6 +9,8 @@ import { Button } from '@/ui/input/button/components/Button';
 import { useEmailPasswordResetLinkMutation } from '~/generated/graphql';
 
 export const ChangePassword = () => {
+  const { t } = useTranslation();
+
   const { enqueueSnackBar } = useSnackBar();
 
   const currentUser = useRecoilValue(currentUserState);
@@ -47,13 +50,15 @@ export const ChangePassword = () => {
   return (
     <>
       <H2Title
-        title="Change Password"
-        description="Receive an email containing password update link"
+        title={t('changePassword.change-password')}
+        description={t(
+          'changePassword.receive-an-email-containing-password-upd',
+        )}
       />
       <Button
         onClick={handlePasswordResetClick}
         variant="secondary"
-        title="Change Password"
+        title={t('changePassword.change-password')}
       />
     </>
   );

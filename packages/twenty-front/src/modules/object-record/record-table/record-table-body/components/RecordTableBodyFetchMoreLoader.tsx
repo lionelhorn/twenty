@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useContext } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -20,6 +21,8 @@ const StyledText = styled.div`
 `;
 
 export const RecordTableBodyFetchMoreLoader = () => {
+  const { t } = useTranslation();
+
   const { setRecordTableLastRowVisible } = useRecordTable();
 
   const onLastRowVisible = useRecoilCallback(
@@ -55,7 +58,9 @@ export const RecordTableBodyFetchMoreLoader = () => {
   return (
     <tr ref={tbodyRef}>
       <td colSpan={7}>
-        <StyledText>Loading more...</StyledText>
+        <StyledText>
+          {t('recordTableBodyFetchMoreLoader.loading-more')}
+        </StyledText>
       </td>
       <td colSpan={7} />
     </tr>

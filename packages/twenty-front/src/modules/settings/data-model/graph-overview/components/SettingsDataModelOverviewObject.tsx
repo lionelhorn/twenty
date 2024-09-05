@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
@@ -100,6 +101,8 @@ const StyledObjectLink = styled(Link)`
 export const SettingsDataModelOverviewObject = ({
   data,
 }: SettingsDataModelOverviewObjectProps) => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
   const { getIcon } = useIcons();
   const [otherFieldsExpanded, setOtherFieldsExpanded] = useState(false);
@@ -130,15 +133,16 @@ export const SettingsDataModelOverviewObject = ({
           objectTypeLabel={getObjectTypeLabel(data)}
         ></SettingsDataModelObjectTypeTag>
       </StyledHeader>
-
       <StyledInnerCard>
         {fields
           .filter((x) => x.type === FieldMetadataType.Relation)
-          .map((field) => (
-            <StyledCardRow>
-              <ObjectFieldRow field={field} />
-            </StyledCardRow>
-          ))}
+          .map((field) => {
+            return (
+              <StyledCardRow>
+                <ObjectFieldRow field={field} />
+              </StyledCardRow>
+            );
+          })}
         {countNonRelation > 0 && (
           <>
             <StyledCardRowOther
@@ -149,16 +153,20 @@ export const SettingsDataModelOverviewObject = ({
               ) : (
                 <IconChevronDown size={theme.icon.size.md} />
               )}
-              <StyledCardRowText>{countNonRelation} fields</StyledCardRowText>
+              <StyledCardRowText>
+                {countNonRelation} {t('settingsDataModelOverviewObject.fields')}
+              </StyledCardRowText>
             </StyledCardRowOther>
             {otherFieldsExpanded &&
               fields
                 .filter((x) => x.type !== FieldMetadataType.Relation)
-                .map((field) => (
-                  <StyledCardRow>
-                    <ObjectFieldRowWithoutRelation field={field} />
-                  </StyledCardRow>
-                ))}
+                .map((field) => {
+                  return (
+                    <StyledCardRow>
+                      <ObjectFieldRowWithoutRelation field={field} />
+                    </StyledCardRow>
+                  );
+                })}
           </>
         )}
       </StyledInnerCard>

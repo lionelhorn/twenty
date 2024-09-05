@@ -72,30 +72,34 @@ export const ObjectFilterDropdownFilterSelect = () => {
               .toLocaleLowerCase()
               .includes(searchText.toLocaleLowerCase()),
           )
-          .map((availableFilterDefinition, index) => (
-            <MenuItem
-              key={`select-filter-${index}`}
-              testId={`select-filter-${index}`}
-              onClick={() => {
-                setFilterDefinitionUsedInDropdown(availableFilterDefinition);
+          .map((availableFilterDefinition, index) => {
+            return (
+              <MenuItem
+                key={`select-filter-${index}`}
+                testId={`select-filter-${index}`}
+                onClick={() => {
+                  setFilterDefinitionUsedInDropdown(availableFilterDefinition);
 
-                if (
-                  availableFilterDefinition.type === 'RELATION' ||
-                  availableFilterDefinition.type === 'SELECT'
-                ) {
-                  setHotkeyScope(RelationPickerHotkeyScope.RelationPicker);
-                }
+                  if (
+                    availableFilterDefinition.type === 'RELATION' ||
+                    availableFilterDefinition.type === 'SELECT'
+                  ) {
+                    setHotkeyScope(RelationPickerHotkeyScope.RelationPicker);
+                  }
 
-                setSelectedOperandInDropdown(
-                  getOperandsForFilterType(availableFilterDefinition.type)?.[0],
-                );
+                  setSelectedOperandInDropdown(
+                    getOperandsForFilterType(
+                      availableFilterDefinition.type,
+                    )?.[0],
+                  );
 
-                setObjectFilterDropdownSearchInput('');
-              }}
-              LeftIcon={getIcon(availableFilterDefinition.iconName)}
-              text={availableFilterDefinition.label}
-            />
-          ))}
+                  setObjectFilterDropdownSearchInput('');
+                }}
+                LeftIcon={getIcon(availableFilterDefinition.iconName)}
+                text={availableFilterDefinition.label}
+              />
+            );
+          })}
       </DropdownMenuItemsContainer>
     </>
   );

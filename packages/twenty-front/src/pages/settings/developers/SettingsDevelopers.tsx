@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { H2Title, IconCode, IconPlus } from 'twenty-ui';
 
@@ -16,23 +17,27 @@ const StyledButtonContainer = styled.div`
 `;
 
 export const SettingsDevelopers = () => {
+  const { t } = useTranslation();
+
   return (
     <SubMenuTopBarContainer
       Icon={IconCode}
-      title="Developers"
+      title={t('settingsDevelopers.developers')}
       actionButton={<SettingsReadDocumentationButton />}
     >
       <SettingsPageContainer>
         <Section>
           <H2Title
-            title="API keys"
-            description="Active APIs keys created by you or your team."
+            title={t('settingsDevelopers.api-keys')}
+            description={t(
+              'settingsDevelopers.active-apis-keys-created-by-you-or-your-',
+            )}
           />
           <SettingsApiKeysTable />
           <StyledButtonContainer>
             <Button
               Icon={IconPlus}
-              title="Create API key"
+              title={t('settingsDevelopers.create-api-key')}
               size="small"
               variant="secondary"
               to={'/settings/developers/api-keys/new'}
@@ -41,14 +46,16 @@ export const SettingsDevelopers = () => {
         </Section>
         <Section>
           <H2Title
-            title="Webhooks"
-            description="Establish Webhook endpoints for notifications on asynchronous events."
+            title={t('settingsDevelopers.webhooks')}
+            description={t(
+              'settingsDevelopers.establish-webhook-endpoints-for-notifica',
+            )}
           />
           <SettingsWebhooksTable />
           <StyledButtonContainer>
             <Button
               Icon={IconPlus}
-              title="Create Webhook"
+              title={t('settingsDevelopers.create-webhook')}
               size="small"
               variant="secondary"
               to={'/settings/developers/webhooks/new'}

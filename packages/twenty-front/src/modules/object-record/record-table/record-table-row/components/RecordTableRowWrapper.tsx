@@ -51,48 +51,50 @@ export const RecordTableRowWrapper = ({
 
   return (
     <Draggable key={recordId} draggableId={recordId} index={rowIndex}>
-      {(draggableProvided, draggableSnapshot) => (
-        <RecordTableTr
-          ref={(node) => {
-            elementRef(node);
-            draggableProvided.innerRef(node);
-          }}
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...draggableProvided.draggableProps}
-          style={{
-            ...draggableProvided.draggableProps.style,
-            background: draggableSnapshot.isDragging
-              ? theme.background.transparent.light
-              : 'none',
-            borderColor: draggableSnapshot.isDragging
-              ? `${theme.border.color.medium}`
-              : 'transparent',
-          }}
-          isDragging={draggableSnapshot.isDragging}
-          data-testid={`row-id-${recordId}`}
-          data-selectable-id={recordId}
-        >
-          <RecordTableRowContext.Provider
-            value={{
-              recordId,
-              rowIndex,
-              pathToShowPage:
-                getBasePathToShowPage({
-                  objectNameSingular: objectMetadataItem.nameSingular,
-                }) + recordId,
-              objectNameSingular: objectMetadataItem.nameSingular,
-              isSelected: currentRowSelected,
-              isReadOnly: objectMetadataItem.isRemote ?? false,
-              isPendingRow,
-              isDragging: draggableSnapshot.isDragging,
-              dragHandleProps: draggableProvided.dragHandleProps,
-              inView,
+      {(draggableProvided, draggableSnapshot) => {
+        return (
+          <RecordTableTr
+            ref={(node) => {
+              elementRef(node);
+              draggableProvided.innerRef(node);
             }}
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...draggableProvided.draggableProps}
+            style={{
+              ...draggableProvided.draggableProps.style,
+              background: draggableSnapshot.isDragging
+                ? theme.background.transparent.light
+                : 'none',
+              borderColor: draggableSnapshot.isDragging
+                ? `${theme.border.color.medium}`
+                : 'transparent',
+            }}
+            isDragging={draggableSnapshot.isDragging}
+            data-testid={`row-id-${recordId}`}
+            data-selectable-id={recordId}
           >
-            {children}
-          </RecordTableRowContext.Provider>
-        </RecordTableTr>
-      )}
+            <RecordTableRowContext.Provider
+              value={{
+                recordId,
+                rowIndex,
+                pathToShowPage:
+                  getBasePathToShowPage({
+                    objectNameSingular: objectMetadataItem.nameSingular,
+                  }) + recordId,
+                objectNameSingular: objectMetadataItem.nameSingular,
+                isSelected: currentRowSelected,
+                isReadOnly: objectMetadataItem.isRemote ?? false,
+                isPendingRow,
+                isDragging: draggableSnapshot.isDragging,
+                dragHandleProps: draggableProvided.dragHandleProps,
+                inView,
+              }}
+            >
+              {children}
+            </RecordTableRowContext.Provider>
+          </RecordTableTr>
+        );
+      }}
     </Draggable>
   );
 };

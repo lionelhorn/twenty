@@ -172,15 +172,17 @@ export const RecordBoardCard = () => {
     children,
   }: {
     children: ReactNode;
-  }) => (
-    <StyledFieldContainer
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-    >
-      {children}
-    </StyledFieldContainer>
-  );
+  }) => {
+    return (
+      <StyledFieldContainer
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        {children}
+      </StyledFieldContainer>
+    );
+  };
 
   const onMouseLeaveBoard = () => {
     if (isCompactModeActive) {
@@ -257,41 +259,43 @@ export const RecordBoardCard = () => {
             isOpen={!isCardInCompactMode || !isCompactModeActive}
             initial={false}
           >
-            {visibleFieldDefinitionsFiltered.map((fieldDefinition) => (
-              <PreventSelectOnClickContainer
-                key={fieldDefinition.fieldMetadataId}
-              >
-                <FieldContext.Provider
-                  value={{
-                    recordId,
-                    maxWidth: 156,
-                    recoilScopeId: recordId + fieldDefinition.fieldMetadataId,
-                    isLabelIdentifier: false,
-                    fieldDefinition: {
-                      disableTooltip: false,
-                      fieldMetadataId: fieldDefinition.fieldMetadataId,
-                      label: fieldDefinition.label,
-                      iconName: fieldDefinition.iconName,
-                      type: fieldDefinition.type,
-                      metadata: fieldDefinition.metadata,
-                      defaultValue: fieldDefinition.defaultValue,
-                      editButtonIcon: getFieldButtonIcon({
-                        metadata: fieldDefinition.metadata,
-                        type: fieldDefinition.type,
-                      }),
-                    },
-                    useUpdateRecord: useUpdateOneRecordHook,
-                    hotkeyScope: InlineCellHotkeyScope.InlineCell,
-                  }}
+            {visibleFieldDefinitionsFiltered.map((fieldDefinition) => {
+              return (
+                <PreventSelectOnClickContainer
+                  key={fieldDefinition.fieldMetadataId}
                 >
-                  {inView ? (
-                    <RecordInlineCell />
-                  ) : (
-                    <StyledRecordInlineCellPlaceholder />
-                  )}
-                </FieldContext.Provider>
-              </PreventSelectOnClickContainer>
-            ))}
+                  <FieldContext.Provider
+                    value={{
+                      recordId,
+                      maxWidth: 156,
+                      recoilScopeId: recordId + fieldDefinition.fieldMetadataId,
+                      isLabelIdentifier: false,
+                      fieldDefinition: {
+                        disableTooltip: false,
+                        fieldMetadataId: fieldDefinition.fieldMetadataId,
+                        label: fieldDefinition.label,
+                        iconName: fieldDefinition.iconName,
+                        type: fieldDefinition.type,
+                        metadata: fieldDefinition.metadata,
+                        defaultValue: fieldDefinition.defaultValue,
+                        editButtonIcon: getFieldButtonIcon({
+                          metadata: fieldDefinition.metadata,
+                          type: fieldDefinition.type,
+                        }),
+                      },
+                      useUpdateRecord: useUpdateOneRecordHook,
+                      hotkeyScope: InlineCellHotkeyScope.InlineCell,
+                    }}
+                  >
+                    {inView ? (
+                      <RecordInlineCell />
+                    ) : (
+                      <StyledRecordInlineCellPlaceholder />
+                    )}
+                  </FieldContext.Provider>
+                </PreventSelectOnClickContainer>
+              );
+            })}
           </AnimatedEaseInOut>
         </StyledBoardCardBody>
       </StyledBoardCard>

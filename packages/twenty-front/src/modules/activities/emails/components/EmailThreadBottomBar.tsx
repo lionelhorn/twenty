@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { IconArrowBackUp, IconUserCircle } from 'twenty-ui';
 
@@ -13,23 +14,25 @@ const StyledThreadBottomBar = styled.div`
 `;
 
 export const ThreadBottomBar = () => {
+  const { t } = useTranslation();
+
   return (
     <StyledThreadBottomBar>
       <Button
         Icon={IconArrowBackUp}
-        title="Reply"
+        title={t('threadBottomBar.reply')}
         variant="secondary"
         accent="default"
       />
       <Button
         Icon={IconArrowBackUp}
-        title="Reply to all"
+        title={t('threadBottomBar.reply-to-all')}
         variant="secondary"
         accent="default"
       />
       <Button
         Icon={IconUserCircle}
-        title="Share"
+        title={t('threadBottomBar.share')}
         variant="secondary"
         accent="default"
       />

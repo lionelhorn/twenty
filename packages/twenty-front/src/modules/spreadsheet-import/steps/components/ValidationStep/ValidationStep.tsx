@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import {
   Dispatch,
@@ -90,6 +91,8 @@ export const ValidationStep = <T extends string>({
   setCurrentStepState,
   onBack,
 }: ValidationStepProps<T>) => {
+  const { t } = useTranslation();
+
   const { enqueueDialog } = useDialogManager();
   const { fields, onClose, onSubmit, rowHook, tableHook } =
     useSpreadsheetImportInternal<T>();
@@ -258,8 +261,10 @@ export const ValidationStep = <T extends string>({
     <>
       <StyledContent>
         <Heading
-          title="Review your import"
-          description="Correct the issues and fill the missing data."
+          title={t('validationStep.review-your-import')}
+          description={t(
+            'validationStep.correct-the-issues-and-fill-the-missing-',
+          )}
         />
         <StyledToolbar>
           <StyledErrorToggle>
@@ -268,7 +273,7 @@ export const ValidationStep = <T extends string>({
               onChange={() => setFilterByErrors(!filterByErrors)}
             />
             <StyledErrorToggleDescription>
-              Show only rows with errors
+              {t('validationStep.show-only-rows-with-errors')}
             </StyledErrorToggleDescription>
           </StyledErrorToggle>
           <StyledErrorToggle>
@@ -277,12 +282,12 @@ export const ValidationStep = <T extends string>({
               onChange={() => setShowUnmatchedColumns(!showUnmatchedColumns)}
             />
             <StyledErrorToggleDescription>
-              Show unmatched columns
+              {t('validationStep.show-unmatched-columns')}
             </StyledErrorToggleDescription>
           </StyledErrorToggle>
           <Button
             Icon={IconTrash}
-            title="Remove"
+            title={t('validationStep.remove')}
             accent="danger"
             onClick={deleteSelectedRows}
             disabled={selectedRows.size === 0}
@@ -311,7 +316,7 @@ export const ValidationStep = <T extends string>({
       <StepNavigationButton
         onClick={onContinue}
         onBack={onBack}
-        title="Confirm"
+        title={t('validationStep.confirm')}
       />
     </>
   );

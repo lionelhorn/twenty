@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useGetManyServerlessFunctions } from '@/settings/serverless-functions/hooks/useGetManyServerlessFunctions';
 import { Select, SelectOption } from '@/ui/input/components/Select';
 import { WorkflowAction } from '@/workflow/types/Workflow';
@@ -50,6 +51,8 @@ export const WorkflowEditActionForm = ({
   action: WorkflowAction;
   onUpdateAction: (trigger: WorkflowAction) => void;
 }) => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
 
   const { serverlessFunctions } = useGetManyServerlessFunctions();
@@ -74,12 +77,13 @@ export const WorkflowEditActionForm = ({
         </StyledTriggerHeaderIconContainer>
 
         <StyledTriggerHeaderTitle>
-          Code - Serverless Function
+          {t('workflowEditActionForm.code-serverless-function')}
         </StyledTriggerHeaderTitle>
 
-        <StyledTriggerHeaderType>Code</StyledTriggerHeaderType>
+        <StyledTriggerHeaderType>
+          {t('workflowEditActionForm.code')}
+        </StyledTriggerHeaderType>
       </StyledTriggerHeader>
-
       <StyledTriggerSettings>
         <Select
           dropdownId="workflow-edit-action-function"

@@ -40,17 +40,19 @@ export const EmailsFieldInput = ({ onCancel }: EmailsFieldInputProps) => {
         handleEdit,
         handleSetPrimary,
         handleDelete,
-      }) => (
-        <EmailsFieldMenuItem
-          key={index}
-          dropdownId={`${hotkeyScope}-emails-${index}`}
-          isPrimary={index === 0}
-          email={email}
-          onEdit={handleEdit}
-          onSetAsPrimary={handleSetPrimary}
-          onDelete={handleDelete}
-        />
-      )}
+      }) => {
+        return (
+          <EmailsFieldMenuItem
+            key={index}
+            dropdownId={`${hotkeyScope}-emails-${index}`}
+            isPrimary={index === 0}
+            email={email}
+            onEdit={handleEdit}
+            onSetAsPrimary={handleSetPrimary}
+            onDelete={handleDelete}
+          />
+        );
+      }}
       hotkeyScope={hotkeyScope}
     />
   );

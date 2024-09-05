@@ -12,13 +12,15 @@ export const DialogManager = ({ children }: React.PropsWithChildren) => {
     <>
       <DialogManagerEffect />
       {children}
-      {dialogInternal.queue.map(({ buttons, children, id, message, title }) => (
-        <Dialog
-          key={id}
-          {...{ title, message, buttons, id, children }}
-          onClose={() => closeDialog(id)}
-        />
-      ))}
+      {dialogInternal.queue.map(({ buttons, children, id, message, title }) => {
+        return (
+          <Dialog
+            key={id}
+            {...{ title, message, buttons, id, children }}
+            onClose={() => closeDialog(id)}
+          />
+        );
+      })}
     </>
   );
 };

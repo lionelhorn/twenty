@@ -11,7 +11,9 @@ export const RecordTableCellsEmpty = () => {
 
   const visibleTableColumns = useRecoilValue(visibleTableColumnsSelector());
 
-  return visibleTableColumns.map((column) => (
-    <RecordTableTd isSelected={isSelected} key={column.fieldMetadataId} />
-  ));
+  return visibleTableColumns.map((column) => {
+    return (
+      <RecordTableTd isSelected={isSelected} key={column.fieldMetadataId} />
+    );
+  });
 };

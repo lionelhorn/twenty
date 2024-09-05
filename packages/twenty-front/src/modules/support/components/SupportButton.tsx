@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { IconHelpCircle } from 'twenty-ui';
 
@@ -10,6 +11,8 @@ const StyledButtonContainer = styled.div`
 `;
 
 export const SupportButton = () => {
+  const { t } = useTranslation();
+
   const { loading, isFrontChatLoaded } = useSupportChat();
 
   if (loading) {
@@ -21,7 +24,7 @@ export const SupportButton = () => {
       <Button
         variant="tertiary"
         size="small"
-        title="Support"
+        title={t('supportButton.support')}
         Icon={IconHelpCircle}
       />
     </StyledButtonContainer>

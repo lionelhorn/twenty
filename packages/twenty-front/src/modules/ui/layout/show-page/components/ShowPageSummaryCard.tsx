@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ChangeEvent, ReactNode, useRef } from 'react';
@@ -104,6 +105,8 @@ export const ShowPageSummaryCard = ({
   loading,
   isMobile = false,
 }: ShowPageSummaryCardProps) => {
+  const { t } = useTranslation();
+
   const beautifiedCreatedAt =
     date !== '' ? beautifyPastDateRelativeToNow(date) : '';
   const exactCreatedAt = date !== '' ? beautifyExactDateTime(date) : '';
@@ -145,7 +148,7 @@ export const ShowPageSummaryCard = ({
         <StyledTitle isMobile={isMobile}>{title}</StyledTitle>
         {beautifiedCreatedAt && (
           <StyledDate isMobile={isMobile} id={dateElementId}>
-            Added {beautifiedCreatedAt}
+            {t('showPageSummaryCard.added')} {beautifiedCreatedAt}
           </StyledDate>
         )}
         <AppTooltip

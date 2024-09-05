@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { IconCopy } from 'twenty-ui';
@@ -20,6 +21,8 @@ const StyledLinkContainer = styled.div`
 type ApiKeyInputProps = { apiKey: string };
 
 export const ApiKeyInput = ({ apiKey }: ApiKeyInputProps) => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
 
   const { enqueueSnackBar } = useSnackBar();
@@ -30,7 +33,7 @@ export const ApiKeyInput = ({ apiKey }: ApiKeyInputProps) => {
       </StyledLinkContainer>
       <Button
         Icon={IconCopy}
-        title="Copy"
+        title={t('apiKeyInput.copy')}
         onClick={() => {
           enqueueSnackBar('Api Key copied to clipboard', {
             variant: SnackBarVariant.Success,

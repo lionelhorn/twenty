@@ -23,17 +23,19 @@ export const RecordTableCellsVisible = () => {
         </RecordTableTd>
       </RecordTableCellWrapper>
       {!isDragging &&
-        tableColumnsAfterFirst.map((column, columnIndex) => (
-          <RecordTableCellWrapper
-            key={column.fieldMetadataId}
-            column={column}
-            columnIndex={columnIndex + 1}
-          >
-            <RecordTableTd isSelected={isSelected}>
-              <RecordTableCell />
-            </RecordTableTd>
-          </RecordTableCellWrapper>
-        ))}
+        tableColumnsAfterFirst.map((column, columnIndex) => {
+          return (
+            <RecordTableCellWrapper
+              key={column.fieldMetadataId}
+              column={column}
+              columnIndex={columnIndex + 1}
+            >
+              <RecordTableTd isSelected={isSelected}>
+                <RecordTableCell />
+              </RecordTableTd>
+            </RecordTableCellWrapper>
+          );
+        })}
     </>
   );
 };

@@ -45,12 +45,14 @@ export const TopBar = ({
   rightComponent,
   bottomComponent,
   displayBottomBorder = true,
-}: TopBarProps) => (
-  <StyledContainer className={className}>
-    <StyledTopBar displayBottomBorder={displayBottomBorder}>
-      <StyledLeftSection>{leftComponent}</StyledLeftSection>
-      <StyledRightSection>{rightComponent}</StyledRightSection>
-    </StyledTopBar>
-    {bottomComponent}
-  </StyledContainer>
-);
+}: TopBarProps) => {
+  return (
+    <StyledContainer className={className}>
+      <StyledTopBar displayBottomBorder={displayBottomBorder}>
+        <StyledLeftSection>{leftComponent}</StyledLeftSection>
+        <StyledRightSection>{rightComponent}</StyledRightSection>
+      </StyledTopBar>
+      {bottomComponent}
+    </StyledContainer>
+  );
+};

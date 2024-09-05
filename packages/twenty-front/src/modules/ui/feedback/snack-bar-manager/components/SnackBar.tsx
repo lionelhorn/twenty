@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { ComponentPropsWithoutRef, ReactNode, useMemo } from 'react';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -115,6 +116,8 @@ export const SnackBar = ({
   variant = SnackBarVariant.Default,
   title = defaultTitleByVariant[variant],
 }: SnackBarProps) => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
   const { animation: progressAnimation, value: progressValue } =
     useProgressAnimation({
@@ -187,10 +190,16 @@ export const SnackBar = ({
         {icon}
         {title}
         <StyledActions>
-          {!!onCancel && <LightButton title="Cancel" onClick={onCancel} />}
+          {!!onCancel && (
+            <LightButton title={t('snackBar.cancel')} onClick={onCancel} />
+          )}
 
           {!!onClose && (
-            <LightIconButton title="Close" Icon={IconX} onClick={onClose} />
+            <LightIconButton
+              title={t('snackBar.close')}
+              Icon={IconX}
+              onClick={onClose}
+            />
           )}
         </StyledActions>
       </StyledHeader>

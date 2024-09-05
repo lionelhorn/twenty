@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
 import { IconPlus } from 'twenty-ui';
@@ -39,6 +40,8 @@ export const TaskGroups = ({
   targetableObjects,
   showAddButton,
 }: TaskGroupsProps) => {
+  const { t } = useTranslation();
+
   const { tasks, tasksLoading } = useTasks({
     targetableObjects: targetableObjects ?? [],
   });
@@ -71,15 +74,15 @@ export const TaskGroups = ({
         <AnimatedPlaceholder type="noTask" />
         <AnimatedPlaceholderEmptyTextContainer>
           <AnimatedPlaceholderEmptyTitle>
-            Mission accomplished!
+            {t('taskGroups.mission-accomplished')}
           </AnimatedPlaceholderEmptyTitle>
           <AnimatedPlaceholderEmptySubTitle>
-            All tasks addressed. Maintain the momentum.
+            {t('taskGroups.all-tasks-addressed-maintain-the-momentu')}
           </AnimatedPlaceholderEmptySubTitle>
         </AnimatedPlaceholderEmptyTextContainer>
         <Button
           Icon={IconPlus}
-          title="New task"
+          title={t('taskGroups.new-task')}
           variant={'secondary'}
           onClick={() =>
             openCreateActivity({
@@ -94,18 +97,22 @@ export const TaskGroups = ({
   return (
     <StyledContainer>
       {Object.entries(groupBy(tasks, ({ status }) => status)).map(
-        ([status, tasksByStatus]: [string, Task[]]) => (
-          <TaskList
-            key={status}
-            title={status}
-            tasks={tasksByStatus}
-            button={
-              showAddButton && (
-                <AddTaskButton activityTargetableObjects={targetableObjects} />
-              )
-            }
-          />
-        ),
+        ([status, tasksByStatus]: [string, Task[]]) => {
+          return (
+            <TaskList
+              key={status}
+              title={status}
+              tasks={tasksByStatus}
+              button={
+                showAddButton && (
+                  <AddTaskButton
+                    activityTargetableObjects={targetableObjects}
+                  />
+                )
+              }
+            />
+          );
+        },
       )}
     </StyledContainer>
   );

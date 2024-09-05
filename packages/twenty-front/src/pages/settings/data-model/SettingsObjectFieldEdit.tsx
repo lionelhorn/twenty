@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useApolloClient } from '@apollo/client';
 import styled from '@emotion/styled';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -57,6 +58,8 @@ const canPersistFieldMetadataItemUpdate = (
 };
 
 export const SettingsObjectFieldEdit = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const { enqueueSnackBar } = useSnackBar();
 
@@ -204,8 +207,10 @@ export const SettingsObjectFieldEdit = () => {
           <SettingsPageContainer>
             <Section>
               <H2Title
-                title="Name and description"
-                description="The name and description of this field"
+                title={t('settingsObjectFieldEdit.name-and-description')}
+                description={t(
+                  'settingsObjectFieldEdit.the-name-and-description-of-this-field',
+                )}
               />
               <SettingsDataModelFieldAboutForm
                 disabled={!activeMetadataField.isCustom}
@@ -215,8 +220,10 @@ export const SettingsObjectFieldEdit = () => {
             </Section>
             <Section>
               <H2Title
-                title="Type and values"
-                description="The field's type and values."
+                title={t('settingsObjectFieldEdit.type-and-values')}
+                description={t(
+                  'settingsObjectFieldEdit.the-fields-type-and-values',
+                )}
               />
               <StyledSettingsObjectFieldTypeSelect
                 disabled
@@ -235,13 +242,15 @@ export const SettingsObjectFieldEdit = () => {
             {!isLabelIdentifier && (
               <Section>
                 <H2Title
-                  title="Danger zone"
-                  description="Deactivate this field"
+                  title={t('settingsObjectFieldEdit.danger-zone')}
+                  description={t(
+                    'settingsObjectFieldEdit.deactivate-this-field',
+                  )}
                 />
                 <Button
                   Icon={IconArchive}
                   variant="secondary"
-                  title="Deactivate"
+                  title={t('settingsObjectFieldEdit.deactivate')}
                   size="small"
                   onClick={handleDeactivate}
                 />

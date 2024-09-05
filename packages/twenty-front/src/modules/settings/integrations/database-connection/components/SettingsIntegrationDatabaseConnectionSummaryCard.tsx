@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { IconDotsVertical, IconPencil, IconTrash } from 'twenty-ui';
 
@@ -35,6 +36,8 @@ export const SettingsIntegrationDatabaseConnectionSummaryCard = ({
   connectionLabel,
   onRemove,
 }: SettingsIntegrationDatabaseConnectionSummaryCardProps) => {
+  const { t } = useTranslation();
+
   const dropdownId =
     'settings-integration-database-connection-summary-card-dropdown';
 
@@ -43,7 +46,10 @@ export const SettingsIntegrationDatabaseConnectionSummaryCard = ({
       title={
         <>
           <StyledDatabaseLogoContainer>
-            <StyledDatabaseLogo alt="" src={databaseLogoUrl} />
+            <StyledDatabaseLogo
+              alt={t('settingsIntegrationDatabaseConnectionSummaryCard.')}
+              src={databaseLogoUrl}
+            />
           </StyledDatabaseLogoContainer>
           {connectionLabel}
         </>

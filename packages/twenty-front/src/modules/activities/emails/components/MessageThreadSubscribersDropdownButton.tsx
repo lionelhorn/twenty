@@ -63,35 +63,37 @@ export const MessageThreadSubscribersDropdownButton = ({
             />
           ) : (
             <DropdownMenuItemsContainer>
-              {messageThreadSubscribers?.map((subscriber) => (
-                <MenuItemAvatar
-                  key={subscriber.workspaceMember.id}
-                  testId="menu-item"
-                  onClick={() => {
-                    handleRemoveSubscriber(subscriber);
-                  }}
-                  text={
-                    subscriber.workspaceMember.name.firstName +
-                    ' ' +
-                    subscriber.workspaceMember.name.lastName
-                  }
-                  avatar={{
-                    placeholder: subscriber.workspaceMember.name.firstName,
-                    avatarUrl: subscriber.workspaceMember.avatarUrl,
-                    placeholderColorSeed: subscriber.workspaceMember.id,
-                    size: 'md',
-                    type: 'rounded',
-                  }}
-                  iconButtons={[
-                    {
-                      Icon: IconMinus,
-                      onClick: () => {
-                        handleRemoveSubscriber(subscriber);
+              {messageThreadSubscribers?.map((subscriber) => {
+                return (
+                  <MenuItemAvatar
+                    key={subscriber.workspaceMember.id}
+                    testId="menu-item"
+                    onClick={() => {
+                      handleRemoveSubscriber(subscriber);
+                    }}
+                    text={
+                      subscriber.workspaceMember.name.firstName +
+                      ' ' +
+                      subscriber.workspaceMember.name.lastName
+                    }
+                    avatar={{
+                      placeholder: subscriber.workspaceMember.name.firstName,
+                      avatarUrl: subscriber.workspaceMember.avatarUrl,
+                      placeholderColorSeed: subscriber.workspaceMember.id,
+                      size: 'md',
+                      type: 'rounded',
+                    }}
+                    iconButtons={[
+                      {
+                        Icon: IconMinus,
+                        onClick: () => {
+                          handleRemoveSubscriber(subscriber);
+                        },
                       },
-                    },
-                  ]}
-                />
-              ))}
+                    ]}
+                  />
+                );
+              })}
               <DropdownMenuSeparator />
               <MenuItem
                 LeftIcon={IconPlus}

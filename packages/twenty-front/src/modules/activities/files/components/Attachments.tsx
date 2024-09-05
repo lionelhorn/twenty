@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { ChangeEvent, useRef, useState } from 'react';
 import { IconPlus } from 'twenty-ui';
@@ -40,6 +41,8 @@ export const Attachments = ({
 }: {
   targetableObject: ActivityTargetableObject;
 }) => {
+  const { t } = useTranslation();
+
   const inputFileRef = useRef<HTMLInputElement>(null);
   const { attachments, loading } = useAttachments(targetableObject);
   const { uploadAttachmentFile } = useUploadAttachmentFile();
@@ -80,10 +83,10 @@ export const Attachments = ({
             <AnimatedPlaceholder type="noFile" />
             <AnimatedPlaceholderEmptyTextContainer>
               <AnimatedPlaceholderEmptyTitle>
-                No Files
+                {t('attachments.no-files')}
               </AnimatedPlaceholderEmptyTitle>
               <AnimatedPlaceholderEmptySubTitle>
-                There are no associated files with this record.
+                {t('attachments.there-are-no-associated-files-with-this-')}
               </AnimatedPlaceholderEmptySubTitle>
             </AnimatedPlaceholderEmptyTextContainer>
             <StyledFileInput
@@ -93,7 +96,7 @@ export const Attachments = ({
             />
             <Button
               Icon={IconPlus}
-              title="Add file"
+              title={t('attachments.add-file')}
               variant="secondary"
               onClick={handleUploadFileClick}
             />
@@ -112,14 +115,14 @@ export const Attachments = ({
       />
       <AttachmentList
         targetableObject={targetableObject}
-        title="All"
+        title={t('attachments.all')}
         attachments={attachments ?? []}
         button={
           <Button
             Icon={IconPlus}
             size="small"
             variant="secondary"
-            title="Add file"
+            title={t('attachments.add-file')}
             onClick={handleUploadFileClick}
           ></Button>
         }

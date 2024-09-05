@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { H2Title, IconCalendarEvent, IconMailCog } from 'twenty-ui';
 
@@ -14,23 +15,37 @@ const StyledCardsContainer = styled.div`
 `;
 
 export const SettingsAccountsSettingsSection = () => {
+  const { t } = useTranslation();
+
   return (
     <Section>
       <H2Title
-        title="Settings"
-        description="Configure your emails and calendar settings."
+        title={t('settingsAccountsSettingsSection.settings')}
+        description={t(
+          'settingsAccountsSettingsSection.configure-your-emails-and-calendar-setti',
+        )}
       />
       <StyledCardsContainer>
         <UndecoratedLink to={getSettingsPagePath(SettingsPath.AccountsEmails)}>
-          <SettingsNavigationCard Icon={IconMailCog} title="Emails">
-            Set email visibility, manage your blocklist and more.
+          <SettingsNavigationCard
+            Icon={IconMailCog}
+            title={t('settingsAccountsSettingsSection.emails')}
+          >
+            {t(
+              'settingsAccountsSettingsSection.set-email-visibility-manage-your-blockli',
+            )}
           </SettingsNavigationCard>
         </UndecoratedLink>
         <UndecoratedLink
           to={getSettingsPagePath(SettingsPath.AccountsCalendars)}
         >
-          <SettingsNavigationCard Icon={IconCalendarEvent} title="Calendar">
-            Configure and customize your calendar preferences.
+          <SettingsNavigationCard
+            Icon={IconCalendarEvent}
+            title={t('settingsAccountsSettingsSection.calendar')}
+          >
+            {t(
+              'settingsAccountsSettingsSection.configure-and-customize-your-calendar-pr',
+            )}
           </SettingsNavigationCard>
         </UndecoratedLink>
       </StyledCardsContainer>

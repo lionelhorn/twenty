@@ -32,20 +32,22 @@ type LoaderProps = {
   color?: ThemeColor;
 };
 
-export const Loader = ({ color }: LoaderProps) => (
-  <StyledLoaderContainer color={color}>
-    <StyledLoader
-      color={color}
-      animate={{
-        x: [-16, 0, 16],
-        width: [8, 12, 8],
-        height: [8, 2, 8],
-      }}
-      transition={{
-        duration: 0.8,
-        times: [0, 0.15, 0.3],
-        repeat: Infinity,
-      }}
-    />
-  </StyledLoaderContainer>
-);
+export const Loader = ({ color }: LoaderProps) => {
+  return (
+    <StyledLoaderContainer color={color}>
+      <StyledLoader
+        color={color}
+        animate={{
+          x: [-16, 0, 16],
+          width: [8, 12, 8],
+          height: [8, 2, 8],
+        }}
+        transition={{
+          duration: 0.8,
+          times: [0, 0.15, 0.3],
+          repeat: Infinity,
+        }}
+      />
+    </StyledLoaderContainer>
+  );
+};

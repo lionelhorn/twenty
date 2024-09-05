@@ -5,11 +5,13 @@ type ContextMenuItemProps = {
   item: ContextMenuEntry;
 };
 
-export const ContextMenuItem = ({ item }: ContextMenuItemProps) => (
-  <MenuItem
-    LeftIcon={item.Icon}
-    onClick={item.onClick}
-    accent={item.accent}
-    text={item.label}
-  />
-);
+export const ContextMenuItem = ({ item }: ContextMenuItemProps) => {
+  return (
+    <MenuItem
+      LeftIcon={item.Icon}
+      onClick={item.onClick}
+      accent={item.accent}
+      text={item.label}
+    />
+  );
+};

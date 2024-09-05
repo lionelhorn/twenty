@@ -163,16 +163,18 @@ export const RecordDetailRelationRecordsListItem = ({
   const handleClick = () => onClick(relationRecord.id);
 
   const AnimatedIconChevronDown = useCallback<IconComponent>(
-    (props) => (
-      <MotionIconChevronDown
-        className={props.className}
-        color={props.color}
-        size={props.size}
-        stroke={props.stroke}
-        initial={{ rotate: isExpanded ? 0 : -180 }}
-        animate={{ rotate: isExpanded ? -180 : 0 }}
-      />
-    ),
+    (props) => {
+      return (
+        <MotionIconChevronDown
+          className={props.className}
+          color={props.color}
+          size={props.size}
+          stroke={props.stroke}
+          initial={{ rotate: isExpanded ? 0 : -180 }}
+          animate={{ rotate: isExpanded ? -180 : 0 }}
+        />
+      );
+    },
     [isExpanded],
   );
 
@@ -226,28 +228,30 @@ export const RecordDetailRelationRecordsListItem = ({
       <AnimatedEaseInOut isOpen={isExpanded}>
         <PropertyBox>
           {availableRelationFieldMetadataItems.map(
-            (fieldMetadataItem, index) => (
-              <FieldContext.Provider
-                key={fieldMetadataItem.id}
-                value={{
-                  recordId: relationRecord.id,
-                  maxWidth: 200,
-                  recoilScopeId: `${relationRecord.id}-${fieldMetadataItem.id}`,
-                  isLabelIdentifier: false,
-                  fieldDefinition: formatFieldMetadataItemAsColumnDefinition({
-                    field: fieldMetadataItem,
-                    position: index,
-                    objectMetadataItem: relationObjectMetadataItem,
-                    showLabel: true,
-                    labelWidth: 90,
-                  }),
-                  useUpdateRecord: useUpdateOneObjectRecordMutation,
-                  hotkeyScope: InlineCellHotkeyScope.InlineCell,
-                }}
-              >
-                <RecordInlineCell />
-              </FieldContext.Provider>
-            ),
+            (fieldMetadataItem, index) => {
+              return (
+                <FieldContext.Provider
+                  key={fieldMetadataItem.id}
+                  value={{
+                    recordId: relationRecord.id,
+                    maxWidth: 200,
+                    recoilScopeId: `${relationRecord.id}-${fieldMetadataItem.id}`,
+                    isLabelIdentifier: false,
+                    fieldDefinition: formatFieldMetadataItemAsColumnDefinition({
+                      field: fieldMetadataItem,
+                      position: index,
+                      objectMetadataItem: relationObjectMetadataItem,
+                      showLabel: true,
+                      labelWidth: 90,
+                    }),
+                    useUpdateRecord: useUpdateOneObjectRecordMutation,
+                    hotkeyScope: InlineCellHotkeyScope.InlineCell,
+                  }}
+                >
+                  <RecordInlineCell />
+                </FieldContext.Provider>
+              );
+            },
           )}
         </PropertyBox>
       </AnimatedEaseInOut>

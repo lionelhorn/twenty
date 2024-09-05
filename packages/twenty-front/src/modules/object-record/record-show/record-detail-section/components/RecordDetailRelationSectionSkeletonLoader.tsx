@@ -22,9 +22,9 @@ export const RecordDetailRelationSectionSkeletonLoader = ({
       borderRadius={4}
     >
       <StyledSkeletonDiv>
-        {Array.from({ length: numSkeletons }).map((_, index) => (
-          <Skeleton key={index} width={129} height={16} />
-        ))}
+        {Array.from({ length: numSkeletons }).map((_, index) => {
+          return <Skeleton key={index} width={129} height={16} />;
+        })}
       </StyledSkeletonDiv>
     </SkeletonTheme>
   );

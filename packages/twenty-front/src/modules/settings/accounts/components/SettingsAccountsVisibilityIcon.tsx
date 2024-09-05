@@ -36,10 +36,14 @@ export const SettingsAccountsVisibilityIcon = ({
   metadata,
   subject,
   body,
-}: SettingsAccountsVisibilityIconProps) => (
-  <StyledCardMedia className={className}>
-    {!!metadata && <StyledMetadataSkeleton isActive={metadata === 'active'} />}
-    {!!subject && <StyledSubjectSkeleton isActive={subject === 'active'} />}
-    {!!body && <StyledBodySkeleton isActive={body === 'active'} />}
-  </StyledCardMedia>
-);
+}: SettingsAccountsVisibilityIconProps) => {
+  return (
+    <StyledCardMedia className={className}>
+      {!!metadata && (
+        <StyledMetadataSkeleton isActive={metadata === 'active'} />
+      )}
+      {!!subject && <StyledSubjectSkeleton isActive={subject === 'active'} />}
+      {!!body && <StyledBodySkeleton isActive={body === 'active'} />}
+    </StyledCardMedia>
+  );
+};

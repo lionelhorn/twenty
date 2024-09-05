@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useDropzone } from 'react-dropzone';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -47,6 +48,8 @@ export const DropZone = ({
   setIsDraggingFile,
   onUploadFile,
 }: DropZoneProps) => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
   const { maxFileSize } = useSpreadsheetImportInternal();
 
@@ -85,9 +88,11 @@ export const DropZone = ({
             stroke={theme.icon.stroke.sm}
             size={theme.icon.size.lg}
           />
-          <StyledUploadDragTitle>Upload a file</StyledUploadDragTitle>
+          <StyledUploadDragTitle>
+            {t('dropZone.upload-a-file')}
+          </StyledUploadDragTitle>
           <StyledUploadDragSubTitle>
-            Drag and Drop Here
+            {t('dropZone.drag-and-drop-here')}
           </StyledUploadDragSubTitle>
         </>
       )}

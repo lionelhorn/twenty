@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { SettingsServerlessFunctionsFieldItemTableRow } from '@/settings/serverless-functions/components/SettingsServerlessFunctionsFieldItemTableRow';
 import { SettingsServerlessFunctionsTableEmpty } from '@/settings/serverless-functions/components/SettingsServerlessFunctionsTableEmpty';
 import { useGetManyServerlessFunctions } from '@/settings/serverless-functions/hooks/useGetManyServerlessFunctions';
@@ -24,6 +25,8 @@ const StyledTableBody = styled(TableBody)`
 `;
 
 export const SettingsServerlessFunctionsTable = () => {
+  const { t } = useTranslation();
+
   const { serverlessFunctions } = useGetManyServerlessFunctions();
   const navigate = useNavigate();
 
@@ -43,21 +46,27 @@ export const SettingsServerlessFunctionsTable = () => {
       {serverlessFunctions.length ? (
         <Table>
           <StyledTableRow>
-            <TableHeader>Name</TableHeader>
-            <TableHeader>Runtime</TableHeader>
+            <TableHeader>
+              {t('settingsServerlessFunctionsTable.name')}
+            </TableHeader>
+            <TableHeader>
+              {t('settingsServerlessFunctionsTable.runtime')}
+            </TableHeader>
             <TableHeader></TableHeader>
           </StyledTableRow>
           <StyledTableBody>
             {serverlessFunctions.map(
-              (serverlessFunction: ServerlessFunction) => (
-                <SettingsServerlessFunctionsFieldItemTableRow
-                  key={serverlessFunction.id}
-                  serverlessFunction={serverlessFunction}
-                  to={getSettingsPagePath(SettingsPath.ServerlessFunctions, {
-                    id: serverlessFunction.id,
-                  })}
-                />
-              ),
+              (serverlessFunction: ServerlessFunction) => {
+                return (
+                  <SettingsServerlessFunctionsFieldItemTableRow
+                    key={serverlessFunction.id}
+                    serverlessFunction={serverlessFunction}
+                    to={getSettingsPagePath(SettingsPath.ServerlessFunctions, {
+                      id: serverlessFunction.id,
+                    })}
+                  />
+                );
+              },
             )}
           </StyledTableBody>
         </Table>

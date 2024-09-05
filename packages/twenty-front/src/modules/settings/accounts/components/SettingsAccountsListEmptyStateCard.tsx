@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { IconGoogle } from 'twenty-ui';
 
@@ -25,6 +26,8 @@ type SettingsAccountsListEmptyStateCardProps = {
 export const SettingsAccountsListEmptyStateCard = ({
   label,
 }: SettingsAccountsListEmptyStateCardProps) => {
+  const { t } = useTranslation();
+
   const { triggerGoogleApisOAuth } = useTriggerGoogleApisOAuth();
 
   const handleOnClick = async () => {
@@ -37,7 +40,7 @@ export const SettingsAccountsListEmptyStateCard = ({
       <StyledBody>
         <Button
           Icon={IconGoogle}
-          title="Connect with Google"
+          title={t('settingsAccountsListEmptyStateCard.connect-with-google')}
           variant="secondary"
           onClick={handleOnClick}
         />

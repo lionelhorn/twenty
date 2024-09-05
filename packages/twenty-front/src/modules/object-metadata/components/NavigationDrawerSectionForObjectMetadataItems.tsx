@@ -61,7 +61,6 @@ export const NavigationDrawerSectionForObjectMetadataItems = ({
           label={isRemote ? 'Remote' : 'Workspace'}
           onClick={() => toggleNavigationSection()}
         />
-
         {isNavigationSectionOpen &&
           [
             ...filteredActiveObjectMetadataItems
@@ -134,20 +133,22 @@ export const NavigationDrawerSectionForObjectMetadataItems = ({
                   }
                 />
                 {shouldSubItemsBeDisplayed &&
-                  sortedObjectMetadataViews.map((view, index) => (
-                    <NavigationDrawerSubItem
-                      label={view.name}
-                      to={`/objects/${objectMetadataItem.namePlural}?view=${view.id}`}
-                      active={viewId === view.id}
-                      subItemState={getNavigationSubItemState({
-                        index,
-                        arrayLength: subItemArrayLength,
-                        selectedIndex: selectedSubItemIndex,
-                      })}
-                      Icon={getIcon(view.icon)}
-                      key={view.id}
-                    />
-                  ))}
+                  sortedObjectMetadataViews.map((view, index) => {
+                    return (
+                      <NavigationDrawerSubItem
+                        label={view.name}
+                        to={`/objects/${objectMetadataItem.namePlural}?view=${view.id}`}
+                        active={viewId === view.id}
+                        subItemState={getNavigationSubItemState({
+                          index,
+                          arrayLength: subItemArrayLength,
+                          selectedIndex: selectedSubItemIndex,
+                        })}
+                        Icon={getIcon(view.icon)}
+                        key={view.id}
+                      />
+                    );
+                  })}
               </div>
             );
           })}

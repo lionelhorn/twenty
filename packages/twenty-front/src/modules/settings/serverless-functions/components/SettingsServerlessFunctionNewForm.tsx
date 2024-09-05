@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { H2Title } from 'twenty-ui';
 import { Section } from '@/ui/layout/section/components/Section';
 import { TextInput } from '@/ui/input/components/TextInput';
@@ -18,9 +19,16 @@ export const SettingsServerlessFunctionNewForm = ({
   formValues: ServerlessFunctionNewFormValues;
   onChange: (key: string) => (value: string) => void;
 }) => {
+  const { t } = useTranslation();
+
   return (
     <Section>
-      <H2Title title="About" description="Name and set your function" />
+      <H2Title
+        title={t('settingsServerlessFunctionNewForm.about')}
+        description={t(
+          'settingsServerlessFunctionNewForm.name-and-set-your-function',
+        )}
+      />
       <StyledInputsContainer>
         <TextInput
           placeholder="Name"

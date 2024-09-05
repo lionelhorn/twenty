@@ -39,38 +39,35 @@ const StyledRadio = styled(Radio)`
   margin-left: auto;
 `;
 
-export const SettingsAccountsRadioSettingsCard = <
-  Option extends {
-    cardMedia: ReactNode;
-    description: string;
-    title: string;
-    value: string;
-  },
->({
+export const SettingsAccountsRadioSettingsCard = ({
   onChange,
   options,
   value,
   name,
-}: SettingsAccountsRadioSettingsCardProps<Option>) => (
-  <Card rounded>
-    {options.map((option, index) => (
-      <StyledCardContent
-        key={option.value}
-        divider={index < options.length - 1}
-        onClick={() => onChange(option.value)}
-      >
-        {option.cardMedia}
-        <div>
-          <StyledTitle>{option.title}</StyledTitle>
-          <StyledDescription>{option.description}</StyledDescription>
-        </div>
-        <StyledRadio
-          name={name}
-          value={option.value}
-          onCheckedChange={() => onChange(option.value)}
-          checked={value === option.value}
-        />
-      </StyledCardContent>
-    ))}
-  </Card>
-);
+}: SettingsAccountsRadioSettingsCardProps<Option>) => {
+  return (
+    <Card rounded>
+      {options.map((option, index) => {
+        return (
+          <StyledCardContent
+            key={option.value}
+            divider={index < options.length - 1}
+            onClick={() => onChange(option.value)}
+          >
+            {option.cardMedia}
+            <div>
+              <StyledTitle>{option.title}</StyledTitle>
+              <StyledDescription>{option.description}</StyledDescription>
+            </div>
+            <StyledRadio
+              name={name}
+              value={option.value}
+              onCheckedChange={() => onChange(option.value)}
+              checked={value === option.value}
+            />
+          </StyledCardContent>
+        );
+      })}
+    </Card>
+  );
+};

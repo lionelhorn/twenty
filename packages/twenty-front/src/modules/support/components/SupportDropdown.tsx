@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { SupportButton } from '@/support/components/SupportButton';
 import { Dropdown } from '@/ui/layout/dropdown/components/Dropdown';
 import { DropdownMenu } from '@/ui/layout/dropdown/components/DropdownMenu';
@@ -7,7 +8,12 @@ import { MenuItem } from '@/ui/navigation/menu-item/components/MenuItem';
 import { IconHelpCircle, IconMessage } from 'twenty-ui';
 
 export const SupportDropdown = () => {
-  const dropdownId = `support-field-active-action-dropdown`;
+  const { t } = useTranslation();
+
+  const dropdownId = t(
+    'supportDropdown.support-field-active-action-dropdown',
+    {},
+  );
 
   const { closeDropdown } = useDropdown(dropdownId);
 

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 
 import { CircularProgressBar } from '@/ui/feedback/progress-bar/components/CircularProgressBar';
@@ -25,12 +26,14 @@ export const StepNavigationButton = ({
   isLoading,
   onBack,
 }: StepNavigationButtonProps) => {
+  const { t } = useTranslation();
+
   return (
     <StyledFooter>
       {!isUndefinedOrNull(onBack) && (
         <MainButton
           Icon={isLoading ? CircularProgressBar : undefined}
-          title="Back"
+          title={t('stepNavigationButton.back')}
           onClick={!isLoading ? onBack : undefined}
           variant="secondary"
         />

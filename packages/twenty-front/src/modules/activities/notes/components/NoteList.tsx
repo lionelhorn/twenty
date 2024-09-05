@@ -58,13 +58,15 @@ export const NoteList = ({ title, notes, button }: NoteListProps) => (
           {button}
         </StyledTitleBar>
         <StyledNoteContainer>
-          {notes.map((note) => (
-            <NoteCard
-              key={note.id}
-              note={note}
-              isSingleNote={notes.length === 1}
-            />
-          ))}
+          {notes.map((note) => {
+            return (
+              <NoteCard
+                key={note.id}
+                note={note}
+                isSingleNote={notes.length === 1}
+              />
+            );
+          })}
         </StyledNoteContainer>
       </StyledContainer>
     )}

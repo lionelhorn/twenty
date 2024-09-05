@@ -81,12 +81,14 @@ export const CalendarDayCardContent = ({
         <StyledMonthDay>{monthDayLabel}</StyledMonthDay>
       </StyledDayContainer>
       <StyledEvents>
-        {calendarEvents.map((calendarEvent) => (
-          <StyledEventRow
-            key={calendarEvent.id}
-            calendarEvent={calendarEvent}
-          />
-        ))}
+        {calendarEvents.map((calendarEvent) => {
+          return (
+            <StyledEventRow
+              key={calendarEvent.id}
+              calendarEvent={calendarEvent}
+            />
+          );
+        })}
       </StyledEvents>
     </StyledCardContent>
   );

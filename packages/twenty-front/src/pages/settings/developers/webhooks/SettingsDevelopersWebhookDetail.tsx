@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -27,6 +28,8 @@ const StyledFilterRow = styled.div`
 `;
 
 export const SettingsDevelopersWebhooksDetail = () => {
+  const { t } = useTranslation();
+
   const { objectMetadataItems } = useObjectMetadataItems();
   const navigate = useNavigate();
   const { webhookId = '' } = useParams();
@@ -110,8 +113,10 @@ export const SettingsDevelopersWebhooksDetail = () => {
           <SettingsPageContainer>
             <Section>
               <H2Title
-                title="Endpoint URL"
-                description="We will send POST requests to this endpoint for every new event"
+                title={t('settingsDevelopersWebhooksDetail.endpoint-url')}
+                description={t(
+                  'settingsDevelopersWebhooksDetail.we-will-send-post-requests-to-this-endpo',
+                )}
               />
               <TextInput
                 placeholder="URL"
@@ -122,8 +127,10 @@ export const SettingsDevelopersWebhooksDetail = () => {
             </Section>
             <Section>
               <H2Title
-                title="Description"
-                description="An optional description"
+                title={t('settingsDevelopersWebhooksDetail.description')}
+                description={t(
+                  'settingsDevelopersWebhooksDetail.an-optional-description',
+                )}
               />
               <TextArea
                 placeholder="Write a description"
@@ -137,8 +144,10 @@ export const SettingsDevelopersWebhooksDetail = () => {
             </Section>
             <Section>
               <H2Title
-                title="Filters"
-                description="Select the event you wish to send to this endpoint"
+                title={t('settingsDevelopersWebhooksDetail.filters')}
+                description={t(
+                  'settingsDevelopersWebhooksDetail.select-the-event-you-wish-to-send-to-thi',
+                )}
               />
               <StyledFilterRow>
                 <Select
@@ -170,13 +179,15 @@ export const SettingsDevelopersWebhooksDetail = () => {
             </Section>
             <Section>
               <H2Title
-                title="Danger zone"
-                description="Delete this integration"
+                title={t('settingsDevelopersWebhooksDetail.danger-zone')}
+                description={t(
+                  'settingsDevelopersWebhooksDetail.delete-this-integration',
+                )}
               />
               <Button
                 accent="danger"
                 variant="secondary"
-                title="Delete"
+                title={t('settingsDevelopersWebhooksDetail.delete')}
                 Icon={IconTrash}
                 onClick={() => setIsDeleteWebhookModalOpen(true)}
               />
@@ -185,11 +196,12 @@ export const SettingsDevelopersWebhooksDetail = () => {
                 confirmationValue="yes"
                 isOpen={isDeleteWebhookModalOpen}
                 setIsOpen={setIsDeleteWebhookModalOpen}
-                title="Delete webhook"
+                title={t('settingsDevelopersWebhooksDetail.delete-webhook')}
                 subtitle={
                   <>
-                    Please type "yes" to confirm you want to delete this
-                    webhook.
+                    {t(
+                      'settingsDevelopersWebhooksDetail.please-type-yes-to-confirm-you-want-to-d',
+                    )}
                   </>
                 }
                 onConfirmClick={deleteWebhook}

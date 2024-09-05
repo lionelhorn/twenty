@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useContext, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import styled from '@emotion/styled';
@@ -18,6 +19,8 @@ const StyledText = styled.div`
 `;
 
 export const RecordBoardColumnFetchMoreLoader = () => {
+  const { t } = useTranslation();
+
   const { columnDefinition } = useContext(RecordBoardColumnContext);
   const { shouldFetchMoreInColumnFamilyState, isFetchingRecordsByColumnState } =
     useRecordBoardStates();
@@ -38,7 +41,11 @@ export const RecordBoardColumnFetchMoreLoader = () => {
 
   return (
     <div ref={ref}>
-      {isFetchingRecord && <StyledText>Loading more...</StyledText>}
+      {isFetchingRecord && (
+        <StyledText>
+          {t('recordBoardColumnFetchMoreLoader.loading-more')}
+        </StyledText>
+      )}
     </div>
   );
 };

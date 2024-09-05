@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { ServerlessFunctionFormValues } from '@/settings/serverless-functions/hooks/useServerlessFunctionUpdateFormState';
 import { SettingsServerlessFunctionHotkeyScope } from '@/settings/serverless-functions/types/SettingsServerlessFunctionHotKeyScope';
 import { getSettingsPagePath } from '@/settings/utils/getSettingsPagePath';
@@ -37,9 +38,11 @@ export const SettingsServerlessFunctionCodeEditorTab = ({
   onChange: (key: string) => (value: string) => void;
   setIsCodeValid: (isCodeValid: boolean) => void;
 }) => {
+  const { t } = useTranslation();
+
   const TestButton = (
     <Button
-      title="Test"
+      title={t('settingsServerlessFunctionCodeEditorTab.test')}
       variant="primary"
       accent="blue"
       size="small"
@@ -49,7 +52,7 @@ export const SettingsServerlessFunctionCodeEditorTab = ({
   );
   const PublishButton = (
     <Button
-      title="Publish"
+      title={t('settingsServerlessFunctionCodeEditorTab.publish')}
       variant="secondary"
       size="small"
       Icon={IconGitCommit}
@@ -59,7 +62,7 @@ export const SettingsServerlessFunctionCodeEditorTab = ({
   );
   const ResetButton = (
     <Button
-      title="Reset"
+      title={t('settingsServerlessFunctionCodeEditorTab.reset')}
       variant="secondary"
       size="small"
       Icon={IconRestore}
@@ -98,8 +101,10 @@ export const SettingsServerlessFunctionCodeEditorTab = ({
   return (
     <Section>
       <H2Title
-        title="Code your function"
-        description="Write your function (in typescript) below"
+        title={t('settingsServerlessFunctionCodeEditorTab.code-your-function')}
+        description={t(
+          'settingsServerlessFunctionCodeEditorTab.write-your-function-in-typescript-below',
+        )}
       />
       <CodeEditor
         value={formValues.code}

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { IconEye } from 'twenty-ui';
 
@@ -28,12 +29,14 @@ const StyledButtonContainer = styled.div`
   padding-top: ${({ theme }) => theme.spacing(5)};
 `;
 export const SettingsObjectCoverImage = () => {
+  const { t } = useTranslation();
+
   return (
     <StyledCoverImageContainer>
       <StyledButtonContainer>
         <FloatingButton
           Icon={IconEye}
-          title="Visualize"
+          title={t('settingsObjectCoverImage.visualize')}
           size="small"
           to={'/settings/' + SettingsPath.ObjectOverview}
         />

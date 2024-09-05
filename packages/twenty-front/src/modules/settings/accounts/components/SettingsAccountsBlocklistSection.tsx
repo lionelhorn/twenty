@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useRecoilValue } from 'recoil';
 import { H2Title } from 'twenty-ui';
 
@@ -12,6 +13,8 @@ import { SettingsAccountsBlocklistTable } from '@/settings/accounts/components/S
 import { Section } from '@/ui/layout/section/components/Section';
 
 export const SettingsAccountsBlocklistSection = () => {
+  const { t } = useTranslation();
+
   const currentWorkspaceMember = useRecoilValue(currentWorkspaceMemberState);
 
   const { records: blocklist } = useFindManyRecords<BlocklistItem>({
@@ -41,8 +44,10 @@ export const SettingsAccountsBlocklistSection = () => {
   return (
     <Section>
       <H2Title
-        title="Blocklist"
-        description="Exclude the following people and domains from my email sync"
+        title={t('settingsAccountsBlocklistSection.blocklist')}
+        description={t(
+          'settingsAccountsBlocklistSection.exclude-the-following-people-and-domains',
+        )}
       />
       <SettingsAccountsBlocklistInput
         blockedEmailOrDomainList={blocklist.map((item) => item.handle)}

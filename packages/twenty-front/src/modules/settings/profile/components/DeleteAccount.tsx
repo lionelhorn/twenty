@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { H2Title } from 'twenty-ui';
@@ -9,6 +10,8 @@ import { ConfirmationModal } from '@/ui/layout/modal/components/ConfirmationModa
 import { useDeleteUserAccountMutation } from '~/generated/graphql';
 
 export const DeleteAccount = () => {
+  const { t } = useTranslation();
+
   const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] =
     useState(false);
 
@@ -25,27 +28,27 @@ export const DeleteAccount = () => {
   return (
     <>
       <H2Title
-        title="Danger zone"
-        description="Delete account and all the associated data"
+        title={t('deleteAccount.danger-zone')}
+        description={t(
+          'deleteAccount.delete-account-and-all-the-associated-da',
+        )}
       />
-
       <Button
         accent="danger"
         onClick={() => setIsDeleteAccountModalOpen(true)}
         variant="secondary"
-        title="Delete account"
+        title={t('deleteAccount.delete-account')}
       />
-
       <ConfirmationModal
         confirmationValue={userEmail}
         confirmationPlaceholder={userEmail ?? ''}
         isOpen={isDeleteAccountModalOpen}
         setIsOpen={setIsDeleteAccountModalOpen}
-        title="Account Deletion"
+        title={t('deleteAccount.account-deletion')}
         subtitle={
           <>
-            This action cannot be undone. This will permanently delete your
-            entire account. <br /> Please type in your email to confirm.
+            {t('deleteAccount.this-action-cannot-be-undone-this-will-p')} <br />{' '}
+            {t('deleteAccount.please-type-in-your-email-to-confirm')}
           </>
         }
         onConfirmClick={deleteAccount}

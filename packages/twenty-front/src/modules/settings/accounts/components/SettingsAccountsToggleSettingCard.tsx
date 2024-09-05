@@ -43,20 +43,27 @@ const StyledToggle = styled(Toggle)`
 
 export const SettingsAccountsToggleSettingCard = ({
   parameters,
-}: SettingsAccountsToggleSettingCardProps) => (
-  <Card rounded>
-    {parameters.map((parameter, index) => (
-      <StyledCardContent
-        key={index}
-        divider={index < parameters.length - 1}
-        onClick={() => parameter.onToggle(!parameter.value)}
-      >
-        <div>
-          <StyledTitle>{parameter.title}</StyledTitle>
-          <StyledDescription>{parameter.description}</StyledDescription>
-        </div>
-        <StyledToggle value={parameter.value} onChange={parameter.onToggle} />
-      </StyledCardContent>
-    ))}
-  </Card>
-);
+}: SettingsAccountsToggleSettingCardProps) => {
+  return (
+    <Card rounded>
+      {parameters.map((parameter, index) => {
+        return (
+          <StyledCardContent
+            key={index}
+            divider={index < parameters.length - 1}
+            onClick={() => parameter.onToggle(!parameter.value)}
+          >
+            <div>
+              <StyledTitle>{parameter.title}</StyledTitle>
+              <StyledDescription>{parameter.description}</StyledDescription>
+            </div>
+            <StyledToggle
+              value={parameter.value}
+              onChange={parameter.onToggle}
+            />
+          </StyledCardContent>
+        );
+      })}
+    </Card>
+  );
+};

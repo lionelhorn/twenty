@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useSetRecoilState } from 'recoil';
 import { IconCheckbox, IconNotes, IconPaperclip } from 'twenty-ui';
 
@@ -11,6 +12,8 @@ export const TimelineCreateButtonGroup = ({
 }: {
   isInRightDrawer?: boolean;
 }) => {
+  const { t } = useTranslation();
+
   const { activeTabIdState } = useTabList(
     `${TAB_LIST_COMPONENT_ID}-${isInRightDrawer}`,
   );
@@ -20,21 +23,21 @@ export const TimelineCreateButtonGroup = ({
     <ButtonGroup variant={'secondary'}>
       <Button
         Icon={IconNotes}
-        title="Note"
+        title={t('timelineCreateButtonGroup.note')}
         onClick={() => {
           setActiveTabId('notes');
         }}
       />
       <Button
         Icon={IconCheckbox}
-        title="Task"
+        title={t('timelineCreateButtonGroup.task')}
         onClick={() => {
           setActiveTabId('tasks');
         }}
       />
       <Button
         Icon={IconPaperclip}
-        title="File"
+        title={t('timelineCreateButtonGroup.file')}
         onClick={() => setActiveTabId('files')}
       />
     </ButtonGroup>

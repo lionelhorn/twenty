@@ -18,8 +18,10 @@ export const EllipsisDisplay = ({
   children,
   maxWidth,
   className,
-}: EllipsisDisplayProps) => (
-  <StyledEllipsisDisplay maxWidth={maxWidth} className={className}>
-    {children}
-  </StyledEllipsisDisplay>
-);
+}: EllipsisDisplayProps) => {
+  return (
+    <StyledEllipsisDisplay maxWidth={maxWidth} className={className}>
+      {children}
+    </StyledEllipsisDisplay>
+  );
+};

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { H1Title, H1TitleFontColor } from 'twenty-ui';
 
@@ -45,6 +46,8 @@ export const EmailThreads = ({
 }: {
   targetableObject: ActivityTargetableObject;
 }) => {
+  const { t } = useTranslation();
+
   const [query, queryName] =
     targetableObject.targetObjectNameSingular === CoreObjectNameSingular.Person
       ? [getTimelineThreadsFromPersonId, 'getTimelineThreadsFromPersonId']
@@ -84,10 +87,10 @@ export const EmailThreads = ({
         <AnimatedPlaceholder type="emptyInbox" />
         <AnimatedPlaceholderEmptyTextContainer>
           <AnimatedPlaceholderEmptyTitle>
-            Empty Inbox
+            {t('emailThreads.empty-inbox')}
           </AnimatedPlaceholderEmptyTitle>
           <AnimatedPlaceholderEmptySubTitle>
-            No email exchange has occurred with this record yet.
+            {t('emailThreads.no-email-exchange-has-occurred-with-this')}
           </AnimatedPlaceholderEmptySubTitle>
         </AnimatedPlaceholderEmptyTextContainer>
       </AnimatedPlaceholderEmptyContainer>
@@ -100,20 +103,23 @@ export const EmailThreads = ({
         <StyledH1Title
           title={
             <>
-              Inbox <StyledEmailCount>{totalNumberOfThreads}</StyledEmailCount>
+              {t('emailThreads.inbox')}{' '}
+              <StyledEmailCount>{totalNumberOfThreads}</StyledEmailCount>
             </>
           }
           fontColor={H1TitleFontColor.Primary}
         />
         {!firstQueryLoading && (
           <Card>
-            {timelineThreads?.map((thread: TimelineThread, index: number) => (
-              <EmailThreadPreview
-                key={index}
-                divider={index < timelineThreads.length - 1}
-                thread={thread}
-              />
-            ))}
+            {timelineThreads?.map((thread: TimelineThread, index: number) => {
+              return (
+                <EmailThreadPreview
+                  key={index}
+                  divider={index < timelineThreads.length - 1}
+                  thread={thread}
+                />
+              );
+            })}
           </Card>
         )}
         <CustomResolverFetchMoreLoader

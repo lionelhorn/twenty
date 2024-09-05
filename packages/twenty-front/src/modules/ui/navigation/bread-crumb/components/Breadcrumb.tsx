@@ -34,21 +34,29 @@ const StyledText = styled.span`
   white-space: nowrap;
 `;
 
-export const Breadcrumb = ({ className, links }: BreadcrumbProps) => (
-  <StyledWrapper className={className}>
-    {links.map((link, index) => (
-      <Fragment key={index}>
-        {link.href ? (
-          <StyledLink style={link.styles} title={link.children} to={link.href}>
-            {link.children}
-          </StyledLink>
-        ) : (
-          <StyledText style={link.styles} title={link.children}>
-            {link.children}
-          </StyledText>
-        )}
-        {index < links.length - 1 && '/'}
-      </Fragment>
-    ))}
-  </StyledWrapper>
-);
+export const Breadcrumb = ({ className, links }: BreadcrumbProps) => {
+  return (
+    <StyledWrapper className={className}>
+      {links.map((link, index) => {
+        return (
+          <Fragment key={index}>
+            {link.href ? (
+              <StyledLink
+                style={link.styles}
+                title={link.children}
+                to={link.href}
+              >
+                {link.children}
+              </StyledLink>
+            ) : (
+              <StyledText style={link.styles} title={link.children}>
+                {link.children}
+              </StyledText>
+            )}
+            {index < links.length - 1 && '/'}
+          </Fragment>
+        );
+      })}
+    </StyledWrapper>
+  );
+};

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -70,6 +71,8 @@ const StyledInputContainer = styled.div`
 `;
 
 export const PasswordReset = () => {
+  const { t } = useTranslation();
+
   const { enqueueSnackBar } = useSnackBar();
 
   const navigate = useNavigate();
@@ -166,7 +169,7 @@ export const PasswordReset = () => {
         <AnimatedEaseIn>
           <Logo />
         </AnimatedEaseIn>
-        <Title animate>Reset Password</Title>
+        <Title animate>{t('passwordReset.reset-password')}</Title>
         <StyledContentContainer>
           {!email ? (
             <SkeletonTheme
@@ -217,26 +220,28 @@ export const PasswordReset = () => {
                   render={({
                     field: { onChange, onBlur, value },
                     fieldState: { error },
-                  }) => (
-                    <StyledInputContainer>
-                      <TextInputV2
-                        autoFocus
-                        value={value}
-                        type="password"
-                        placeholder="New Password"
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        error={error?.message}
-                        fullWidth
-                      />
-                    </StyledInputContainer>
-                  )}
+                  }) => {
+                    return (
+                      <StyledInputContainer>
+                        <TextInputV2
+                          autoFocus
+                          value={value}
+                          type="password"
+                          placeholder="New Password"
+                          onBlur={onBlur}
+                          onChange={onChange}
+                          error={error?.message}
+                          fullWidth
+                        />
+                      </StyledInputContainer>
+                    );
+                  }}
                 />
               </StyledFullWidthMotionDiv>
 
               <MainButton
                 variant="secondary"
-                title="Change Password"
+                title={t('passwordReset.change-password')}
                 type="submit"
                 fullWidth
                 disabled={isUpdatingPassword}

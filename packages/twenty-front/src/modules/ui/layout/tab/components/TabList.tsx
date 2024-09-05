@@ -57,20 +57,22 @@ export const TabList = ({
         <StyledContainer className={className}>
           {tabs
             .filter((tab) => !tab.hide)
-            .map((tab) => (
-              <Tab
-                id={tab.id}
-                key={tab.id}
-                title={tab.title}
-                Icon={tab.Icon}
-                active={tab.id === activeTabId}
-                onClick={() => {
-                  setActiveTabId(tab.id);
-                }}
-                disabled={tab.disabled ?? loading}
-                pill={tab.pill}
-              />
-            ))}
+            .map((tab) => {
+              return (
+                <Tab
+                  id={tab.id}
+                  key={tab.id}
+                  title={tab.title}
+                  Icon={tab.Icon}
+                  active={tab.id === activeTabId}
+                  onClick={() => {
+                    setActiveTabId(tab.id);
+                  }}
+                  disabled={tab.disabled ?? loading}
+                  pill={tab.pill}
+                />
+              );
+            })}
         </StyledContainer>
       </ScrollWrapper>
     </TabListScope>

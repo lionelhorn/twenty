@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { ReactNode } from 'react';
 import styled from '@emotion/styled';
 
@@ -30,12 +31,18 @@ export const SettingsDataModelPreviewFormCard = ({
   className,
   preview,
   form,
-}: SettingsDataModelPreviewFormCardProps) => (
-  <Card className={className} fullWidth>
-    <StyledPreviewContainer divider={!!form}>
-      <StyledTitle>Preview</StyledTitle>
-      {preview}
-    </StyledPreviewContainer>
-    {!!form && <StyledFormContainer>{form}</StyledFormContainer>}
-  </Card>
-);
+}: SettingsDataModelPreviewFormCardProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <Card className={className} fullWidth>
+      <StyledPreviewContainer divider={!!form}>
+        <StyledTitle>
+          {t('settingsDataModelPreviewFormCard.preview')}
+        </StyledTitle>
+        {preview}
+      </StyledPreviewContainer>
+      {!!form && <StyledFormContainer>{form}</StyledFormContainer>}
+    </Card>
+  );
+};

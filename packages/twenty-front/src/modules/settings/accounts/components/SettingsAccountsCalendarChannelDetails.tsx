@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { CalendarChannel } from '@/accounts/types/CalendarChannel';
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { useUpdateOneRecord } from '@/object-record/hooks/useUpdateOneRecord';
@@ -24,6 +25,8 @@ type SettingsAccountsCalendarChannelDetailsProps = {
 export const SettingsAccountsCalendarChannelDetails = ({
   calendarChannel,
 }: SettingsAccountsCalendarChannelDetailsProps) => {
+  const { t } = useTranslation();
+
   const { updateOneRecord } = useUpdateOneRecord<CalendarChannel>({
     objectNameSingular: CoreObjectNameSingular.CalendarChannel,
   });
@@ -50,8 +53,10 @@ export const SettingsAccountsCalendarChannelDetails = ({
     <StyledDetailsContainer>
       <Section>
         <H2Title
-          title="Event visibility"
-          description="Define what will be visible to other users in your workspace"
+          title={t('settingsAccountsCalendarChannelDetails.event-visibility')}
+          description={t(
+            'settingsAccountsCalendarChannelDetails.define-what-will-be-visible-to-other-use',
+          )}
         />
         <SettingsAccountsEventVisibilitySettingsCard
           value={calendarChannel.visibility}
@@ -60,8 +65,12 @@ export const SettingsAccountsCalendarChannelDetails = ({
       </Section>
       <Section>
         <H2Title
-          title="Contact auto-creation"
-          description="Automatically create contacts for people you've participated in an event with."
+          title={t(
+            'settingsAccountsCalendarChannelDetails.contact-auto-creation',
+          )}
+          description={t(
+            'settingsAccountsCalendarChannelDetails.automatically-create-contacts-for-people',
+          )}
         />
         <SettingsAccountsToggleSettingCard
           parameters={[

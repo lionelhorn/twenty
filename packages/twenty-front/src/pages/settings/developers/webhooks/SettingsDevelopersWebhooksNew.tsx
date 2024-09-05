@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { H2Title, IconCode } from 'twenty-ui';
@@ -14,6 +15,8 @@ import { Breadcrumb } from '@/ui/navigation/bread-crumb/components/Breadcrumb';
 import { isValidUrl } from '~/utils/url/isValidUrl';
 
 export const SettingsDevelopersWebhooksNew = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState<{
     targetUrl: string;
@@ -70,8 +73,10 @@ export const SettingsDevelopersWebhooksNew = () => {
       <SettingsPageContainer>
         <Section>
           <H2Title
-            title="Endpoint URL"
-            description="We will send POST requests to this endpoint for every new event"
+            title={t('settingsDevelopersWebhooksNew.endpoint-url')}
+            description={t(
+              'settingsDevelopersWebhooksNew.we-will-send-post-requests-to-this-endpo',
+            )}
           />
           <TextInput
             placeholder="URL"

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 
 import { beautifyPastDateRelativeToNow } from '~/utils/date-utils';
@@ -40,13 +41,16 @@ export const EmailThreadHeader = ({
   subject,
   lastMessageSentAt,
 }: EmailThreadHeaderProps) => {
+  const { t } = useTranslation();
+
   return (
     <StyledContainer>
       <StyledHead>
         <StyledHeading>{subject}</StyledHeading>
         {lastMessageSentAt && (
           <StyledContent>
-            Last message {beautifyPastDateRelativeToNow(lastMessageSentAt)}
+            {t('emailThreadHeader.last-message')}{' '}
+            {beautifyPastDateRelativeToNow(lastMessageSentAt)}
           </StyledContent>
         )}
       </StyledHead>

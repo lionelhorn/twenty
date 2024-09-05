@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
@@ -18,6 +19,8 @@ const StyledTableRow = styled(TableRow)`
 `;
 
 export const SettingsWebhooksTable = () => {
+  const { t } = useTranslation();
+
   const { records: webhooks } = useFindManyRecords<Webhook>({
     objectNameSingular: CoreObjectNameSingular.Webhook,
   });
@@ -25,18 +28,20 @@ export const SettingsWebhooksTable = () => {
   return (
     <Table>
       <StyledTableRow>
-        <TableHeader>Url</TableHeader>
+        <TableHeader>{t('settingsWebhooksTable.url')}</TableHeader>
         <TableHeader></TableHeader>
       </StyledTableRow>
       {!!webhooks.length && (
         <StyledTableBody>
-          {webhooks.map((webhookFieldItem) => (
-            <SettingsDevelopersWebhookTableRow
-              key={webhookFieldItem.id}
-              fieldItem={webhookFieldItem}
-              to={`/settings/developers/webhooks/${webhookFieldItem.id}`}
-            />
-          ))}
+          {webhooks.map((webhookFieldItem) => {
+            return (
+              <SettingsDevelopersWebhookTableRow
+                key={webhookFieldItem.id}
+                fieldItem={webhookFieldItem}
+                to={`/settings/developers/webhooks/${webhookFieldItem.id}`}
+              />
+            );
+          })}
         </StyledTableBody>
       )}
     </Table>

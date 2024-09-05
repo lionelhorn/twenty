@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 
 import { Card } from '@/ui/layout/card/components/Card';
@@ -61,17 +62,29 @@ const StyledLabel = styled.div`
 
 export const SettingsIntegrationPreview = ({
   integrationLogoUrl,
-}: SettingsIntegrationPreviewProps) => (
-  <StyledCard>
-    <StyledCardContent>
-      <StyledLogosContainer>
-        <StyledIntegrationLogoContainer>
-          <StyledIntegrationLogo alt="" src={integrationLogoUrl} />
-        </StyledIntegrationLogoContainer>
-        <StyledSyncImage />
-        <StyledTwentyLogo alt="" src="/images/integrations/twenty-logo.svg" />
-      </StyledLogosContainer>
-      <StyledLabel>Import your tables as remote objects</StyledLabel>
-    </StyledCardContent>
-  </StyledCard>
-);
+}: SettingsIntegrationPreviewProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <StyledCard>
+      <StyledCardContent>
+        <StyledLogosContainer>
+          <StyledIntegrationLogoContainer>
+            <StyledIntegrationLogo
+              alt={t('settingsIntegrationPreview.')}
+              src={integrationLogoUrl}
+            />
+          </StyledIntegrationLogoContainer>
+          <StyledSyncImage />
+          <StyledTwentyLogo
+            alt={t('settingsIntegrationPreview.')}
+            src="/images/integrations/twenty-logo.svg"
+          />
+        </StyledLogosContainer>
+        <StyledLabel>
+          {t('settingsIntegrationPreview.import-your-tables-as-remote-objects')}
+        </StyledLabel>
+      </StyledCardContent>
+    </StyledCard>
+  );
+};

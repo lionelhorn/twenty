@@ -213,7 +213,43 @@ export const RecordShowContainer = ({
             ) : (
               <>
                 {inlineRelationFieldMetadataItems?.map(
-                  (fieldMetadataItem, index) => (
+                  (fieldMetadataItem, index) => {
+                    return (
+                      <FieldContext.Provider
+                        key={objectRecordId + fieldMetadataItem.id}
+                        value={{
+                          recordId: objectRecordId,
+                          maxWidth: 200,
+                          recoilScopeId: objectRecordId + fieldMetadataItem.id,
+                          isLabelIdentifier: false,
+                          fieldDefinition:
+                            formatFieldMetadataItemAsColumnDefinition({
+                              field: fieldMetadataItem,
+                              position: index,
+                              objectMetadataItem,
+                              showLabel: true,
+                              labelWidth: 90,
+                            }),
+                          useUpdateRecord: useUpdateOneObjectRecordMutation,
+                          hotkeyScope: InlineCellHotkeyScope.InlineCell,
+                        }}
+                      >
+                        <ActivityTargetsInlineCell
+                          activityObjectNameSingular={
+                            objectNameSingular as
+                              | CoreObjectNameSingular.Note
+                              | CoreObjectNameSingular.Task
+                          }
+                          activity={recordFromStore as Task | Note}
+                          showLabel={true}
+                          maxWidth={200}
+                        />
+                      </FieldContext.Provider>
+                    );
+                  },
+                )}
+                {inlineFieldMetadataItems?.map((fieldMetadataItem, index) => {
+                  return (
                     <FieldContext.Provider
                       key={objectRecordId + fieldMetadataItem.id}
                       value={{
@@ -233,45 +269,13 @@ export const RecordShowContainer = ({
                         hotkeyScope: InlineCellHotkeyScope.InlineCell,
                       }}
                     >
-                      <ActivityTargetsInlineCell
-                        activityObjectNameSingular={
-                          objectNameSingular as
-                            | CoreObjectNameSingular.Note
-                            | CoreObjectNameSingular.Task
-                        }
-                        activity={recordFromStore as Task | Note}
-                        showLabel={true}
-                        maxWidth={200}
+                      <RecordInlineCell
+                        loading={loading || recordLoading}
+                        readonly={isReadOnly}
                       />
                     </FieldContext.Provider>
-                  ),
-                )}
-                {inlineFieldMetadataItems?.map((fieldMetadataItem, index) => (
-                  <FieldContext.Provider
-                    key={objectRecordId + fieldMetadataItem.id}
-                    value={{
-                      recordId: objectRecordId,
-                      maxWidth: 200,
-                      recoilScopeId: objectRecordId + fieldMetadataItem.id,
-                      isLabelIdentifier: false,
-                      fieldDefinition:
-                        formatFieldMetadataItemAsColumnDefinition({
-                          field: fieldMetadataItem,
-                          position: index,
-                          objectMetadataItem,
-                          showLabel: true,
-                          labelWidth: 90,
-                        }),
-                      useUpdateRecord: useUpdateOneObjectRecordMutation,
-                      hotkeyScope: InlineCellHotkeyScope.InlineCell,
-                    }}
-                  >
-                    <RecordInlineCell
-                      loading={loading || recordLoading}
-                      readonly={isReadOnly}
-                    />
-                  </FieldContext.Provider>
-                ))}
+                  );
+                })}
               </>
             )}
           </PropertyBox>
@@ -279,27 +283,29 @@ export const RecordShowContainer = ({
             objectRecordId={objectRecordId}
             objectNameSingular={objectNameSingular}
           />
-          {boxedRelationFieldMetadataItems?.map((fieldMetadataItem, index) => (
-            <FieldContext.Provider
-              key={objectRecordId + fieldMetadataItem.id}
-              value={{
-                recordId: objectRecordId,
-                recoilScopeId: objectRecordId + fieldMetadataItem.id,
-                isLabelIdentifier: false,
-                fieldDefinition: formatFieldMetadataItemAsColumnDefinition({
-                  field: fieldMetadataItem,
-                  position: index,
-                  objectMetadataItem,
-                }),
-                useUpdateRecord: useUpdateOneObjectRecordMutation,
-                hotkeyScope: InlineCellHotkeyScope.InlineCell,
-              }}
-            >
-              <RecordDetailRelationSection
-                loading={isPrefetchLoading || loading || recordLoading}
-              />
-            </FieldContext.Provider>
-          ))}
+          {boxedRelationFieldMetadataItems?.map((fieldMetadataItem, index) => {
+            return (
+              <FieldContext.Provider
+                key={objectRecordId + fieldMetadataItem.id}
+                value={{
+                  recordId: objectRecordId,
+                  recoilScopeId: objectRecordId + fieldMetadataItem.id,
+                  isLabelIdentifier: false,
+                  fieldDefinition: formatFieldMetadataItemAsColumnDefinition({
+                    field: fieldMetadataItem,
+                    position: index,
+                    objectMetadataItem,
+                  }),
+                  useUpdateRecord: useUpdateOneObjectRecordMutation,
+                  hotkeyScope: InlineCellHotkeyScope.InlineCell,
+                }}
+              >
+                <RecordDetailRelationSection
+                  loading={isPrefetchLoading || loading || recordLoading}
+                />
+              </FieldContext.Provider>
+            );
+          })}
         </>
       )}
     </>

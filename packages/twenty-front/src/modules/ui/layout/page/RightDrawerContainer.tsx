@@ -42,11 +42,13 @@ const StyledLeftContainer = styled.div<LeftContainerProps>`
 
 export const RightDrawerContainer = ({
   children,
-}: RightDrawerContainerProps) => (
-  <StyledMainContainer>
-    <StyledLeftContainer>
-      <PagePanel>{children}</PagePanel>
-    </StyledLeftContainer>
-    <RightDrawer />
-  </StyledMainContainer>
-);
+}: RightDrawerContainerProps) => {
+  return (
+    <StyledMainContainer>
+      <StyledLeftContainer>
+        <PagePanel>{children}</PagePanel>
+      </StyledLeftContainer>
+      <RightDrawer />
+    </StyledMainContainer>
+  );
+};

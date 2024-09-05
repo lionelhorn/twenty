@@ -6,14 +6,16 @@ import {
   AnimatedPlaceholderEmptyTitle,
 } from '@/ui/layout/animated-placeholder/components/EmptyPlaceholderStyled';
 
-export const EmailLoader = ({ loadingText }: { loadingText?: string }) => (
-  <AnimatedPlaceholderEmptyContainer>
-    <AnimatedPlaceholder type="loadingMessages" />
-    <AnimatedPlaceholderEmptyTextContainer>
-      <AnimatedPlaceholderEmptyTitle>
-        {loadingText || 'Loading emails'}
-      </AnimatedPlaceholderEmptyTitle>
-      <Loader />
-    </AnimatedPlaceholderEmptyTextContainer>
-  </AnimatedPlaceholderEmptyContainer>
-);
+export const EmailLoader = ({ loadingText }: { loadingText?: string }) => {
+  return (
+    <AnimatedPlaceholderEmptyContainer>
+      <AnimatedPlaceholder type="loadingMessages" />
+      <AnimatedPlaceholderEmptyTextContainer>
+        <AnimatedPlaceholderEmptyTitle>
+          {loadingText || 'Loading emails'}
+        </AnimatedPlaceholderEmptyTitle>
+        <Loader />
+      </AnimatedPlaceholderEmptyTextContainer>
+    </AnimatedPlaceholderEmptyContainer>
+  );
+};

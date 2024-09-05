@@ -5,22 +5,24 @@ import { Section } from '@/ui/layout/section/components/Section';
 import { Breadcrumb } from '@/ui/navigation/bread-crumb/components/Breadcrumb';
 import { IconMail } from 'twenty-ui';
 
-export const SettingsAccountsEmails = () => (
-  <SubMenuTopBarContainer
-    Icon={IconMail}
-    title={
-      <Breadcrumb
-        links={[
-          { children: 'Accounts', href: '/settings/accounts' },
-          { children: 'Emails' },
-        ]}
-      />
-    }
-  >
-    <SettingsPageContainer>
-      <Section>
-        <SettingsAccountsMessageChannelsContainer />
-      </Section>
-    </SettingsPageContainer>
-  </SubMenuTopBarContainer>
-);
+export const SettingsAccountsEmails = () => {
+  return (
+    <SubMenuTopBarContainer
+      Icon={IconMail}
+      title={
+        <Breadcrumb
+          links={[
+            { children: 'Accounts', href: '/settings/accounts' },
+            { children: 'Emails' },
+          ]}
+        />
+      }
+    >
+      <SettingsPageContainer>
+        <Section>
+          <SettingsAccountsMessageChannelsContainer />
+        </Section>
+      </SettingsPageContainer>
+    </SubMenuTopBarContainer>
+  );
+};

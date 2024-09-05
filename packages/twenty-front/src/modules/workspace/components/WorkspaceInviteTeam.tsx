@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import styled from '@emotion/styled';
@@ -68,6 +69,8 @@ type FormInput = {
 };
 
 export const WorkspaceInviteTeam = () => {
+  const { t } = useTranslation();
+
   const { enqueueSnackBar } = useSnackBar();
   const [sendInviteLink] = useSendInviteLinkMutation();
 
@@ -131,7 +134,7 @@ export const WorkspaceInviteTeam = () => {
           Icon={IconSend}
           variant="primary"
           accent="blue"
-          title="Invite"
+          title={t('workspaceInviteTeam.invite')}
           type="submit"
         />
       </StyledContainer>

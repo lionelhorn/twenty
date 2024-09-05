@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useApolloClient } from '@apollo/client';
 import styled from '@emotion/styled';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -46,6 +47,8 @@ const StyledSettingsObjectFieldTypeSelect = styled(
 `;
 
 export const SettingsObjectNewFieldStep2 = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const { objectSlug = '' } = useParams();
   const [searchParams] = useSearchParams();
@@ -176,7 +179,10 @@ export const SettingsObjectNewFieldStep2 = () => {
       <FormProvider // eslint-disable-next-line react/jsx-props-no-spreading
         {...formConfig}
       >
-        <SubMenuTopBarContainer Icon={IconSettings} title="Settings">
+        <SubMenuTopBarContainer
+          Icon={IconSettings}
+          title={t('settingsObjectNewFieldStep2.settings')}
+        >
           <SettingsPageContainer>
             <SettingsHeaderContainer>
               <Breadcrumb
@@ -205,8 +211,10 @@ export const SettingsObjectNewFieldStep2 = () => {
             </SettingsHeaderContainer>
             <Section>
               <H2Title
-                title="Name and description"
-                description="The name and description of this field"
+                title={t('settingsObjectNewFieldStep2.name-and-description')}
+                description={t(
+                  'settingsObjectNewFieldStep2.the-name-and-description-of-this-field',
+                )}
               />
               <SettingsDataModelFieldAboutForm
                 maxLength={FIELD_NAME_MAXIMUM_LENGTH}
@@ -214,8 +222,10 @@ export const SettingsObjectNewFieldStep2 = () => {
             </Section>
             <Section>
               <H2Title
-                title="Type and values"
-                description="The field's type and values."
+                title={t('settingsObjectNewFieldStep2.type-and-values')}
+                description={t(
+                  'settingsObjectNewFieldStep2.the-fields-type-and-values',
+                )}
               />
               <StyledSettingsObjectFieldTypeSelect
                 excludedFieldTypes={excludedFieldTypes}

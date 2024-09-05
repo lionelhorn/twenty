@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { InformationBanner } from '@/information-banner/components/InformationBanner';
 import { useRestoreManyRecords } from '@/object-record/hooks/useRestoreManyRecords';
 import styled from '@emotion/styled';
@@ -19,6 +20,8 @@ export const InformationBannerDeletedRecord = ({
   recordId: string;
   objectNameSingular: string;
 }) => {
+  const { t } = useTranslation();
+
   const { restoreManyRecords } = useRestoreManyRecords({
     objectNameSingular,
   });
@@ -27,7 +30,10 @@ export const InformationBannerDeletedRecord = ({
     <StyledInformationBannerDeletedRecord>
       <InformationBanner
         variant="danger"
-        message={`This record has been deleted`}
+        message={t(
+          'informationBannerDeletedRecord.this-record-has-been-deleted',
+          {},
+        )}
         buttonTitle="Restore"
         buttonIcon={IconRefresh}
         buttonOnClick={() => restoreManyRecords([recordId])}

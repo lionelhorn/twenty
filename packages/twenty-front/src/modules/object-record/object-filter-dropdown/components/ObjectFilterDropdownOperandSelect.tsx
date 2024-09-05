@@ -77,15 +77,17 @@ export const ObjectFilterDropdownOperandSelect = () => {
 
   return (
     <DropdownMenuItemsContainer>
-      {operandsForFilterType.map((filterOperand, index) => (
-        <MenuItem
-          key={`select-filter-operand-${index}`}
-          onClick={() => {
-            handleOperandChange(filterOperand);
-          }}
-          text={getOperandLabel(filterOperand)}
-        />
-      ))}
+      {operandsForFilterType.map((filterOperand, index) => {
+        return (
+          <MenuItem
+            key={`select-filter-operand-${index}`}
+            onClick={() => {
+              handleOperandChange(filterOperand);
+            }}
+            text={getOperandLabel(filterOperand)}
+          />
+        );
+      })}
     </DropdownMenuItemsContainer>
   );
 };

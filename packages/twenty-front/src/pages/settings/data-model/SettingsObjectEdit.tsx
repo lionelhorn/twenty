@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 /* eslint-disable react/jsx-props-no-spreading */
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -42,6 +43,8 @@ type SettingsDataModelObjectEditFormValues = z.infer<
 >;
 
 export const SettingsObjectEdit = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const { enqueueSnackBar } = useSnackBar();
 
@@ -141,8 +144,10 @@ export const SettingsObjectEdit = () => {
             </SettingsHeaderContainer>
             <Section>
               <H2Title
-                title="About"
-                description="Name in both singular (e.g., 'Invoice') and plural (e.g., 'Invoices') forms."
+                title={t('settingsObjectEdit.about')}
+                description={t(
+                  'settingsObjectEdit.name-in-both-singular-eg-invoice-and-plu',
+                )}
               />
               <SettingsDataModelObjectAboutForm
                 disabled={!activeObjectMetadataItem.isCustom}
@@ -152,18 +157,23 @@ export const SettingsObjectEdit = () => {
             </Section>
             <Section>
               <H2Title
-                title="Settings"
-                description="Choose the fields that will identify your records"
+                title={t('settingsObjectEdit.settings')}
+                description={t(
+                  'settingsObjectEdit.choose-the-fields-that-will-identify-you',
+                )}
               />
               <SettingsDataModelObjectSettingsFormCard
                 objectMetadataItem={activeObjectMetadataItem}
               />
             </Section>
             <Section>
-              <H2Title title="Danger zone" description="Deactivate object" />
+              <H2Title
+                title={t('settingsObjectEdit.danger-zone')}
+                description={t('settingsObjectEdit.deactivate-object')}
+              />
               <Button
                 Icon={IconArchive}
-                title="Deactivate"
+                title={t('settingsObjectEdit.deactivate')}
                 size="small"
                 onClick={handleDisable}
               />

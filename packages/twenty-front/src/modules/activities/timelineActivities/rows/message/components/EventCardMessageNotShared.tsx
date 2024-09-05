@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { IconLock } from 'twenty-ui';
 
@@ -64,12 +65,14 @@ export const EventCardMessageNotShared = ({
 }: {
   sharedByFullName: string;
 }) => {
+  const { t } = useTranslation();
+
   return (
     <StyledEventCardMessageContainer>
       <StyledEmailContent>
         <StyledEmailTop>
           <StyledEmailTitle>
-            <span>Subject not shared</span>
+            <span>{t('eventCardMessageNotShared.subject-not-shared')}</span>
           </StyledEmailTitle>
         </StyledEmailTop>
         <StyledEmailBodyNotShareContainer>
@@ -77,7 +80,9 @@ export const EventCardMessageNotShared = ({
             <StyledEmailBodyNotSharedIconContainer>
               <IconLock />
             </StyledEmailBodyNotSharedIconContainer>
-            <span>Not shared by {sharedByFullName}</span>
+            <span>
+              {t('eventCardMessageNotShared.not-shared-by')} {sharedByFullName}
+            </span>
           </StyledEmailBodyNotShare>
         </StyledEmailBodyNotShareContainer>
       </StyledEmailContent>

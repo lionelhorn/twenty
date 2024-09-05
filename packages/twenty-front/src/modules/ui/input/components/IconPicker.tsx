@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useMemo, useState } from 'react';
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
@@ -88,6 +89,8 @@ export const IconPicker = ({
   disableBlur = false,
   className,
 }: IconPickerProps) => {
+  const { t } = useTranslation();
+
   const [searchString, setSearchString] = useState('');
   const {
     goBackToPreviousHotkeyScope,
@@ -157,7 +160,7 @@ export const IconPicker = ({
             ariaLabel={`Click to select icon ${
               selectedIconKey
                 ? `(selected: ${selectedIconKey})`
-                : `(no icon selected)`
+                : t('iconPicker.no-icon-selected', {})
             }`}
             disabled={disabled}
             Icon={selectedIconKey ? getIcon(selectedIconKey) : IconApps}
@@ -195,18 +198,20 @@ export const IconPicker = ({
               >
                 <DropdownMenuItemsContainer>
                   <StyledMenuIconItemsContainer>
-                    {matchingSearchIconKeys.map((iconKey) => (
-                      <IconPickerIcon
-                        key={iconKey}
-                        iconKey={iconKey}
-                        onClick={() => {
-                          onChange({ iconKey, Icon: getIcon(iconKey) });
-                          closeDropdown();
-                        }}
-                        selectedIconKey={selectedIconKey}
-                        Icon={getIcon(iconKey)}
-                      />
-                    ))}
+                    {matchingSearchIconKeys.map((iconKey) => {
+                      return (
+                        <IconPickerIcon
+                          key={iconKey}
+                          iconKey={iconKey}
+                          onClick={() => {
+                            onChange({ iconKey, Icon: getIcon(iconKey) });
+                            closeDropdown();
+                          }}
+                          selectedIconKey={selectedIconKey}
+                          Icon={getIcon(iconKey)}
+                        />
+                      );
+                    })}
                   </StyledMenuIconItemsContainer>
                 </DropdownMenuItemsContainer>
               </div>

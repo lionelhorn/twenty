@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import React from 'react';
 
@@ -114,13 +115,19 @@ export const ColumnGrid = <T extends string>({
   renderTemplateColumn,
   renderUnmatchedColumn,
 }: ColumnGridProps<T>) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <StyledGridContainer>
         <StyledGrid>
           <StyledGridRow height="29px">
-            <StyledGridHeader position="left">Imported data</StyledGridHeader>
-            <StyledGridHeader position="right">Twenty fields</StyledGridHeader>
+            <StyledGridHeader position="left">
+              {t('columnGrid.imported-data')}
+            </StyledGridHeader>
+            <StyledGridHeader position="right">
+              {t('columnGrid.twenty-fields')}
+            </StyledGridHeader>
           </StyledGridRow>
           {columns.map((column, index) => {
             const userColumn = renderUserColumn(columns, index);

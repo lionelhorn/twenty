@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Section } from '@react-email/components';
 import pick from 'lodash.pick';
@@ -39,6 +40,8 @@ export const SettingsIntegrationEditDatabaseConnectionContent = ({
   databaseKey: string;
   tables: RemoteTable[];
 }) => {
+  const { t } = useTranslation();
+
   const { enqueueSnackBar } = useSnackBar();
   const navigate = useNavigate();
 
@@ -133,8 +136,12 @@ export const SettingsIntegrationEditDatabaseConnectionContent = ({
         )}
         <Section>
           <H2Title
-            title="Edit Connection"
-            description="Edit the information to connect your database"
+            title={t(
+              'settingsIntegrationEditDatabaseConnectionContent.edit-connection',
+            )}
+            description={t(
+              'settingsIntegrationEditDatabaseConnectionContent.edit-the-information-to-connect-your-dat',
+            )}
           />
 
           <SettingsIntegrationDatabaseConnectionForm

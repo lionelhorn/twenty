@@ -62,11 +62,13 @@ export const AnimatedTextWord = ({ text = '' }: AnimatedTextWordProps) => {
       initial="hidden"
       animate="visible"
     >
-      {words.map((word, index) => (
-        <StyledWord variants={childAnimation} key={index}>
-          {word}
-        </StyledWord>
-      ))}
+      {words.map((word, index) => {
+        return (
+          <StyledWord variants={childAnimation} key={index}>
+            {word}
+          </StyledWord>
+        );
+      })}
     </StyledContainer>
   );
 };

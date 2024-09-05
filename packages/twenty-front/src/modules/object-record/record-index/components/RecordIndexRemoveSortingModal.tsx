@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useRecoilState } from 'recoil';
 
 import { isRemoveSortingModalOpenState } from '@/object-record/record-table/states/isRemoveSortingModalOpenState';
@@ -10,6 +11,8 @@ export const RecordIndexRemoveSortingModal = ({
 }: {
   recordTableId: string;
 }) => {
+  const { t } = useTranslation();
+
   const { currentViewWithCombinedFiltersAndSorts } =
     useGetCurrentView(recordTableId);
 
@@ -35,7 +38,13 @@ export const RecordIndexRemoveSortingModal = ({
         isOpen={isRemoveSortingModalOpen[0]}
         setIsOpen={isRemoveSortingModalOpen[1]}
         title={'Remove sorting?'}
-        subtitle={<>This is required to enable manual row reordering.</>}
+        subtitle={
+          <>
+            {t(
+              'recordIndexRemoveSortingModal.this-is-required-to-enable-manual-row-re',
+            )}
+          </>
+        }
         onConfirmClick={() => handleRemoveClick()}
         deleteButtonText={'Remove Sorting'}
       />

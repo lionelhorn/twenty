@@ -48,14 +48,16 @@ export const RecordBoardColumnCardContainerSkeletonLoader = ({
       </StyledBoardCardHeader>
       <StyledSeparator />
       {!isCompactModeActive &&
-        skeletonItems.map(({ id }) => (
-          <StyledBoardCardBody key={id}>
-            <StyledSkeletonIconAndText>
-              <Skeleton width={16} height={16} />
-              <Skeleton width={151} height={16} />
-            </StyledSkeletonIconAndText>
-          </StyledBoardCardBody>
-        ))}
+        skeletonItems.map(({ id }) => {
+          return (
+            <StyledBoardCardBody key={id}>
+              <StyledSkeletonIconAndText>
+                <Skeleton width={16} height={16} />
+                <Skeleton width={151} height={16} />
+              </StyledSkeletonIconAndText>
+            </StyledBoardCardBody>
+          );
+        })}
     </SkeletonTheme>
   );
 };

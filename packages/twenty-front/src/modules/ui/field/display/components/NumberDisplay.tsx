@@ -6,6 +6,8 @@ type NumberDisplayProps = {
   value: string | number | null | undefined;
 };
 
-export const NumberDisplay = ({ value }: NumberDisplayProps) => (
-  <EllipsisDisplay>{value && formatNumber(Number(value))}</EllipsisDisplay>
-);
+export const NumberDisplay = ({ value }: NumberDisplayProps) => {
+  return (
+    <EllipsisDisplay>{value && formatNumber(Number(value))}</EllipsisDisplay>
+  );
+};

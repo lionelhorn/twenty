@@ -14,8 +14,10 @@ export const StyledPropertyBoxContainer = styled.div`
   padding: ${({ theme }) => theme.spacing(3)};
 `;
 
-export const PropertyBox = ({ children, className }: PropertyBoxProps) => (
-  <StyledPropertyBoxContainer className={className}>
-    {children}
-  </StyledPropertyBoxContainer>
-);
+export const PropertyBox = ({ children, className }: PropertyBoxProps) => {
+  return (
+    <StyledPropertyBoxContainer className={className}>
+      {children}
+    </StyledPropertyBoxContainer>
+  );
+};

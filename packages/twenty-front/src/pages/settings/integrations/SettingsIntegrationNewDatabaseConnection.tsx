@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -68,6 +69,8 @@ type SettingsIntegrationNewConnectionFormValues =
   | SettingsIntegrationNewConnectionStripeFormValues;
 
 export const SettingsIntegrationNewDatabaseConnection = () => {
+  const { t } = useTranslation();
+
   const { databaseKey = '' } = useParams();
   const navigate = useNavigate();
 
@@ -165,8 +168,12 @@ export const SettingsIntegrationNewDatabaseConnection = () => {
         >
           <Section>
             <H2Title
-              title="Connect a new database"
-              description="Provide the information to connect your database"
+              title={t(
+                'settingsIntegrationNewDatabaseConnection.connect-a-new-database',
+              )}
+              description={t(
+                'settingsIntegrationNewDatabaseConnection.provide-the-information-to-connect-your-',
+              )}
             />
             <SettingsIntegrationDatabaseConnectionForm
               databaseKey={databaseKey}

@@ -163,18 +163,20 @@ export const Select = <Value extends string | number | null>({
               )}
               {!!filteredOptions.length && (
                 <DropdownMenuItemsContainer hasMaxHeight>
-                  {filteredOptions.map((option) => (
-                    <MenuItem
-                      key={option.value}
-                      LeftIcon={option.Icon}
-                      text={option.label}
-                      onClick={() => {
-                        onChange?.(option.value);
-                        onBlur?.();
-                        closeDropdown();
-                      }}
-                    />
-                  ))}
+                  {filteredOptions.map((option) => {
+                    return (
+                      <MenuItem
+                        key={option.value}
+                        LeftIcon={option.Icon}
+                        text={option.label}
+                        onClick={() => {
+                          onChange?.(option.value);
+                          onBlur?.();
+                          closeDropdown();
+                        }}
+                      />
+                    );
+                  })}
                 </DropdownMenuItemsContainer>
               )}
             </>

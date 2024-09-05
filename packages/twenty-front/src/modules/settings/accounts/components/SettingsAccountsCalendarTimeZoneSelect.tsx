@@ -12,15 +12,17 @@ type SettingsAccountsCalendarTimeZoneSelectProps = {
 export const SettingsAccountsCalendarTimeZoneSelect = ({
   value = detectTimeZone(),
   onChange,
-}: SettingsAccountsCalendarTimeZoneSelectProps) => (
-  <Select
-    dropdownId="settings-accounts-calendar-time-zone"
-    dropdownWidth={416}
-    label="Time zone"
-    fullWidth
-    value={findAvailableTimeZoneOption(value)?.value}
-    options={AVAILABLE_TIMEZONE_OPTIONS}
-    onChange={onChange}
-    withSearchInput
-  />
-);
+}: SettingsAccountsCalendarTimeZoneSelectProps) => {
+  return (
+    <Select
+      dropdownId="settings-accounts-calendar-time-zone"
+      dropdownWidth={416}
+      label="Time zone"
+      fullWidth
+      value={findAvailableTimeZoneOption(value)?.value}
+      options={AVAILABLE_TIMEZONE_OPTIONS}
+      onChange={onChange}
+      withSearchInput
+    />
+  );
+};

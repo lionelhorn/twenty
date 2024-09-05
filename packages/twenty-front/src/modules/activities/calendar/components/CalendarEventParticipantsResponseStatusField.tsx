@@ -88,9 +88,9 @@ export const CalendarEventParticipantsResponseStatusField = ({
   ];
 
   const participantsContainerRef = useRef<HTMLDivElement>(null);
-  const styledChips = orderedParticipants.map((participant, index) => (
-    <ParticipantChip key={index} participant={participant} />
-  ));
+  const styledChips = orderedParticipants.map((participant, index) => {
+    return <ParticipantChip key={index} participant={participant} />;
+  });
 
   return (
     <StyledPropertyBox>

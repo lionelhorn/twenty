@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useInView } from 'react-intersection-observer';
 import styled from '@emotion/styled';
 import { GRAY_SCALE } from 'twenty-ui';
@@ -21,13 +22,19 @@ export const CustomResolverFetchMoreLoader = ({
   loading,
   onLastRowVisible,
 }: CustomResolverFetchMoreLoaderProps) => {
+  const { t } = useTranslation();
+
   const { ref: tbodyRef } = useInView({
     onChange: onLastRowVisible,
   });
 
   return (
     <div ref={tbodyRef}>
-      {loading && <StyledText>Loading more...</StyledText>}
+      {loading && (
+        <StyledText>
+          {t('customResolverFetchMoreLoader.loading-more')}
+        </StyledText>
+      )}
     </div>
   );
 };

@@ -50,18 +50,20 @@ export const RecordTableBodyDroppable = ({
 
   return (
     <Droppable droppableId={v4Persistable}>
-      {(provided) => (
-        <StyledTbody
-          id="record-table-body"
-          theme={theme}
-          ref={provided.innerRef}
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...provided.droppableProps}
-        >
-          {children}
-          {provided.placeholder}
-        </StyledTbody>
-      )}
+      {(provided) => {
+        return (
+          <StyledTbody
+            id="record-table-body"
+            theme={theme}
+            ref={provided.innerRef}
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...provided.droppableProps}
+          >
+            {children}
+            {provided.placeholder}
+          </StyledTbody>
+        );
+      }}
     </Droppable>
   );
 };

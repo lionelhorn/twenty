@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -38,6 +39,8 @@ const StyledActionLinkContainer = styled.div`
 `;
 
 export const SyncEmails = () => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
   const { triggerGoogleApisOAuth } = useTriggerGoogleApisOAuth();
   const setNextOnboardingStatus = useSetNextOnboardingStatus();
@@ -81,9 +84,9 @@ export const SyncEmails = () => {
 
   return (
     <>
-      <Title noMarginTop>Emails and Calendar</Title>
+      <Title noMarginTop>{t('syncEmails.emails-and-calendar')}</Title>
       <SubTitle>
-        Sync your Emails and Calendar with Twenty. Choose your privacy settings.
+        {t('syncEmails.sync-your-emails-and-calendar-with-twent')}
       </SubTitle>
       <StyledSyncEmailsContainer>
         <OnboardingSyncEmailsSettingsCard
@@ -92,14 +95,16 @@ export const SyncEmails = () => {
         />
       </StyledSyncEmailsContainer>
       <MainButton
-        title="Sync with Google"
+        title={t('syncEmails.sync-with-google')}
         onClick={handleButtonClick}
         width={200}
-        Icon={() => <IconGoogle size={theme.icon.size.sm} />}
+        Icon={() => {
+          return <IconGoogle size={theme.icon.size.sm} />;
+        }}
       />
       <StyledActionLinkContainer>
         <ActionLink onClick={continueWithoutSync}>
-          Continue without sync
+          {t('syncEmails.continue-without-sync')}
         </ActionLink>
       </StyledActionLinkContainer>
     </>

@@ -14,6 +14,6 @@ const StyledSeparator = styled.div<HorizontalSeparatorProps>`
 
 export const HorizontalSeparator = ({
   visible = true,
-}: HorizontalSeparatorProps): JSX.Element => (
-  <StyledSeparator visible={visible} />
-);
+}: HorizontalSeparatorProps) => {
+  return <StyledSeparator visible={visible} />;
+};

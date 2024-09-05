@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { IconPlus } from 'twenty-ui';
@@ -24,6 +25,8 @@ const StyledButton = styled.button`
 `;
 
 export const RecordBoardColumnNewOpportunityButton = () => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
   const {
     isCreatingCard,
@@ -45,7 +48,7 @@ export const RecordBoardColumnNewOpportunityButton = () => {
       ) : (
         <StyledButton onClick={handleAddNewOpportunityClick}>
           <IconPlus size={theme.icon.size.md} />
-          New
+          {t('recordBoardColumnNewOpportunityButton.new')}
         </StyledButton>
       )}
     </>

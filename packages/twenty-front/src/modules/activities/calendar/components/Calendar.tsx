@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { format, getYear } from 'date-fns';
 import { H3Title } from 'twenty-ui';
@@ -43,6 +44,8 @@ export const Calendar = ({
 }: {
   targetableObject: ActivityTargetableObject;
 }) => {
+  const { t } = useTranslation();
+
   const [query, queryName] =
     targetableObject.targetObjectNameSingular === CoreObjectNameSingular.Person
       ? [
@@ -100,11 +103,11 @@ export const Calendar = ({
         <AnimatedPlaceholder type="noMatchRecord" />
         <AnimatedPlaceholderEmptyTextContainer>
           <AnimatedPlaceholderEmptyTitle>
-            No Events
+            {t('calendar.no-events')}
           </AnimatedPlaceholderEmptyTitle>
           <AnimatedPlaceholderEmptySubTitle>
-            No events have been scheduled with this{' '}
-            {targetableObject.targetObjectNameSingular} yet.
+            {t('calendar.no-events-have-been-scheduled-with-this')}{' '}
+            {targetableObject.targetObjectNameSingular} {t('calendar.yet')}
           </AnimatedPlaceholderEmptySubTitle>
         </AnimatedPlaceholderEmptyTextContainer>
       </AnimatedPlaceholderEmptyContainer>

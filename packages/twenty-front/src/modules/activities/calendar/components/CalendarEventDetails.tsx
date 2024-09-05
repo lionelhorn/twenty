@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -76,6 +77,8 @@ const StyledPropertyBox = styled(PropertyBox)`
 export const CalendarEventDetails = ({
   calendarEvent,
 }: CalendarEventDetailsProps) => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
   const { objectMetadataItem } = useObjectMetadataItem({
     objectNameSingular: CoreObjectNameSingular.CalendarEvent,
@@ -96,28 +99,30 @@ export const CalendarEventDetails = ({
 
   const { calendarEventParticipants } = calendarEvent;
 
-  const Fields = fieldsToDisplay.map((fieldName) => (
-    <StyledPropertyBox key={fieldName}>
-      <FieldContext.Provider
-        value={{
-          recordId: calendarEvent.id,
-          hotkeyScope: 'calendar-event-details',
-          recoilScopeId: `${calendarEvent.id}-${fieldName}`,
-          isLabelIdentifier: false,
-          fieldDefinition: formatFieldMetadataItemAsFieldDefinition({
-            field: fieldsByName[fieldName],
-            objectMetadataItem,
-            showLabel: true,
-            labelWidth: 72,
-          }),
-          useUpdateRecord: () => [() => undefined, { loading: false }],
-          maxWidth: 300,
-        }}
-      >
-        <RecordInlineCell readonly />
-      </FieldContext.Provider>
-    </StyledPropertyBox>
-  ));
+  const Fields = fieldsToDisplay.map((fieldName) => {
+    return (
+      <StyledPropertyBox key={fieldName}>
+        <FieldContext.Provider
+          value={{
+            recordId: calendarEvent.id,
+            hotkeyScope: 'calendar-event-details',
+            recoilScopeId: `${calendarEvent.id}-${fieldName}`,
+            isLabelIdentifier: false,
+            fieldDefinition: formatFieldMetadataItemAsFieldDefinition({
+              field: fieldsByName[fieldName],
+              objectMetadataItem,
+              showLabel: true,
+              labelWidth: 72,
+            }),
+            useUpdateRecord: () => [() => undefined, { loading: false }],
+            maxWidth: 300,
+          }}
+        >
+          <RecordInlineCell readonly />
+        </FieldContext.Provider>
+      </StyledPropertyBox>
+    );
+  });
 
   return (
     <StyledContainer>
@@ -134,7 +139,7 @@ export const CalendarEventDetails = ({
           {calendarEvent.title}
         </StyledTitle>
         <StyledCreatedAt>
-          Created{' '}
+          {t('calendarEventDetails.created')}{' '}
           {beautifyPastDateRelativeToNow(
             new Date(calendarEvent.externalCreatedAt),
           )}

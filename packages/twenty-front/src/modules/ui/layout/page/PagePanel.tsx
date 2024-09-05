@@ -16,6 +16,6 @@ type PagePanelProps = {
   hasInformationBar?: boolean;
 };
 
-export const PagePanel = ({ children }: PagePanelProps) => (
-  <StyledPanel>{children}</StyledPanel>
-);
+export const PagePanel = ({ children }: PagePanelProps) => {
+  return <StyledPanel>{children}</StyledPanel>;
+};

@@ -28,11 +28,13 @@ const StyledTitle = styled.div`
 export const SettingsSummaryCard = ({
   title,
   rightComponent,
-}: SettingsSummaryCardProps) => (
-  <Card>
-    <StyledCardContent>
-      <StyledTitle>{title}</StyledTitle>
-      {rightComponent}
-    </StyledCardContent>
-  </Card>
-);
+}: SettingsSummaryCardProps) => {
+  return (
+    <Card>
+      <StyledCardContent>
+        <StyledTitle>{title}</StyledTitle>
+        {rightComponent}
+      </StyledCardContent>
+    </Card>
+  );
+};

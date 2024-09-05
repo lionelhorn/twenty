@@ -4,6 +4,6 @@ type TextDisplayProps = {
   text: string;
 };
 
-export const TextDisplay = ({ text }: TextDisplayProps) => (
-  <OverflowingTextWithTooltip text={text} />
-);
+export const TextDisplay = ({ text }: TextDisplayProps) => {
+  return <OverflowingTextWithTooltip text={text} />;
+};

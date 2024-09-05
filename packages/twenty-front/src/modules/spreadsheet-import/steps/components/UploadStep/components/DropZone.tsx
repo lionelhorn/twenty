@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
@@ -88,6 +89,8 @@ type DropZoneProps = {
 };
 
 export const DropZone = ({ onContinue, isLoading }: DropZoneProps) => {
+  const { t } = useTranslation();
+
   const { maxFileSize, dateFormat, parseRaw } = useSpreadsheetImportInternal();
 
   const [loading, setLoading] = useState(false);
@@ -141,13 +144,13 @@ export const DropZone = ({ onContinue, isLoading }: DropZoneProps) => {
         {...getInputProps()}
       />
       {isDragActive ? (
-        <StyledText>Drop file here...</StyledText>
+        <StyledText>{t('dropZone.drop-file-here')}</StyledText>
       ) : loading || isLoading ? (
-        <StyledText>Processing...</StyledText>
+        <StyledText>{t('dropZone.processing')}</StyledText>
       ) : (
         <>
-          <StyledText>Upload .xlsx, .xls or .csv file</StyledText>
-          <MainButton onClick={open} title="Select file" />
+          <StyledText>{t('dropZone.upload-xlsx-xls-or-csv-file')}</StyledText>
+          <MainButton onClick={open} title={t('dropZone.select-file')} />
         </>
       )}
     </StyledContainer>

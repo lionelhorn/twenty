@@ -69,10 +69,12 @@ export const RecordFieldValueSelectorContextProvider = ({
   children,
 }: {
   children: any;
-}) => (
-  <RecordFieldValueSelectorContext.Provider
-    value={useState<RecordFieldValue>({})}
-  >
-    {children}
-  </RecordFieldValueSelectorContext.Provider>
-);
+}) => {
+  return (
+    <RecordFieldValueSelectorContext.Provider
+      value={useState<RecordFieldValue>({})}
+    >
+      {children}
+    </RecordFieldValueSelectorContext.Provider>
+  );
+};

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { Key } from 'ts-key-enum';
@@ -50,6 +51,8 @@ const StyledSaveButtonContainer = styled.div`
   width: calc(100% - ${({ theme }) => theme.spacing(2)});
 `;
 export const ViewPickerCreateOrEditContent = () => {
+  const { t } = useTranslation();
+
   const { viewPickerMode, setViewPickerMode } = useViewPickerMode();
   const {
     viewPickerInputNameState,
@@ -183,7 +186,9 @@ export const ViewPickerCreateOrEditContent = () => {
             </StyledSelectContainer>
             {availableFieldsForKanban.length === 0 && (
               <StyledNoKanbanFieldAvailableContainer>
-                Set up a Select field on Companies to create a Kanban
+                {t(
+                  'viewPickerCreateOrEditContent.set-up-a-select-field-on-companies-to-cr',
+                )}
               </StyledNoKanbanFieldAvailableContainer>
             )}
           </>

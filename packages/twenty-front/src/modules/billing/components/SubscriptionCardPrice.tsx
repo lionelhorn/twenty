@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 
 type SubscriptionCardPriceProps = {
@@ -23,11 +24,13 @@ const StyledSeatSpan = styled.span`
 export const SubscriptionCardPrice = ({
   price,
 }: SubscriptionCardPriceProps) => {
+  const { t } = useTranslation();
+
   return (
     <StyledSubscriptionCardPriceContainer>
       <StyledPriceSpan>${price}</StyledPriceSpan>
       <StyledSeatSpan>/</StyledSeatSpan>
-      <StyledSeatSpan>seat</StyledSeatSpan>
+      <StyledSeatSpan>{t('subscriptionCardPrice.seat')}</StyledSeatSpan>
     </StyledSubscriptionCardPriceContainer>
   );
 };

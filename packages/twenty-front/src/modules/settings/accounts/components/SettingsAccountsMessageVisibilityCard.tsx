@@ -49,11 +49,13 @@ const inboxSettingsVisibilityOptions = [
 export const SettingsAccountsMessageVisibilityCard = ({
   onChange,
   value = MessageChannelVisibility.ShareEverything,
-}: SettingsAccountsMessageVisibilityCardProps) => (
-  <SettingsAccountsRadioSettingsCard
-    name="message-visibility"
-    options={inboxSettingsVisibilityOptions}
-    value={value}
-    onChange={onChange}
-  />
-);
+}: SettingsAccountsMessageVisibilityCardProps) => {
+  return (
+    <SettingsAccountsRadioSettingsCard
+      name="message-visibility"
+      options={inboxSettingsVisibilityOptions}
+      value={value}
+      onChange={onChange}
+    />
+  );
+};

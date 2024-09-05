@@ -67,16 +67,18 @@ export const SettingsAccountsMessageChannelsContainer = () => {
           />
         </StyledMessageContainer>
       )}
-      {messageChannels.map((messageChannel) => (
-        <React.Fragment key={messageChannel.id}>
-          {(messageChannels.length === 1 ||
-            messageChannel.id === activeTabId) && (
-            <SettingsAccountsMessageChannelDetails
-              messageChannel={messageChannel}
-            />
-          )}
-        </React.Fragment>
-      ))}
+      {messageChannels.map((messageChannel) => {
+        return (
+          <React.Fragment key={messageChannel.id}>
+            {(messageChannels.length === 1 ||
+              messageChannel.id === activeTabId) && (
+              <SettingsAccountsMessageChannelDetails
+                messageChannel={messageChannel}
+              />
+            )}
+          </React.Fragment>
+        );
+      })}
     </>
   );
 };

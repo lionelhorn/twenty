@@ -23,9 +23,11 @@ export const SettingsAccountsMessageAutoCreationIcon = ({
   className,
   isSentActive,
   isReceivedActive,
-}: SettingsAccountsMessageAutoCreationIconProps) => (
-  <StyledIconContainer className={className}>
-    <StyledDirectionSkeleton isActive={isSentActive} />
-    <StyledDirectionSkeleton isActive={isReceivedActive} />
-  </StyledIconContainer>
-);
+}: SettingsAccountsMessageAutoCreationIconProps) => {
+  return (
+    <StyledIconContainer className={className}>
+      <StyledDirectionSkeleton isActive={isSentActive} />
+      <StyledDirectionSkeleton isActive={isReceivedActive} />
+    </StyledIconContainer>
+  );
+};

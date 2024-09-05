@@ -78,18 +78,22 @@ const StyledSkeletonAddLoader = () => {
   );
 };
 
-const RightPanelSkeleton = () => (
-  <StyledMainContainer>
-    <StyledPanel></StyledPanel>
-  </StyledMainContainer>
-);
+const RightPanelSkeleton = () => {
+  return (
+    <StyledMainContainer>
+      <StyledPanel></StyledPanel>
+    </StyledMainContainer>
+  );
+};
 
-export const RightPanelSkeletonLoader = () => (
-  <StyledRightPanelContainer>
-    <StyledRightPanelFlexContainer>
-      <StyledSkeletonHeaderLoader />
-      <StyledSkeletonAddLoader />
-    </StyledRightPanelFlexContainer>
-    <RightPanelSkeleton />
-  </StyledRightPanelContainer>
-);
+export const RightPanelSkeletonLoader = () => {
+  return (
+    <StyledRightPanelContainer>
+      <StyledRightPanelFlexContainer>
+        <StyledSkeletonHeaderLoader />
+        <StyledSkeletonAddLoader />
+      </StyledRightPanelFlexContainer>
+      <RightPanelSkeleton />
+    </StyledRightPanelContainer>
+  );
+};

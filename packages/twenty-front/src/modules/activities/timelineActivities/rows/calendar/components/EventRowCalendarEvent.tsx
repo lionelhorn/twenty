@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import styled from '@emotion/styled';
 
@@ -29,6 +30,8 @@ export const EventRowCalendarEvent = ({
   authorFullName,
   labelIdentifierValue,
 }: EventRowCalendarEventProps) => {
+  const { t } = useTranslation();
+
   const [, eventAction] = event.name.split('.');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,7 +44,8 @@ export const EventRowCalendarEvent = ({
       <StyledRowContainer>
         <StyledEventRowItemColumn>{authorFullName}</StyledEventRowItemColumn>
         <StyledEventRowItemAction>
-          linked a calendar event with {labelIdentifierValue}
+          {t('eventRowCalendarEvent.linked-a-calendar-event-with')}{' '}
+          {labelIdentifierValue}
         </StyledEventRowItemAction>
         <EventCardToggleButton isOpen={isOpen} setIsOpen={setIsOpen} />
       </StyledRowContainer>

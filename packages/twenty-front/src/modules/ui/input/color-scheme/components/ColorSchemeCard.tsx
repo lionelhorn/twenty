@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import styled from '@emotion/styled';
 import {
@@ -107,16 +108,20 @@ const ColorSchemeSegment = ({
   onClick,
   onMouseEnter,
   onMouseLeave,
-}: ColorSchemeSegmentProps) => (
-  <StyledColorSchemeBackground
-    className={className}
-    {...{ variant, style, onClick, onMouseEnter, onMouseLeave }}
-  >
-    <StyledColorSchemeContent animate={controls} variant={variant}>
-      Aa
-    </StyledColorSchemeContent>
-  </StyledColorSchemeBackground>
-);
+}: ColorSchemeSegmentProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <StyledColorSchemeBackground
+      className={className}
+      {...{ variant, style, onClick, onMouseEnter, onMouseLeave }}
+    >
+      <StyledColorSchemeContent animate={controls} variant={variant}>
+        {t('colorSchemeSegment.aa')}
+      </StyledColorSchemeContent>
+    </StyledColorSchemeBackground>
+  );
+};
 
 const StyledContainer = styled.div`
   position: relative;

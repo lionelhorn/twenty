@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
 
@@ -15,11 +16,13 @@ const StyledContainer = styled.div`
 `;
 
 const AppInaccessible = ({ message }: { message: string }) => {
+  const { t } = useTranslation();
+
   return (
     <StyledContainer>
       <img
         src="/images/integrations/twenty-logo.svg"
-        alt="twenty-icon"
+        alt={t('appInaccessible.twenty-icon')}
         height={40}
         width={40}
       />
@@ -31,6 +34,8 @@ const AppInaccessible = ({ message }: { message: string }) => {
 export const ChromeExtensionSidecarProvider: React.FC<
   React.PropsWithChildren
 > = ({ children }) => {
+  const { t } = useTranslation();
+
   const isLoadingTokensFromExtension = useRecoilValue(
     isLoadingTokensFromExtensionState,
   );
@@ -40,15 +45,21 @@ export const ChromeExtensionSidecarProvider: React.FC<
 
   if (!isDefined(chromeExtensionId))
     return (
-      <AppInaccessible message={`Twenty is not accessible inside an iframe.`} />
+      <AppInaccessible
+        message={t(
+          'chromeExtensionSidecarProvider.twenty-is-not-accessible-inside-an-ifram',
+          {},
+        )}
+      />
     );
 
   if (isDefined(isLoadingTokensFromExtension) && !isLoadingTokensFromExtension)
     return (
       <AppInaccessible
-        message={`Unauthorized access from iframe origin. If you're trying to access from chrome extension,
-      please check your chrome extension ID on your server.
-    `}
+        message={t(
+          'chromeExtensionSidecarProvider.unauthorized-access-from-iframe-origin-i',
+          {},
+        )}
       />
     );
 

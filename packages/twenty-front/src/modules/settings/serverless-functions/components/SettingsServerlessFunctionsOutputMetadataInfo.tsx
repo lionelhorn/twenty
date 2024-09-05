@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useRecoilValue } from 'recoil';
 import {
   DEFAULT_OUTPUT_VALUE,
@@ -19,6 +20,8 @@ const StyledOutput = styled.div<{ status?: ServerlessFunctionExecutionStatus }>`
 `;
 
 export const SettingsServerlessFunctionsOutputMetadataInfo = () => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
   const settingsServerlessFunctionOutput = useRecoilValue(
     settingsServerlessFunctionOutputState,
@@ -33,7 +36,8 @@ export const SettingsServerlessFunctionsOutputMetadataInfo = () => {
         ? '200 OK'
         : '500 Error'}
       {' - '}
-      {settingsServerlessFunctionOutput.duration}ms
+      {settingsServerlessFunctionOutput.duration}
+      {t('settingsServerlessFunctionsOutputMetadataInfo.ms')}
     </StyledOutput>
   );
 };

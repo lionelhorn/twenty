@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 
 import { useOpenCopilotRightDrawer } from '@/activities/copilot/right-drawer/hooks/useOpenCopilotRightDrawer';
@@ -127,6 +128,8 @@ const StyledEmpty = styled.div`
 `;
 
 export const CommandMenu = () => {
+  const { t } = useTranslation();
+
   const { toggleCommandMenu, onItemClick, closeCommandMenu } = useCommandMenu();
   const commandMenuRef = useRef<HTMLDivElement>(null);
 
@@ -374,7 +377,9 @@ export const CommandMenu = () => {
                     !companies.length &&
                     !notes.length &&
                     !opportunities.length && (
-                      <StyledEmpty>No results found</StyledEmpty>
+                      <StyledEmpty>
+                        {t('commandMenu.no-results-found')}
+                      </StyledEmpty>
                     )}
                   {isCopilotEnabled && (
                     <CommandGroup heading="Copilot">
@@ -393,119 +398,137 @@ export const CommandMenu = () => {
                     </CommandGroup>
                   )}
                   <CommandGroup heading="Create">
-                    {matchingCreateCommand.map((cmd) => (
-                      <SelectableItem itemId={cmd.id} key={cmd.id}>
-                        <CommandMenuItem
-                          id={cmd.id}
-                          to={cmd.to}
-                          key={cmd.id}
-                          Icon={cmd.Icon}
-                          label={cmd.label}
-                          onClick={cmd.onCommandClick}
-                          firstHotKey={cmd.firstHotKey}
-                          secondHotKey={cmd.secondHotKey}
-                        />
-                      </SelectableItem>
-                    ))}
+                    {matchingCreateCommand.map((cmd) => {
+                      return (
+                        <SelectableItem itemId={cmd.id} key={cmd.id}>
+                          <CommandMenuItem
+                            id={cmd.id}
+                            to={cmd.to}
+                            key={cmd.id}
+                            Icon={cmd.Icon}
+                            label={cmd.label}
+                            onClick={cmd.onCommandClick}
+                            firstHotKey={cmd.firstHotKey}
+                            secondHotKey={cmd.secondHotKey}
+                          />
+                        </SelectableItem>
+                      );
+                    })}
                   </CommandGroup>
                   <CommandGroup heading="Navigate">
-                    {matchingNavigateCommand.map((cmd) => (
-                      <SelectableItem itemId={cmd.id} key={cmd.id}>
-                        <CommandMenuItem
-                          id={cmd.id}
-                          to={cmd.to}
-                          key={cmd.id}
-                          label={cmd.label}
-                          Icon={cmd.Icon}
-                          onClick={cmd.onCommandClick}
-                          firstHotKey={cmd.firstHotKey}
-                          secondHotKey={cmd.secondHotKey}
-                        />
-                      </SelectableItem>
-                    ))}
+                    {matchingNavigateCommand.map((cmd) => {
+                      return (
+                        <SelectableItem itemId={cmd.id} key={cmd.id}>
+                          <CommandMenuItem
+                            id={cmd.id}
+                            to={cmd.to}
+                            key={cmd.id}
+                            label={cmd.label}
+                            Icon={cmd.Icon}
+                            onClick={cmd.onCommandClick}
+                            firstHotKey={cmd.firstHotKey}
+                            secondHotKey={cmd.secondHotKey}
+                          />
+                        </SelectableItem>
+                      );
+                    })}
                   </CommandGroup>
                   <CommandGroup heading="People">
-                    {people.map((person) => (
-                      <SelectableItem itemId={person.id} key={person.id}>
-                        <CommandMenuItem
-                          id={person.id}
-                          key={person.id}
-                          to={`object/person/${person.id}`}
-                          label={
-                            person.name.firstName + ' ' + person.name.lastName
-                          }
-                          Icon={() => (
-                            <Avatar
-                              type="rounded"
-                              avatarUrl={null}
-                              placeholderColorSeed={person.id}
-                              placeholder={
-                                person.name.firstName +
-                                ' ' +
-                                person.name.lastName
-                              }
-                            />
-                          )}
-                        />
-                      </SelectableItem>
-                    ))}
+                    {people.map((person) => {
+                      return (
+                        <SelectableItem itemId={person.id} key={person.id}>
+                          <CommandMenuItem
+                            id={person.id}
+                            key={person.id}
+                            to={`object/person/${person.id}`}
+                            label={
+                              person.name.firstName + ' ' + person.name.lastName
+                            }
+                            Icon={() => {
+                              return (
+                                <Avatar
+                                  type="rounded"
+                                  avatarUrl={null}
+                                  placeholderColorSeed={person.id}
+                                  placeholder={
+                                    person.name.firstName +
+                                    ' ' +
+                                    person.name.lastName
+                                  }
+                                />
+                              );
+                            }}
+                          />
+                        </SelectableItem>
+                      );
+                    })}
                   </CommandGroup>
                   <CommandGroup heading="Companies">
-                    {companies.map((company) => (
-                      <SelectableItem itemId={company.id} key={company.id}>
-                        <CommandMenuItem
-                          id={company.id}
-                          key={company.id}
-                          label={company.name}
-                          to={`object/company/${company.id}`}
-                          Icon={() => (
-                            <Avatar
-                              placeholderColorSeed={company.id}
-                              placeholder={company.name}
-                              avatarUrl={getLogoUrlFromDomainName(
-                                getCompanyDomainName(company),
-                              )}
-                            />
-                          )}
-                        />
-                      </SelectableItem>
-                    ))}
+                    {companies.map((company) => {
+                      return (
+                        <SelectableItem itemId={company.id} key={company.id}>
+                          <CommandMenuItem
+                            id={company.id}
+                            key={company.id}
+                            label={company.name}
+                            to={`object/company/${company.id}`}
+                            Icon={() => {
+                              return (
+                                <Avatar
+                                  placeholderColorSeed={company.id}
+                                  placeholder={company.name}
+                                  avatarUrl={getLogoUrlFromDomainName(
+                                    getCompanyDomainName(company),
+                                  )}
+                                />
+                              );
+                            }}
+                          />
+                        </SelectableItem>
+                      );
+                    })}
                   </CommandGroup>
                   <CommandGroup heading="Opportunities">
-                    {opportunities.map((opportunity) => (
-                      <SelectableItem
-                        itemId={opportunity.id}
-                        key={opportunity.id}
-                      >
-                        <CommandMenuItem
-                          id={opportunity.id}
+                    {opportunities.map((opportunity) => {
+                      return (
+                        <SelectableItem
+                          itemId={opportunity.id}
                           key={opportunity.id}
-                          label={opportunity.name}
-                          to={`object/opportunity/${opportunity.id}`}
-                          Icon={() => (
-                            <Avatar
-                              type="rounded"
-                              avatarUrl={null}
-                              placeholderColorSeed={opportunity.id}
-                              placeholder={opportunity.name}
-                            />
-                          )}
-                        />
-                      </SelectableItem>
-                    ))}
+                        >
+                          <CommandMenuItem
+                            id={opportunity.id}
+                            key={opportunity.id}
+                            label={opportunity.name}
+                            to={`object/opportunity/${opportunity.id}`}
+                            Icon={() => {
+                              return (
+                                <Avatar
+                                  type="rounded"
+                                  avatarUrl={null}
+                                  placeholderColorSeed={opportunity.id}
+                                  placeholder={opportunity.name}
+                                />
+                              );
+                            }}
+                          />
+                        </SelectableItem>
+                      );
+                    })}
                   </CommandGroup>
                   <CommandGroup heading="Notes">
-                    {notes.map((note) => (
-                      <SelectableItem itemId={note.id} key={note.id}>
-                        <CommandMenuItem
-                          id={note.id}
-                          Icon={IconNotes}
-                          key={note.id}
-                          label={note.title ?? ''}
-                          onClick={() => openActivityRightDrawer(note.id)}
-                        />
-                      </SelectableItem>
-                    ))}
+                    {notes.map((note) => {
+                      return (
+                        <SelectableItem itemId={note.id} key={note.id}>
+                          <CommandMenuItem
+                            id={note.id}
+                            Icon={IconNotes}
+                            key={note.id}
+                            label={note.title ?? ''}
+                            onClick={() => openActivityRightDrawer(note.id)}
+                          />
+                        </SelectableItem>
+                      );
+                    })}
                   </CommandGroup>
                 </SelectableList>
               </StyledInnerList>

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { IconBuildingSkyscraper } from 'twenty-ui';
 
@@ -18,9 +19,14 @@ const StyledTableContainer = styled.div`
 `;
 
 export const SignInBackgroundMockPage = () => {
+  const { t } = useTranslation();
+
   return (
     <PageContainer>
-      <PageHeader title="Companies" Icon={IconBuildingSkyscraper}>
+      <PageHeader
+        title={t('signInBackgroundMockPage.companies')}
+        Icon={IconBuildingSkyscraper}
+      >
         <PageHotkeysEffect onAddButtonClick={() => {}} />
         <PageAddButton onClick={() => {}} />
       </PageHeader>

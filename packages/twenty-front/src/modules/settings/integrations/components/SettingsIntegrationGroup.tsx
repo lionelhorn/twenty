@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { H2Title } from 'twenty-ui';
@@ -36,31 +37,37 @@ const StyledIntegrationsSection = styled.div`
 
 export const SettingsIntegrationGroup = ({
   integrationGroup,
-}: SettingsIntegrationGroupProps) => (
-  <Section>
-    <StyledIntegrationGroupHeader>
-      <H2Title title={integrationGroup.title} />
-      {integrationGroup.hyperlink && (
-        <StyledGroupLink
-          target={'_blank'}
-          to={integrationGroup.hyperlink ?? ''}
-        >
-          <div>{integrationGroup.hyperlinkText}</div>
-          <div>→</div>
-        </StyledGroupLink>
-      )}
-    </StyledIntegrationGroupHeader>
-    <StyledIntegrationsSection>
-      {integrationGroup.integrations.map((integration) => (
-        <SettingsIntegrationComponent
-          key={[
-            integrationGroup.key,
-            integration.from.key,
-            integration.to?.key,
-          ].join('-')}
-          integration={integration}
-        />
-      ))}
-    </StyledIntegrationsSection>
-  </Section>
-);
+}: SettingsIntegrationGroupProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <Section>
+      <StyledIntegrationGroupHeader>
+        <H2Title title={integrationGroup.title} />
+        {integrationGroup.hyperlink && (
+          <StyledGroupLink
+            target={'_blank'}
+            to={integrationGroup.hyperlink ?? ''}
+          >
+            <div>{integrationGroup.hyperlinkText}</div>
+            <div>{t('settingsIntegrationGroup.')}</div>
+          </StyledGroupLink>
+        )}
+      </StyledIntegrationGroupHeader>
+      <StyledIntegrationsSection>
+        {integrationGroup.integrations.map((integration) => {
+          return (
+            <SettingsIntegrationComponent
+              key={[
+                integrationGroup.key,
+                integration.from.key,
+                integration.to?.key,
+              ].join('-')}
+              integration={integration}
+            />
+          );
+        })}
+      </StyledIntegrationsSection>
+    </Section>
+  );
+};

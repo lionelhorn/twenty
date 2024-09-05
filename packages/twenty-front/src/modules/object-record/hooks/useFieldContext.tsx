@@ -59,33 +59,35 @@ export const useFieldContext = ({
 
   const FieldContextProvider =
     fieldMetadataItem && objectMetadataItem
-      ? ({ children }: { children: ReactNode }) => (
-          <FieldContext.Provider
-            key={objectRecordId + fieldMetadataItem.id}
-            value={{
-              basePathToShowPage: isLabelIdentifier
-                ? basePathToShowPage
-                : undefined,
-              recordId: objectRecordId,
-              recoilScopeId: objectRecordId + fieldMetadataItem.id,
-              isLabelIdentifier,
-              fieldDefinition: formatFieldMetadataItemAsColumnDefinition({
-                field: fieldMetadataItem,
-                showLabel: true,
-                position: fieldPosition,
-                objectMetadataItem,
-                labelWidth: 90,
-              }),
-              useUpdateRecord:
-                customUseUpdateOneObjectHook ?? useUpdateOneObjectMutation,
-              hotkeyScope: InlineCellHotkeyScope.InlineCell,
-              clearable,
-              overridenIsFieldEmpty,
-            }}
-          >
-            {children}
-          </FieldContext.Provider>
-        )
+      ? ({ children }: { children: ReactNode }) => {
+          return (
+            <FieldContext.Provider
+              key={objectRecordId + fieldMetadataItem.id}
+              value={{
+                basePathToShowPage: isLabelIdentifier
+                  ? basePathToShowPage
+                  : undefined,
+                recordId: objectRecordId,
+                recoilScopeId: objectRecordId + fieldMetadataItem.id,
+                isLabelIdentifier,
+                fieldDefinition: formatFieldMetadataItemAsColumnDefinition({
+                  field: fieldMetadataItem,
+                  showLabel: true,
+                  position: fieldPosition,
+                  objectMetadataItem,
+                  labelWidth: 90,
+                }),
+                useUpdateRecord:
+                  customUseUpdateOneObjectHook ?? useUpdateOneObjectMutation,
+                hotkeyScope: InlineCellHotkeyScope.InlineCell,
+                clearable,
+                overridenIsFieldEmpty,
+              }}
+            >
+              {children}
+            </FieldContext.Provider>
+          );
+        }
       : undefined;
 
   return {

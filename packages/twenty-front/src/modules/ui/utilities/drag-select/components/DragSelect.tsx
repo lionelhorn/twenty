@@ -61,7 +61,7 @@ export const DragSelect = ({
       style: {
         border: `1px solid ${theme.color.blue10}`,
         background: RGBA(theme.color.blue30, 0.4),
-        position: `absolute`,
+        position: 'absolute',
         zIndex: 99,
       },
     },

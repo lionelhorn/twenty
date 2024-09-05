@@ -52,17 +52,19 @@ export const SettingsDataModelFieldCurrencyForm = ({
         name="defaultValue.currencyCode"
         control={control}
         defaultValue={initialCurrencyCodeValue}
-        render={({ field: { onChange, value } }) => (
-          <Select
-            fullWidth
-            disabled={disabled}
-            label="Default Unit"
-            dropdownId="currency-unit-select"
-            value={value}
-            options={OPTIONS}
-            onChange={onChange}
-          />
-        )}
+        render={({ field: { onChange, value } }) => {
+          return (
+            <Select
+              fullWidth
+              disabled={disabled}
+              label="Default Unit"
+              dropdownId="currency-unit-select"
+              value={value}
+              options={OPTIONS}
+              onChange={onChange}
+            />
+          );
+        }}
       />
     </CardContent>
   );

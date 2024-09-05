@@ -36,13 +36,15 @@ export const Section = ({
   alignment = SectionAlignment.Left,
   fullWidth = true,
   fontColor = SectionFontColor.Primary,
-}: SectionProps) => (
-  <StyledSection
-    className={className}
-    alignment={alignment}
-    fullWidth={fullWidth}
-    fontColor={fontColor}
-  >
-    {children}
-  </StyledSection>
-);
+}: SectionProps) => {
+  return (
+    <StyledSection
+      className={className}
+      alignment={alignment}
+      fullWidth={fullWidth}
+      fontColor={fontColor}
+    >
+      {children}
+    </StyledSection>
+  );
+};

@@ -18,11 +18,13 @@ interface StrictArgs {
   [name: string]: unknown;
 }
 
-const Providers = () => (
-  <ComponentStorybookLayout>
-    <Outlet />
-  </ComponentStorybookLayout>
-);
+const Providers = () => {
+  return (
+    <ComponentStorybookLayout>
+      <Outlet />
+    </ComponentStorybookLayout>
+  );
+};
 
 const createRouter = ({
   Story,

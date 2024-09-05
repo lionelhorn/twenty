@@ -12,20 +12,22 @@ export const RecordTableBodyLoading = () => {
 
   return (
     <tbody>
-      {Array.from({ length: 8 }).map((_, rowIndex) => (
-        <RecordTableTr
-          isDragging={false}
-          data-testid={`row-id-${rowIndex}`}
-          data-selectable-id={`row-id-${rowIndex}`}
-          key={rowIndex}
-        >
-          <RecordTableCellGrip />
-          <RecordTableCellCheckbox />
-          {visibleTableColumns.map((column) => (
-            <RecordTableCellLoading key={column.fieldMetadataId} />
-          ))}
-        </RecordTableTr>
-      ))}
+      {Array.from({ length: 8 }).map((_, rowIndex) => {
+        return (
+          <RecordTableTr
+            isDragging={false}
+            data-testid={`row-id-${rowIndex}`}
+            data-selectable-id={`row-id-${rowIndex}`}
+            key={rowIndex}
+          >
+            <RecordTableCellGrip />
+            <RecordTableCellCheckbox />
+            {visibleTableColumns.map((column) => {
+              return <RecordTableCellLoading key={column.fieldMetadataId} />;
+            })}
+          </RecordTableTr>
+        );
+      })}
     </tbody>
   );
 };

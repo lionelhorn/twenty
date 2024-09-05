@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Section } from '@react-email/components';
 import { useNavigate } from 'react-router-dom';
 import { H2Title } from 'twenty-ui';
@@ -11,6 +12,8 @@ import { SettingsPath } from '@/types/SettingsPath';
 import { Breadcrumb } from '@/ui/navigation/bread-crumb/components/Breadcrumb';
 
 export const SettingsIntegrationDatabaseConnectionShowContainer = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const { connection, integration, databaseKey, tables } =
     useDatabaseConnection({ fetchPolicy: 'network-only' });
@@ -48,7 +51,12 @@ export const SettingsIntegrationDatabaseConnectionShowContainer = () => {
         ]}
       />
       <Section>
-        <H2Title title="About" description="About this remote object" />
+        <H2Title
+          title={t('settingsIntegrationDatabaseConnectionShowContainer.about')}
+          description={t(
+            'settingsIntegrationDatabaseConnectionShowContainer.about-this-remote-object',
+          )}
+        />
         <SettingsIntegrationDatabaseConnectionSummaryCard
           databaseLogoUrl={integration.from.image}
           connectionId={connection.id}
@@ -58,8 +66,10 @@ export const SettingsIntegrationDatabaseConnectionShowContainer = () => {
       </Section>
       <Section>
         <H2Title
-          title="Tables"
-          description="Select the tables that should be tracked"
+          title={t('settingsIntegrationDatabaseConnectionShowContainer.tables')}
+          description={t(
+            'settingsIntegrationDatabaseConnectionShowContainer.select-the-tables-that-should-be-tracked',
+          )}
         />
         {!!tables?.length && (
           <SettingsIntegrationDatabaseTablesListCard

@@ -121,27 +121,29 @@ export const SettingsIntegrationDatabaseConnectionForm = ({
 
   return (
     <StyledInputsContainer>
-      {formFields.map(({ name, label, type, placeholder }) => (
-        <Controller
-          key={name}
-          name={name}
-          control={control}
-          render={({ field: { onChange, value } }) => {
-            return (
-              <TextInput
-                autoComplete="new-password" // Disable autocomplete
-                label={label}
-                value={value}
-                onChange={onChange}
-                fullWidth
-                type={type}
-                disabled={disabled}
-                placeholder={placeholder}
-              />
-            );
-          }}
-        />
-      ))}
+      {formFields.map(({ name, label, type, placeholder }) => {
+        return (
+          <Controller
+            key={name}
+            name={name}
+            control={control}
+            render={({ field: { onChange, value } }) => {
+              return (
+                <TextInput
+                  autoComplete="new-password" // Disable autocomplete
+                  label={label}
+                  value={value}
+                  onChange={onChange}
+                  fullWidth
+                  type={type}
+                  disabled={disabled}
+                  placeholder={placeholder}
+                />
+              );
+            }}
+          />
+        );
+      })}
     </StyledInputsContainer>
   );
 };

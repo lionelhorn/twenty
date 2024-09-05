@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useCallback, useState } from 'react';
 
@@ -51,6 +52,8 @@ export const SelectSheetStep = ({
   onBack,
   currentStepState,
 }: SelectSheetStepProps) => {
+  const { t } = useTranslation();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const [value, setValue] = useState(sheetNames[0]);
@@ -104,12 +107,14 @@ export const SelectSheetStep = ({
   return (
     <>
       <StyledContent>
-        <StyledHeading title="Select the sheet to use" />
+        <StyledHeading title={t('selectSheetStep.select-the-sheet-to-use')} />
         <StyledRadioContainer>
           <RadioGroup onValueChange={(value) => setValue(value)} value={value}>
-            {sheetNames.map((sheetName) => (
-              <Radio value={sheetName} key={sheetName} label={sheetName} />
-            ))}
+            {sheetNames.map((sheetName) => {
+              return (
+                <Radio value={sheetName} key={sheetName} label={sheetName} />
+              );
+            })}
           </RadioGroup>
         </StyledRadioContainer>
       </StyledContent>
@@ -117,7 +122,7 @@ export const SelectSheetStep = ({
         onClick={() => handleOnContinue(value)}
         onBack={onBack}
         isLoading={isLoading}
-        title="Next Step"
+        title={t('selectSheetStep.next-step')}
       />
     </>
   );

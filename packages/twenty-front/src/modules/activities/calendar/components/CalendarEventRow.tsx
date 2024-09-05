@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { format } from 'date-fns';
@@ -108,6 +109,8 @@ export const CalendarEventRow = ({
   calendarEvent,
   className,
 }: CalendarEventRowProps) => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
   const currentWorkspaceMember = useRecoilValue(currentWorkspaceMemberState);
   const { displayCurrentEventCursor = false } = useContext(CalendarContext);
@@ -157,30 +160,32 @@ export const CalendarEventRow = ({
           <StyledVisibilityCard active={!hasEnded}>
             <StyledVisibilityCardContent>
               <IconLock size={theme.icon.size.sm} />
-              Not shared
+              {t('calendarEventRow.not-shared')}
             </StyledVisibilityCardContent>
           </StyledVisibilityCard>
         )}
       </StyledLabels>
       {!!calendarEvent.participants?.length && (
         <AvatarGroup
-          avatars={calendarEvent.participants.map((participant) => (
-            <Avatar
-              key={[participant.workspaceMemberId, participant.displayName]
-                .filter(isDefined)
-                .join('-')}
-              avatarUrl={participant.avatarUrl}
-              placeholder={
-                participant.firstName && participant.lastName
-                  ? `${participant.firstName} ${participant.lastName}`
-                  : participant.displayName
-              }
-              placeholderColorSeed={
-                participant.workspaceMemberId ?? participant.personId
-              }
-              type="rounded"
-            />
-          ))}
+          avatars={calendarEvent.participants.map((participant) => {
+            return (
+              <Avatar
+                key={[participant.workspaceMemberId, participant.displayName]
+                  .filter(isDefined)
+                  .join('-')}
+                avatarUrl={participant.avatarUrl}
+                placeholder={
+                  participant.firstName && participant.lastName
+                    ? `${participant.firstName} ${participant.lastName}`
+                    : participant.displayName
+                }
+                placeholderColorSeed={
+                  participant.workspaceMemberId ?? participant.personId
+                }
+                type="rounded"
+              />
+            );
+          })}
         />
       )}
       {displayCurrentEventCursor && (

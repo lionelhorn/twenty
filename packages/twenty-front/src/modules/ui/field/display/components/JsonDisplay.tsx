@@ -5,6 +5,6 @@ type JsonDisplayProps = {
   maxWidth?: number;
 };
 
-export const JsonDisplay = ({ text, maxWidth }: JsonDisplayProps) => (
-  <EllipsisDisplay maxWidth={maxWidth}>{text}</EllipsisDisplay>
-);
+export const JsonDisplay = ({ text, maxWidth }: JsonDisplayProps) => {
+  return <EllipsisDisplay maxWidth={maxWidth}>{text}</EllipsisDisplay>;
+};

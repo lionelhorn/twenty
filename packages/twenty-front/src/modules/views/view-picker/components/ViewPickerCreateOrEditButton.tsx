@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useRecoilValue } from 'recoil';
 
 import { Button } from '@/ui/input/button/components/Button';
@@ -8,6 +9,8 @@ import { useViewPickerPersistView } from '@/views/view-picker/hooks/useViewPicke
 import { useViewPickerStates } from '@/views/view-picker/hooks/useViewPickerStates';
 
 export const ViewPickerCreateOrEditButton = () => {
+  const { t } = useTranslation();
+
   const { availableFieldsForKanban, navigateToSelectSettings } =
     useGetAvailableFieldsForKanban();
 
@@ -29,7 +32,7 @@ export const ViewPickerCreateOrEditButton = () => {
   if (viewPickerMode === 'edit') {
     return (
       <Button
-        title="Delete"
+        title={t('viewPickerCreateOrEditButton.delete')}
         onClick={handleDelete}
         accent="danger"
         fullWidth
@@ -48,7 +51,7 @@ export const ViewPickerCreateOrEditButton = () => {
   ) {
     return (
       <Button
-        title="Go to Settings"
+        title={t('viewPickerCreateOrEditButton.go-to-settings')}
         onClick={navigateToSelectSettings}
         size="small"
         accent="blue"
@@ -64,7 +67,7 @@ export const ViewPickerCreateOrEditButton = () => {
   ) {
     return (
       <Button
-        title="Create"
+        title={t('viewPickerCreateOrEditButton.create')}
         onClick={handleCreate}
         accent="blue"
         fullWidth

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useRecoilValue } from 'recoil';
 import { H2Title, IconAt } from 'twenty-ui';
 
@@ -16,6 +17,8 @@ import { SubMenuTopBarContainer } from '@/ui/layout/page/SubMenuTopBarContainer'
 import { Section } from '@/ui/layout/section/components/Section';
 
 export const SettingsAccounts = () => {
+  const { t } = useTranslation();
+
   const currentWorkspaceMember = useRecoilValue(currentWorkspaceMemberState);
 
   const { objectMetadataItem } = useObjectMetadataItem({
@@ -33,7 +36,7 @@ export const SettingsAccounts = () => {
   });
 
   return (
-    <SubMenuTopBarContainer Icon={IconAt} title="Account">
+    <SubMenuTopBarContainer Icon={IconAt} title={t('settingsAccounts.account')}>
       <SettingsPageContainer>
         {loading ? (
           <SettingsAccountLoader />
@@ -41,8 +44,10 @@ export const SettingsAccounts = () => {
           <>
             <Section>
               <H2Title
-                title="Connected accounts"
-                description="Manage your internet accounts."
+                title={t('settingsAccounts.connected-accounts')}
+                description={t(
+                  'settingsAccounts.manage-your-internet-accounts',
+                )}
               />
               <SettingsAccountsConnectedAccountsListCard
                 accounts={accounts}

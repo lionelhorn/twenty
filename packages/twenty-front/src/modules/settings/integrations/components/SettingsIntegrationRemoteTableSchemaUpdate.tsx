@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { FetchResult } from '@apollo/client';
 import styled from '@emotion/styled';
 import { IconReload } from 'twenty-ui';
@@ -21,13 +22,15 @@ export const SettingsIntegrationRemoteTableSchemaUpdate = ({
   updatesText,
   onUpdate,
 }: SettingsIntegrationRemoteTableSchemaUpdateProps) => {
+  const { t } = useTranslation();
+
   return (
     <>
       {updatesText && <StyledText>{updatesText}</StyledText>}
       {updatesText && (
         <Button
           Icon={IconReload}
-          title="Update"
+          title={t('settingsIntegrationRemoteTableSchemaUpdate.update')}
           size="small"
           onClick={onUpdate}
         />

@@ -34,30 +34,32 @@ export const FloatingIconButtonGroup = ({
   iconButtons,
   size,
   className,
-}: FloatingIconButtonGroupProps) => (
-  <StyledFloatingIconButtonGroupContainer className={className}>
-    {iconButtons.map(({ Icon, onClick, isActive }, index) => {
-      const position: FloatingIconButtonPosition =
-        iconButtons.length === 1
-          ? 'standalone'
-          : index === 0
-            ? 'left'
-            : index === iconButtons.length - 1
-              ? 'right'
-              : 'middle';
+}: FloatingIconButtonGroupProps) => {
+  return (
+    <StyledFloatingIconButtonGroupContainer className={className}>
+      {iconButtons.map(({ Icon, onClick, isActive }, index) => {
+        const position: FloatingIconButtonPosition =
+          iconButtons.length === 1
+            ? 'standalone'
+            : index === 0
+              ? 'left'
+              : index === iconButtons.length - 1
+                ? 'right'
+                : 'middle';
 
-      return (
-        <FloatingIconButton
-          key={`floating-icon-button-${index}`}
-          applyBlur={false}
-          applyShadow={false}
-          Icon={Icon}
-          onClick={onClick}
-          position={position}
-          size={size}
-          isActive={isActive}
-        />
-      );
-    })}
-  </StyledFloatingIconButtonGroupContainer>
-);
+        return (
+          <FloatingIconButton
+            key={`floating-icon-button-${index}`}
+            applyBlur={false}
+            applyShadow={false}
+            Icon={Icon}
+            onClick={onClick}
+            position={position}
+            size={size}
+            isActive={isActive}
+          />
+        );
+      })}
+    </StyledFloatingIconButtonGroupContainer>
+  );
+};

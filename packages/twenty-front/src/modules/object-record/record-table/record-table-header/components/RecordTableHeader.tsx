@@ -87,13 +87,15 @@ export const RecordTableHeader = ({
       <tr>
         <RecordTableHeaderDragDropColumn />
         <RecordTableHeaderCheckboxColumn />
-        {visibleTableColumns.map((column) => (
-          <RecordTableHeaderCell
-            key={column.fieldMetadataId}
-            column={column}
-            createRecord={createRecord}
-          />
-        ))}
+        {visibleTableColumns.map((column) => {
+          return (
+            <RecordTableHeaderCell
+              key={column.fieldMetadataId}
+              column={column}
+              createRecord={createRecord}
+            />
+          );
+        })}
         <RecordTableHeaderLastColumn />
       </tr>
     </StyledTableHead>

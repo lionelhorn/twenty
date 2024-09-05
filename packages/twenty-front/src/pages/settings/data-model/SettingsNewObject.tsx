@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -27,6 +28,8 @@ const newObjectFormSchema = settingsDataModelObjectAboutFormSchema;
 type SettingsDataModelNewObjectFormValues = z.infer<typeof newObjectFormSchema>;
 
 export const SettingsNewObject = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const { enqueueSnackBar } = useSnackBar();
 
@@ -96,8 +99,10 @@ export const SettingsNewObject = () => {
           <SettingsHeaderContainer></SettingsHeaderContainer>
           <Section>
             <H2Title
-              title="About"
-              description="Name in both singular (e.g., 'Invoice') and plural (e.g., 'Invoices') forms."
+              title={t('settingsNewObject.about')}
+              description={t(
+                'settingsNewObject.name-in-both-singular-eg-invoice-and-plu',
+              )}
             />
             <SettingsDataModelObjectAboutForm />
           </Section>

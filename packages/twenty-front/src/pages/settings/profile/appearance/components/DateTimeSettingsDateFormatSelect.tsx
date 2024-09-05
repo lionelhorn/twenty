@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { formatInTimeZone } from 'date-fns-tz';
 
 import { DateFormat } from '@/localization/constants/DateFormat';
@@ -15,6 +16,8 @@ export const DateTimeSettingsDateFormatSelect = ({
   timeZone,
   value,
 }: DateTimeSettingsDateFormatSelectProps) => {
+  const { t } = useTranslation();
+
   const setTimeZone = timeZone === 'system' ? detectTimeZone() : timeZone;
   return (
     <Select
@@ -25,7 +28,7 @@ export const DateTimeSettingsDateFormatSelect = ({
       value={value}
       options={[
         {
-          label: `System settings`,
+          label: t('dateTimeSettingsDateFormatSelect.system-settings', {}),
           value: DateFormat.SYSTEM,
         },
         {

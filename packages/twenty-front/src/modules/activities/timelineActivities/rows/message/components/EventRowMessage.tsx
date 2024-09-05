@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import styled from '@emotion/styled';
 
@@ -29,6 +30,8 @@ export const EventRowMessage = ({
   authorFullName,
   labelIdentifierValue,
 }: EventRowMessageProps) => {
+  const { t } = useTranslation();
+
   const [, eventAction] = event.name.split('.');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,7 +44,7 @@ export const EventRowMessage = ({
       <StyledRowContainer>
         <StyledEventRowItemColumn>{authorFullName}</StyledEventRowItemColumn>
         <StyledEventRowItemAction>
-          linked an email with
+          {t('eventRowMessage.linked-an-email-with')}
         </StyledEventRowItemAction>
         <StyledEventRowItemColumn>
           {labelIdentifierValue}

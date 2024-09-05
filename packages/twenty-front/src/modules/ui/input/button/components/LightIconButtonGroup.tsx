@@ -26,28 +26,30 @@ export const LightIconButtonGroup = ({
   iconButtons,
   size,
   className,
-}: LightIconButtonGroupProps) => (
-  <StyledLightIconButtonGroupContainer className={className}>
-    {iconButtons.map(({ Wrapper, Icon, accent, onClick }, index) => {
-      const iconButton = (
-        <LightIconButton
-          key={`light-icon-button-${index}`}
-          Icon={Icon}
-          accent={accent}
-          disabled={!onClick}
-          onClick={onClick}
-          size={size}
-        />
-      );
+}: LightIconButtonGroupProps) => {
+  return (
+    <StyledLightIconButtonGroupContainer className={className}>
+      {iconButtons.map(({ Wrapper, Icon, accent, onClick }, index) => {
+        const iconButton = (
+          <LightIconButton
+            key={`light-icon-button-${index}`}
+            Icon={Icon}
+            accent={accent}
+            disabled={!onClick}
+            onClick={onClick}
+            size={size}
+          />
+        );
 
-      return Wrapper ? (
-        <Wrapper
-          key={`light-icon-button-wrapper-${index}`}
-          iconButton={iconButton}
-        />
-      ) : (
-        iconButton
-      );
-    })}
-  </StyledLightIconButtonGroupContainer>
-);
+        return Wrapper ? (
+          <Wrapper
+            key={`light-icon-button-wrapper-${index}`}
+            iconButton={iconButton}
+          />
+        ) : (
+          iconButton
+        );
+      })}
+    </StyledLightIconButtonGroupContainer>
+  );
+};

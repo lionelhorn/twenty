@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { DateTime } from 'luxon';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -21,6 +22,8 @@ import { useGenerateApiKeyTokenMutation } from '~/generated/graphql';
 import { isDefined } from '~/utils/isDefined';
 
 export const SettingsDevelopersApiKeysNew = () => {
+  const { t } = useTranslation();
+
   const [generateOneApiKeyToken] = useGenerateApiKeyTokenMutation();
   const navigate = useNavigate();
   const setApiKeyToken = useSetRecoilState(apiKeyTokenState);
@@ -85,7 +88,10 @@ export const SettingsDevelopersApiKeysNew = () => {
     >
       <SettingsPageContainer>
         <Section>
-          <H2Title title="Name" description="Name of your API key" />
+          <H2Title
+            title={t('settingsDevelopersApiKeysNew.name')}
+            description={t('settingsDevelopersApiKeysNew.name-of-your-api-key')}
+          />
           <TextInput
             placeholder="E.g. backoffice integration"
             value={formValues.name}
@@ -105,8 +111,10 @@ export const SettingsDevelopersApiKeysNew = () => {
         </Section>
         <Section>
           <H2Title
-            title="Expiration Date"
-            description="When the API key will expire."
+            title={t('settingsDevelopersApiKeysNew.expiration-date')}
+            description={t(
+              'settingsDevelopersApiKeysNew.when-the-api-key-will-expire',
+            )}
           />
           <Select
             dropdownId="object-field-type-select"

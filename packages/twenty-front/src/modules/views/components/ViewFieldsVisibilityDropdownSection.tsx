@@ -101,19 +101,21 @@ export const ViewFieldsVisibilityDropdownSection = ({
         <StyledDropdownMenuSubheader>{title}</StyledDropdownMenuSubheader>
       )}
       <DropdownMenuItemsContainer>
-        {nonDraggableItems.map((field, fieldIndex) => (
-          <MenuItemDraggable
-            key={field.fieldMetadataId}
-            LeftIcon={getIcon(field.iconName)}
-            iconButtons={getIconButtons(fieldIndex, field)}
-            isTooltipOpen={openToolTipIndex === fieldIndex}
-            text={field.label}
-            className={`${title}-fixed-item-tooltip-anchor-${fieldIndex}`}
-            accent={showDragGrip ? 'placeholder' : 'default'}
-            showGrip={showDragGrip}
-            isDragDisabled
-          />
-        ))}
+        {nonDraggableItems.map((field, fieldIndex) => {
+          return (
+            <MenuItemDraggable
+              key={field.fieldMetadataId}
+              LeftIcon={getIcon(field.iconName)}
+              iconButtons={getIconButtons(fieldIndex, field)}
+              isTooltipOpen={openToolTipIndex === fieldIndex}
+              text={field.label}
+              className={`${title}-fixed-item-tooltip-anchor-${fieldIndex}`}
+              accent={showDragGrip ? 'placeholder' : 'default'}
+              showGrip={showDragGrip}
+              isDragDisabled
+            />
+          );
+        })}
         {!!draggableItems.length && (
           <DraggableList
             onDragEnd={handleOnDrag}

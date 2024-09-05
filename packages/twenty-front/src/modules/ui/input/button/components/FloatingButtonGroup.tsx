@@ -22,31 +22,33 @@ export const FloatingButtonGroup = ({
   children,
   size,
   className,
-}: FloatingButtonGroupProps) => (
-  <StyledFloatingButtonGroupContainer className={className}>
-    {React.Children.map(children, (child, index) => {
-      let position: FloatingButtonPosition;
+}: FloatingButtonGroupProps) => {
+  return (
+    <StyledFloatingButtonGroupContainer className={className}>
+      {React.Children.map(children, (child, index) => {
+        let position: FloatingButtonPosition;
 
-      if (index === 0) {
-        position = 'left';
-      } else if (index === children.length - 1) {
-        position = 'right';
-      } else {
-        position = 'middle';
-      }
+        if (index === 0) {
+          position = 'left';
+        } else if (index === children.length - 1) {
+          position = 'right';
+        } else {
+          position = 'middle';
+        }
 
-      const additionalProps: any = {
-        position,
-        size,
-        applyShadow: false,
-        applyBlur: false,
-      };
+        const additionalProps: any = {
+          position,
+          size,
+          applyShadow: false,
+          applyBlur: false,
+        };
 
-      if (isDefined(size)) {
-        additionalProps.size = size;
-      }
+        if (isDefined(size)) {
+          additionalProps.size = size;
+        }
 
-      return React.cloneElement(child, additionalProps);
-    })}
-  </StyledFloatingButtonGroupContainer>
-);
+        return React.cloneElement(child, additionalProps);
+      })}
+    </StyledFloatingButtonGroupContainer>
+  );
+};

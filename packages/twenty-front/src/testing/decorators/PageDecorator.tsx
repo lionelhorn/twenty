@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { ApolloProvider } from '@apollo/client';
 import { loadDevMessages } from '@apollo/client/dev';
 import { Decorator } from '@storybook/react';
@@ -116,13 +117,21 @@ const createRouter = ({
       <Route element={<Providers />}>
         <Route element={<DefaultLayout />}>
           <Route path={args.routePath} element={<Story />} />
-          {args.additionalRoutes?.map((route) => (
-            <Route
-              key={route}
-              path={route}
-              element={<div>Navigated to {route}</div>}
-            />
-          ))}
+          {args.additionalRoutes?.map((route) => {
+            const { t } = useTranslation();
+
+            return (
+              <Route
+                key={route}
+                path={route}
+                element={
+                  <div>
+                    {t('.navigated-to')} {route}
+                  </div>
+                }
+              />
+            );
+          })}
         </Route>
       </Route>,
     ),

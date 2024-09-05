@@ -36,16 +36,18 @@ export const RecordIndexBoardDataLoader = ({
 
   return (
     <>
-      {possibleKanbanSelectFieldValues.map((option, index) => (
-        <RecordIndexBoardColumnLoaderEffect
-          objectNameSingular={objectNameSingular}
-          boardFieldMetadataId={recordIndexKanbanFieldMetadataId}
-          boardFieldSelectValue={option.value}
-          recordBoardId={recordBoardId}
-          columnId={columnIds[index]}
-          key={index}
-        />
-      ))}
+      {possibleKanbanSelectFieldValues.map((option, index) => {
+        return (
+          <RecordIndexBoardColumnLoaderEffect
+            objectNameSingular={objectNameSingular}
+            boardFieldMetadataId={recordIndexKanbanFieldMetadataId}
+            boardFieldSelectValue={option.value}
+            recordBoardId={recordBoardId}
+            columnId={columnIds[index]}
+            key={index}
+          />
+        );
+      })}
       {recordIndexKanbanFieldMetadataItem?.isNullable && (
         <RecordIndexBoardColumnLoaderEffect
           objectNameSingular={objectNameSingular}

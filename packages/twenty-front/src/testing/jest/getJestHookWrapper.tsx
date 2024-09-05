@@ -13,13 +13,15 @@ export const getJestHookWrapper = ({
     | undefined;
   onInitializeRecoilSnapshot?: (snapshot: MutableSnapshot) => void;
 }) => {
-  return ({ children }: { children: ReactNode }) => (
-    <RecoilRoot initializeState={onInitializeRecoilSnapshot}>
-      <SnackBarProviderScope snackBarManagerScopeId="snack-bar-manager">
-        <MockedProvider mocks={apolloMocks} addTypename={false}>
-          {children}
-        </MockedProvider>
-      </SnackBarProviderScope>
-    </RecoilRoot>
-  );
+  return ({ children }: { children: ReactNode }) => {
+    return (
+      <RecoilRoot initializeState={onInitializeRecoilSnapshot}>
+        <SnackBarProviderScope snackBarManagerScopeId="snack-bar-manager">
+          <MockedProvider mocks={apolloMocks} addTypename={false}>
+            {children}
+          </MockedProvider>
+        </SnackBarProviderScope>
+      </RecoilRoot>
+    );
+  };
 };

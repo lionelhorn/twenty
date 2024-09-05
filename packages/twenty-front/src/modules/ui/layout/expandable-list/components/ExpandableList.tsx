@@ -132,25 +132,27 @@ export const ExpandableList = ({
       }
     >
       <StyledChildrenContainer ref={setChildrenContainerElement}>
-        {children.slice(0, firstHiddenChildIndex).map((child, index) => (
-          <StyledChildContainer
-            key={index}
-            ref={(childElement) => {
-              if (
-                // First element is always displayed.
-                index > 0 &&
-                isFirstOverflowingChildElement({
-                  containerElement: childrenContainerElement,
-                  childElement,
-                })
-              ) {
-                setFirstHiddenChildIndex(index);
-              }
-            }}
-          >
-            {child}
-          </StyledChildContainer>
-        ))}
+        {children.slice(0, firstHiddenChildIndex).map((child, index) => {
+          return (
+            <StyledChildContainer
+              key={index}
+              ref={(childElement) => {
+                if (
+                  // First element is always displayed.
+                  index > 0 &&
+                  isFirstOverflowingChildElement({
+                    containerElement: childrenContainerElement,
+                    childElement,
+                  })
+                ) {
+                  setFirstHiddenChildIndex(index);
+                }
+              }}
+            >
+              {child}
+            </StyledChildContainer>
+          );
+        })}
       </StyledChildrenContainer>
       {canDisplayChipCount && (
         <AnimatedContainer>

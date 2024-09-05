@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -22,6 +23,8 @@ const StyledContentContainer = styled.div`
 `;
 
 export const Invite = () => {
+  const { t } = useTranslation();
+
   const { workspace: workspaceFromInviteHash, workspaceInviteHash } =
     useWorkspaceFromInviteHash();
   const { form } = useSignInUpForm();
@@ -66,7 +69,7 @@ export const Invite = () => {
         <>
           <StyledContentContainer>
             <MainButton
-              title="Continue"
+              title={t('invite.continue')}
               type="submit"
               onClick={handleUserJoinWorkspace}
               Icon={() => form.formState.isSubmitting && <Loader />}
@@ -74,21 +77,21 @@ export const Invite = () => {
             />
           </StyledContentContainer>
           <FooterNote>
-            By using Twenty, you agree to the{' '}
+            {t('invite.by-using-twenty-you-agree-to-the')}{' '}
             <a
               href="https://twenty.com/legal/terms"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Terms of Service
+              {t('invite.terms-of-service')}
             </a>{' '}
-            and{' '}
+            {t('invite.and')}{' '}
             <a
               href="https://twenty.com/legal/privacy"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Privacy Policy
+              {t('invite.privacy-policy')}
             </a>
             .
           </FooterNote>

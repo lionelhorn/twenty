@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { SettingsPageContainer } from '@/settings/components/SettingsPageContainer';
 import { SettingsServerlessFunctionCodeEditorTab } from '@/settings/serverless-functions/components/tabs/SettingsServerlessFunctionCodeEditorTab';
 import { SettingsServerlessFunctionSettingsTab } from '@/settings/serverless-functions/components/tabs/SettingsServerlessFunctionSettingsTab';
@@ -27,6 +28,7 @@ import { usePreventOverlapCallback } from '~/hooks/usePreventOverlapCallback';
 const TAB_LIST_COMPONENT_ID = 'serverless-function-detail';
 
 export const SettingsServerlessFunctionDetail = () => {
+  const { t } = useTranslation();
   const { serverlessFunctionId = '' } = useParams();
   const { enqueueSnackBar } = useSnackBar();
   const { activeTabIdState, setActiveTabId } = useTabList(
@@ -109,9 +111,12 @@ export const SettingsServerlessFunctionDetail = () => {
       await publishOneServerlessFunction({
         id: serverlessFunctionId,
       });
-      enqueueSnackBar(`New function version has been published`, {
-        variant: SnackBarVariant.Success,
-      });
+      enqueueSnackBar(
+        t('handlePublish.new-function-version-has-been-published', {}),
+        {
+          variant: SnackBarVariant.Success,
+        },
+      );
     } catch (err) {
       enqueueSnackBar(
         (err as Error)?.message ||

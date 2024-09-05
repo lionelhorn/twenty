@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { AnimatePresence, LayoutGroup } from 'framer-motion';
 import { ReactNode, useState } from 'react';
@@ -67,6 +68,8 @@ export const ConfirmationModal = ({
   confirmationPlaceholder,
   confirmButtonAccent = 'danger',
 }: ConfirmationModalProps) => {
+  const { t } = useTranslation();
+
   const [inputConfirmationValue, setInputConfirmationValue] =
     useState<string>('');
   const [isValidValue, setIsValidValue] = useState(!confirmationValue);
@@ -121,7 +124,7 @@ export const ConfirmationModal = ({
             <StyledCenteredButton
               onClick={() => setIsOpen(false)}
               variant="secondary"
-              title="Cancel"
+              title={t('confirmationModal.cancel')}
               fullWidth
             />
             <StyledCenteredButton

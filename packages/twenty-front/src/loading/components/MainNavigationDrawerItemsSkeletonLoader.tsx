@@ -27,9 +27,9 @@ export const MainNavigationDrawerItemsSkeletonLoader = ({
         borderRadius={4}
       >
         {title && <Skeleton width={48} height={13} />}
-        {Array.from({ length }).map((_, index) => (
-          <Skeleton key={index} width={196} height={16} />
-        ))}
+        {Array.from({ length }).map((_, index) => {
+          return <Skeleton key={index} width={196} height={16} />;
+        })}
       </SkeletonTheme>
     </StyledSkeletonContainer>
   );

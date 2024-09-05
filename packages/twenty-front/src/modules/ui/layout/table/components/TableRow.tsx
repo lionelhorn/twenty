@@ -41,14 +41,16 @@ export const TableRow = ({
   to,
   className,
   children,
-}: React.PropsWithChildren<TableRowProps>) => (
-  <StyledTableRow
-    isSelected={isSelected}
-    onClick={onClick}
-    className={className}
-    to={to}
-    as={to ? Link : 'div'}
-  >
-    {children}
-  </StyledTableRow>
-);
+}: React.PropsWithChildren<TableRowProps>) => {
+  return (
+    <StyledTableRow
+      isSelected={isSelected}
+      onClick={onClick}
+      className={className}
+      to={to}
+      as={to ? Link : 'div'}
+    >
+      {children}
+    </StyledTableRow>
+  );
+};

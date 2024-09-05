@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { isUndefined } from '@sniptt/guards';
 
@@ -87,6 +88,8 @@ export const EventCardCalendarEvent = ({
 }: {
   calendarEventId: string;
 }) => {
+  const { t } = useTranslation();
+
   const { upsertRecords } = useUpsertRecordsInStore();
 
   const {
@@ -117,7 +120,7 @@ export const EventCardCalendarEvent = ({
     );
 
     if (shouldHideMessageContent) {
-      return <div>Calendar event not shared</div>;
+      return <div>{t('eventCardCalendarEvent.calendar-event-not-shared')}</div>;
     }
 
     const shouldHandleNotFound = error.graphQLErrors.some(
@@ -125,14 +128,16 @@ export const EventCardCalendarEvent = ({
     );
 
     if (shouldHandleNotFound) {
-      return <div>Calendar event not found</div>;
+      return <div>{t('eventCardCalendarEvent.calendar-event-not-found')}</div>;
     }
 
-    return <div>Error loading calendar event</div>;
+    return (
+      <div>{t('eventCardCalendarEvent.error-loading-calendar-event')}</div>
+    );
   }
 
   if (loading || isUndefined(calendarEvent)) {
-    return <div>Loading...</div>;
+    return <div>{t('eventCardCalendarEvent.loading')}</div>;
   }
 
   const startsAtDate = calendarEvent?.startsAt;
@@ -170,7 +175,12 @@ export const EventCardCalendarEvent = ({
           </StyledCalendarEventTitle>
         </StyledCalendarEventTop>
         <StyledCalendarEventBody>
-          {startsAtHour} {endsAtHour && <>→ {endsAtHour}</>}
+          {startsAtHour}{' '}
+          {endsAtHour && (
+            <>
+              {t('eventCardCalendarEvent.')} {endsAtHour}
+            </>
+          )}
         </StyledCalendarEventBody>
       </StyledCalendarEventContent>
     </StyledEventCardCalendarEventContainer>

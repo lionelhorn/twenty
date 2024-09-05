@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
@@ -20,6 +21,8 @@ const StyledTableRow = styled(TableRow)`
 `;
 
 export const SettingsApiKeysTable = () => {
+  const { t } = useTranslation();
+
   const { records: apiKeys } = useFindManyRecords<ApiKey>({
     objectNameSingular: CoreObjectNameSingular.ApiKey,
     filter: { revokedAt: { is: 'NULL' } },
@@ -28,19 +31,21 @@ export const SettingsApiKeysTable = () => {
   return (
     <Table>
       <StyledTableRow>
-        <TableHeader>Name</TableHeader>
-        <TableHeader>Expiration</TableHeader>
+        <TableHeader>{t('settingsApiKeysTable.name')}</TableHeader>
+        <TableHeader>{t('settingsApiKeysTable.expiration')}</TableHeader>
         <TableHeader></TableHeader>
       </StyledTableRow>
       {!!apiKeys.length && (
         <StyledTableBody>
-          {formatExpirations(apiKeys).map((fieldItem) => (
-            <SettingsApiKeysFieldItemTableRow
-              key={fieldItem.id}
-              fieldItem={fieldItem as ApiFieldItem}
-              to={`/settings/developers/api-keys/${fieldItem.id}`}
-            />
-          ))}
+          {formatExpirations(apiKeys).map((fieldItem) => {
+            return (
+              <SettingsApiKeysFieldItemTableRow
+                key={fieldItem.id}
+                fieldItem={fieldItem as ApiFieldItem}
+                to={`/settings/developers/api-keys/${fieldItem.id}`}
+              />
+            );
+          })}
         </StyledTableBody>
       )}
     </Table>

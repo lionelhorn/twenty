@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import styled from '@emotion/styled';
@@ -54,6 +55,8 @@ export const SettingsAccountsBlocklistInput = ({
   updateBlockedEmailList,
   blockedEmailOrDomainList,
 }: SettingsAccountsBlocklistInputProps) => {
+  const { t } = useTranslation();
+
   const { reset, handleSubmit, control, formState } = useForm<FormInput>({
     mode: 'onSubmit',
     resolver: zodResolver(validationSchema(blockedEmailOrDomainList)),
@@ -87,19 +90,24 @@ export const SettingsAccountsBlocklistInput = ({
           <Controller
             name="emailOrDomain"
             control={control}
-            render={({ field: { value, onChange }, fieldState: { error } }) => (
-              <TextInput
-                placeholder="eddy@gmail.com, @apple.com"
-                value={value}
-                onChange={onChange}
-                error={error?.message}
-                onKeyDown={handleKeyDown}
-                fullWidth
-              />
-            )}
+            render={({ field: { value, onChange }, fieldState: { error } }) => {
+              return (
+                <TextInput
+                  placeholder="eddy@gmail.com, @apple.com"
+                  value={value}
+                  onChange={onChange}
+                  error={error?.message}
+                  onKeyDown={handleKeyDown}
+                  fullWidth
+                />
+              );
+            }}
           />
         </StyledLinkContainer>
-        <Button title="Add to blocklist" type="submit" />
+        <Button
+          title={t('settingsAccountsBlocklistInput.add-to-blocklist')}
+          type="submit"
+        />
       </StyledContainer>
     </form>
   );

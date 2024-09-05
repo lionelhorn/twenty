@@ -33,24 +33,28 @@ export const generateColumns = <T extends string>(fields: Fields<T>) =>
       key: column.key,
       name: column.label,
       minWidth: 150,
-      headerRenderer: () => (
-        <StyledHeaderContainer>
-          <StyledHeaderLabel id={`${column.key}`}>
-            {column.label}
-          </StyledHeaderLabel>
-          {column.description &&
-            createPortal(
-              <AppTooltip
-                anchorSelect={`#${column.key}`}
-                place="top"
-                content={column.description}
-              />,
-              document.body,
-            )}
-        </StyledHeaderContainer>
-      ),
-      formatter: ({ row }: any) => (
-        <StyledDefaultContainer>{row[column.key]}</StyledDefaultContainer>
-      ),
+      headerRenderer: () => {
+        return (
+          <StyledHeaderContainer>
+            <StyledHeaderLabel id={`${column.key}`}>
+              {column.label}
+            </StyledHeaderLabel>
+            {column.description &&
+              createPortal(
+                <AppTooltip
+                  anchorSelect={`#${column.key}`}
+                  place="top"
+                  content={column.description}
+                />,
+                document.body,
+              )}
+          </StyledHeaderContainer>
+        );
+      },
+      formatter: ({ row }: any) => {
+        return (
+          <StyledDefaultContainer>{row[column.key]}</StyledDefaultContainer>
+        );
+      },
     }),
   );

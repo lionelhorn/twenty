@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
   IconCalendarEvent,
@@ -27,6 +28,7 @@ export const SettingsAccountsRowDropdownMenu = ({
   account,
   className,
 }: SettingsAccountsRowDropdownMenuProps) => {
+  const { t } = useTranslation();
   const dropdownId = `settings-account-row-${account.id}`;
 
   const navigate = useNavigate();
@@ -54,7 +56,7 @@ export const SettingsAccountsRowDropdownMenu = ({
               LeftIcon={IconMail}
               text="Emails settings"
               onClick={() => {
-                navigate(`/settings/accounts/emails`);
+                navigate(t('.settingsaccountsemails', {}));
                 closeDropdown();
               }}
             />
@@ -62,7 +64,7 @@ export const SettingsAccountsRowDropdownMenu = ({
               LeftIcon={IconCalendarEvent}
               text="Calendar settings"
               onClick={() => {
-                navigate(`/settings/accounts/calendars`);
+                navigate(t('.settingsaccountscalendars', {}));
                 closeDropdown();
               }}
             />

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 
 import { EventFieldDiffLabel } from '@/activities/timelineActivities/rows/main-object/components/EventFieldDiffLabel';
@@ -33,6 +34,8 @@ export const EventFieldDiff = ({
   fieldMetadataItem,
   diffArtificialRecordStoreId,
 }: EventFieldDiffProps) => {
+  const { t } = useTranslation();
+
   if (!fieldMetadataItem) {
     throw new Error('fieldMetadataItem is required');
   }
@@ -52,9 +55,10 @@ export const EventFieldDiff = ({
   return (
     <RecordFieldValueSelectorContextProvider>
       <StyledEventFieldDiffContainer>
-        <EventFieldDiffLabel fieldMetadataItem={fieldMetadataItem} />→
+        <EventFieldDiffLabel fieldMetadataItem={fieldMetadataItem} />
+        {t('eventFieldDiff.')}
         {isUpdatedToEmpty ? (
-          <StyledEmptyValue>Empty</StyledEmptyValue>
+          <StyledEmptyValue>{t('eventFieldDiff.empty')}</StyledEmptyValue>
         ) : (
           <>
             <EventFieldDiffValueEffect

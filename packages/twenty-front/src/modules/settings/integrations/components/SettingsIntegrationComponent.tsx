@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -59,6 +60,8 @@ const StyledLogo = styled.img`
 export const SettingsIntegrationComponent = ({
   integration,
 }: SettingsIntegrationComponentProps) => {
+  const { t } = useTranslation();
+
   return (
     <StyledContainer
       to={integration.type === 'Active' ? integration.link : undefined}
@@ -69,7 +72,7 @@ export const SettingsIntegrationComponent = ({
           <StyledLogo src={integration.from.image} alt={integration.from.key} />
           {isDefined(integration.to) && (
             <>
-              <div>→</div>
+              <div>{t('settingsIntegrationComponent.')}</div>
               <StyledLogo src={integration.to.image} alt={integration.to.key} />
             </>
           )}
@@ -84,7 +87,7 @@ export const SettingsIntegrationComponent = ({
         <Button
           to={integration.link}
           Icon={IconPlus}
-          title="Add"
+          title={t('settingsIntegrationComponent.add')}
           size="small"
         />
       ) : integration.type === 'Use' ? (
@@ -92,7 +95,7 @@ export const SettingsIntegrationComponent = ({
           to={integration.link}
           target="_blank"
           Icon={IconBolt}
-          title="Use"
+          title={t('settingsIntegrationComponent.use')}
           size="small"
         />
       ) : (

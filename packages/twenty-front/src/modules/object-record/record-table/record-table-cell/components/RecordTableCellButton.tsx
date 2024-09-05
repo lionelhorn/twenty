@@ -16,10 +16,12 @@ type RecordTableCellButtonProps = {
 export const RecordTableCellButton = ({
   onClick,
   Icon,
-}: RecordTableCellButtonProps) => (
-  <AnimatedContainer>
-    <StyledButtonContainer>
-      <FloatingIconButton size="small" onClick={onClick} Icon={Icon} />
-    </StyledButtonContainer>
-  </AnimatedContainer>
-);
+}: RecordTableCellButtonProps) => {
+  return (
+    <AnimatedContainer>
+      <StyledButtonContainer>
+        <FloatingIconButton size="small" onClick={onClick} Icon={Icon} />
+      </StyledButtonContainer>
+    </AnimatedContainer>
+  );
+};

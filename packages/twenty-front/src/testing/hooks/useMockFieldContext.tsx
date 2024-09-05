@@ -46,30 +46,32 @@ export const useMockFieldContext = ({
 
   const FieldContextProvider =
     fieldMetadataItem && objectMetadataItem
-      ? ({ children }: { children: ReactNode }) => (
-          <FieldContext.Provider
-            key={objectRecordId + fieldMetadataItem.id}
-            value={{
-              basePathToShowPage: isLabelIdentifier
-                ? basePathToShowPage
-                : undefined,
-              recordId: objectRecordId,
-              recoilScopeId: objectRecordId + fieldMetadataItem.id,
-              isLabelIdentifier,
-              fieldDefinition: formatFieldMetadataItemAsColumnDefinition({
-                field: fieldMetadataItem,
-                position: fieldPosition,
-                objectMetadataItem,
-              }),
-              useUpdateRecord: useUpdateOneObjectMutation,
-              hotkeyScope:
-                customHotkeyScope ?? InlineCellHotkeyScope.InlineCell,
-              clearable,
-            }}
-          >
-            {children}
-          </FieldContext.Provider>
-        )
+      ? ({ children }: { children: ReactNode }) => {
+          return (
+            <FieldContext.Provider
+              key={objectRecordId + fieldMetadataItem.id}
+              value={{
+                basePathToShowPage: isLabelIdentifier
+                  ? basePathToShowPage
+                  : undefined,
+                recordId: objectRecordId,
+                recoilScopeId: objectRecordId + fieldMetadataItem.id,
+                isLabelIdentifier,
+                fieldDefinition: formatFieldMetadataItemAsColumnDefinition({
+                  field: fieldMetadataItem,
+                  position: fieldPosition,
+                  objectMetadataItem,
+                }),
+                useUpdateRecord: useUpdateOneObjectMutation,
+                hotkeyScope:
+                  customHotkeyScope ?? InlineCellHotkeyScope.InlineCell,
+                clearable,
+              }}
+            >
+              {children}
+            </FieldContext.Provider>
+          );
+        }
       : undefined;
 
   return {

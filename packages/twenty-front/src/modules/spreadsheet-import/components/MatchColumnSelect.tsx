@@ -134,31 +134,33 @@ export const MatchColumnSelect = ({
               />
               <DropdownMenuSeparator />
               <DropdownMenuItemsContainer hasMaxHeight>
-                {options?.map((option) => (
-                  <React.Fragment key={option.label}>
-                    <MenuItemSelect
-                      selected={value?.label === option.label}
-                      onClick={() => handleChange(option)}
-                      disabled={
-                        option.disabled && value?.value !== option.value
-                      }
-                      LeftIcon={option?.icon}
-                      text={option.label}
-                    />
-                    {option.disabled &&
-                      value?.value !== option.value &&
-                      createPortal(
-                        <AppTooltip
-                          key={option.value}
-                          anchorSelect={`#${option.value}`}
-                          content="You are already importing this column."
-                          place="right"
-                          offset={-20}
-                        />,
-                        document.body,
-                      )}
-                  </React.Fragment>
-                ))}
+                {options?.map((option) => {
+                  return (
+                    <React.Fragment key={option.label}>
+                      <MenuItemSelect
+                        selected={value?.label === option.label}
+                        onClick={() => handleChange(option)}
+                        disabled={
+                          option.disabled && value?.value !== option.value
+                        }
+                        LeftIcon={option?.icon}
+                        text={option.label}
+                      />
+                      {option.disabled &&
+                        value?.value !== option.value &&
+                        createPortal(
+                          <AppTooltip
+                            key={option.value}
+                            anchorSelect={`#${option.value}`}
+                            content="You are already importing this column."
+                            place="right"
+                            offset={-20}
+                          />,
+                          document.body,
+                        )}
+                    </React.Fragment>
+                  );
+                })}
                 {options?.length === 0 && (
                   <MenuItem key="No result" text="No result" />
                 )}

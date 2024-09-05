@@ -35,23 +35,25 @@ type WorkspaceMemberCardProps = {
 export const WorkspaceMemberCard = ({
   workspaceMember,
   accessory,
-}: WorkspaceMemberCardProps) => (
-  <StyledContainer>
-    <Avatar
-      avatarUrl={workspaceMember.avatarUrl}
-      placeholderColorSeed={workspaceMember.id}
-      placeholder={workspaceMember.name.firstName || ''}
-      type="squared"
-      size="xl"
-    />
-    <StyledContent>
-      <OverflowingTextWithTooltip
-        text={
-          workspaceMember.name.firstName + ' ' + workspaceMember.name.lastName
-        }
+}: WorkspaceMemberCardProps) => {
+  return (
+    <StyledContainer>
+      <Avatar
+        avatarUrl={workspaceMember.avatarUrl}
+        placeholderColorSeed={workspaceMember.id}
+        placeholder={workspaceMember.name.firstName || ''}
+        type="squared"
+        size="xl"
       />
-      <StyledEmailText>{workspaceMember.userEmail}</StyledEmailText>
-    </StyledContent>
-    {accessory}
-  </StyledContainer>
-);
+      <StyledContent>
+        <OverflowingTextWithTooltip
+          text={
+            workspaceMember.name.firstName + ' ' + workspaceMember.name.lastName
+          }
+        />
+        <StyledEmailText>{workspaceMember.userEmail}</StyledEmailText>
+      </StyledContent>
+      {accessory}
+    </StyledContainer>
+  );
+};

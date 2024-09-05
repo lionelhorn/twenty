@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -39,6 +40,8 @@ const StyledObjectSummaryCardContent = styled(CardContent)`
 export const SettingsDataModelObjectSettingsFormCard = ({
   objectMetadataItem,
 }: SettingsDataModelObjectSettingsFormCardProps) => {
+  const { t } = useTranslation();
+
   const { watch: watchFormValue } =
     useFormContext<SettingsDataModelObjectIdentifiersFormValues>();
 
@@ -58,7 +61,9 @@ export const SettingsDataModelObjectSettingsFormCard = ({
   return (
     <Card fullWidth>
       <StyledTopCardContent divider>
-        <SettingsDataModelCardTitle>Preview</SettingsDataModelCardTitle>
+        <SettingsDataModelCardTitle>
+          {t('settingsDataModelObjectSettingsFormCard.preview')}
+        </SettingsDataModelCardTitle>
         {labelIdentifierFieldMetadataItem ? (
           <StyledFieldPreviewCard
             objectMetadataItem={objectMetadataItem}

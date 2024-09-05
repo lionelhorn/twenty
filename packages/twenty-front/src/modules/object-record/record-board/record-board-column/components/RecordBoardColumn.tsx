@@ -64,15 +64,17 @@ export const RecordBoardColumn = ({
       }}
     >
       <Droppable droppableId={recordBoardColumnId}>
-        {(droppableProvided) => (
-          <StyledColumn isFirstColumn={isFirstColumn}>
-            <RecordBoardColumnHeader />
-            <RecordBoardColumnCardsContainer
-              droppableProvided={droppableProvided}
-              recordIds={recordIds}
-            />
-          </StyledColumn>
-        )}
+        {(droppableProvided) => {
+          return (
+            <StyledColumn isFirstColumn={isFirstColumn}>
+              <RecordBoardColumnHeader />
+              <RecordBoardColumnCardsContainer
+                droppableProvided={droppableProvided}
+                recordIds={recordIds}
+              />
+            </StyledColumn>
+          );
+        }}
       </Droppable>
     </RecordBoardColumnContext.Provider>
   );

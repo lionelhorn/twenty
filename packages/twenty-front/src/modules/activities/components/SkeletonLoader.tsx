@@ -57,16 +57,18 @@ export const SkeletonLoader = ({
       <StyledSkeletonContainer>
         <Skeleton width={440} height={16} />
         {withSubSections &&
-          skeletonItems.map(({ id }, index) => (
-            <StyledSkeletonSubSection key={id}>
-              <SkeletonColumnLoader height={index === 1 ? 120 : 84} />
-              <StyledSkeletonSubSectionContent>
-                <Skeleton width={400} height={24} />
-                <Skeleton width={400} height={24} />
-                {index === 1 && <Skeleton width={400} height={24} />}
-              </StyledSkeletonSubSectionContent>
-            </StyledSkeletonSubSection>
-          ))}
+          skeletonItems.map(({ id }, index) => {
+            return (
+              <StyledSkeletonSubSection key={id}>
+                <SkeletonColumnLoader height={index === 1 ? 120 : 84} />
+                <StyledSkeletonSubSectionContent>
+                  <Skeleton width={400} height={24} />
+                  <Skeleton width={400} height={24} />
+                  {index === 1 && <Skeleton width={400} height={24} />}
+                </StyledSkeletonSubSectionContent>
+              </StyledSkeletonSubSection>
+            );
+          })}
       </StyledSkeletonContainer>
     </SkeletonTheme>
   );

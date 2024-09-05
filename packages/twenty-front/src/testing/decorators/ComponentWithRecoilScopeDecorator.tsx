@@ -5,10 +5,12 @@ import { RecoilScope } from '@/ui/utilities/recoil-scope/components/RecoilScope'
 export const ComponentWithRecoilScopeDecorator: Decorator = (
   Story,
   context,
-) => (
-  <RecoilScope
-    CustomRecoilScopeContext={context.parameters.customRecoilScopeContext}
-  >
-    <Story />
-  </RecoilScope>
-);
+) => {
+  return (
+    <RecoilScope
+      CustomRecoilScopeContext={context.parameters.customRecoilScopeContext}
+    >
+      <Story />
+    </RecoilScope>
+  );
+};

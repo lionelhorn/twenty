@@ -9,8 +9,10 @@ const StyledContent = styled(Modal.Content)`
 
 type AuthModalProps = { children: React.ReactNode };
 
-export const AuthModal = ({ children }: AuthModalProps) => (
-  <Modal padding={'none'} modalVariant="primary">
-    <StyledContent>{children}</StyledContent>
-  </Modal>
-);
+export const AuthModal = ({ children }: AuthModalProps) => {
+  return (
+    <Modal padding={'none'} modalVariant="primary">
+      <StyledContent>{children}</StyledContent>
+    </Modal>
+  );
+};

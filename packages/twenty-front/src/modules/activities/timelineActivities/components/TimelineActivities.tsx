@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 
 import { CustomResolverFetchMoreLoader } from '@/activities/components/CustomResolverFetchMoreLoader';
@@ -40,6 +41,8 @@ export const TimelineActivities = ({
   targetableObject: ActivityTargetableObject;
   isInRightDrawer?: boolean;
 }) => {
+  const { t } = useTranslation();
+
   const { timelineActivities, loading, fetchMoreRecords } =
     useTimelineActivities(targetableObject);
 
@@ -59,10 +62,10 @@ export const TimelineActivities = ({
         <AnimatedPlaceholder type="emptyTimeline" />
         <AnimatedPlaceholderEmptyTextContainer>
           <AnimatedPlaceholderEmptyTitle>
-            Add your first Activity
+            {t('timelineActivities.add-your-first-activity')}
           </AnimatedPlaceholderEmptyTitle>
           <AnimatedPlaceholderEmptySubTitle>
-            There are no activities associated with this record.{' '}
+            {t('timelineActivities.there-are-no-activities-associated-with-')}{' '}
           </AnimatedPlaceholderEmptySubTitle>
         </AnimatedPlaceholderEmptyTextContainer>
         <TimelineCreateButtonGroup isInRightDrawer={isInRightDrawer} />
@@ -74,7 +77,7 @@ export const TimelineActivities = ({
     <StyledMainContainer>
       <EventList
         targetableObject={targetableObject}
-        title="All"
+        title={t('timelineActivities.all')}
         events={timelineActivities ?? []}
       />
       <CustomResolverFetchMoreLoader

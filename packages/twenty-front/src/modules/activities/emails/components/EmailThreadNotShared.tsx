@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { IconLock } from 'twenty-ui';
@@ -19,11 +20,13 @@ const StyledContainer = styled.div`
 `;
 
 export const EmailThreadNotShared = () => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
   return (
     <StyledContainer>
       <IconLock size={theme.icon.size.md} />
-      Not shared
+      {t('emailThreadNotShared.not-shared')}
     </StyledContainer>
   );
 };

@@ -23,14 +23,16 @@ export const IntermediaryMessages = ({
   }
 
   return areMessagesOpen ? (
-    messages.map((message) => (
-      <EmailThreadMessage
-        key={message.id}
-        participants={message.messageParticipants}
-        body={message.text}
-        sentAt={message.receivedAt}
-      />
-    ))
+    messages.map((message) => {
+      return (
+        <EmailThreadMessage
+          key={message.id}
+          participants={message.messageParticipants}
+          body={message.text}
+          sentAt={message.receivedAt}
+        />
+      );
+    })
   ) : (
     <StyledButtonContainer>
       <Button

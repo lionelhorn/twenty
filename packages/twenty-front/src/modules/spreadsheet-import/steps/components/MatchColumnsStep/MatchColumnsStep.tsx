@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -138,6 +139,8 @@ export const MatchColumnsStep = <T extends string>({
   nextStep,
   onError,
 }: MatchColumnsStepProps) => {
+  const { t } = useTranslation();
+
   const { enqueueDialog } = useDialogManager();
   const { enqueueSnackBar } = useSnackBar();
   const dataExample = data.slice(0, 2);
@@ -279,10 +282,10 @@ export const MatchColumnsStep = <T extends string>({
           'There are required columns that are not matched or ignored. Do you want to continue?',
         children: (
           <StyledColumnsContainer>
-            <StyledColumns>Columns not matched:</StyledColumns>
-            {unmatchedRequiredFields.map((field) => (
-              <StyledColumn key={field}>{field}</StyledColumn>
-            ))}
+            <StyledColumns>{t('.columns-not-matched')}</StyledColumns>
+            {unmatchedRequiredFields.map((field) => {
+              return <StyledColumn key={field}>{field}</StyledColumn>;
+            })}
           </StyledColumnsContainer>
         ),
         buttons: [
@@ -328,39 +331,47 @@ export const MatchColumnsStep = <T extends string>({
     <>
       <StyledContent>
         <Heading
-          title="Match Columns"
-          description="Select the correct field for each column you'd like to import."
+          title={t('matchColumnsStep.match-columns')}
+          description={t(
+            'matchColumnsStep.select-the-correct-field-for-each-column',
+          )}
         />
         <ColumnGrid
           columns={columns}
-          renderUserColumn={(columns, columnIndex) => (
-            <UserTableColumn
-              column={columns[columnIndex]}
-              importedRow={dataExample.map(
-                (row) => row[columns[columnIndex].index],
-              )}
-            />
-          )}
-          renderTemplateColumn={(columns, columnIndex) => (
-            <TemplateColumn
-              columns={columns}
-              columnIndex={columnIndex}
-              onChange={onChange}
-            />
-          )}
-          renderUnmatchedColumn={(columns, columnIndex) => (
-            <UnmatchColumn
-              columns={columns}
-              columnIndex={columnIndex}
-              onSubChange={onSubChange}
-            />
-          )}
+          renderUserColumn={(columns, columnIndex) => {
+            return (
+              <UserTableColumn
+                column={columns[columnIndex]}
+                importedRow={dataExample.map(
+                  (row) => row[columns[columnIndex].index],
+                )}
+              />
+            );
+          }}
+          renderTemplateColumn={(columns, columnIndex) => {
+            return (
+              <TemplateColumn
+                columns={columns}
+                columnIndex={columnIndex}
+                onChange={onChange}
+              />
+            );
+          }}
+          renderUnmatchedColumn={(columns, columnIndex) => {
+            return (
+              <UnmatchColumn
+                columns={columns}
+                columnIndex={columnIndex}
+                onSubChange={onSubChange}
+              />
+            );
+          }}
         />
       </StyledContent>
       <StepNavigationButton
         onClick={handleOnContinue}
         isLoading={isLoading}
-        title="Next Step"
+        title={t('matchColumnsStep.next-step')}
         onBack={() => {
           onBack?.();
           setColumns([]);

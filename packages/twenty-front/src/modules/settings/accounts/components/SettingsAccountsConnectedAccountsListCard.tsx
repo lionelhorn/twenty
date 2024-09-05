@@ -28,9 +28,13 @@ export const SettingsAccountsConnectedAccountsListCard = ({
       getItemLabel={(account) => account.handle}
       isLoading={loading}
       RowIcon={IconGoogle}
-      RowRightComponent={({ item: account }) => (
-        <SettingsAccountsConnectedAccountsRowRightContainer account={account} />
-      )}
+      RowRightComponent={({ item: account }) => {
+        return (
+          <SettingsAccountsConnectedAccountsRowRightContainer
+            account={account}
+          />
+        );
+      }}
       hasFooter
       footerButtonLabel="Add account"
       onFooterButtonClick={() =>

@@ -23,45 +23,49 @@ const StyledDivToCreateGap = styled.div`
 export const CustomSideMenu = ({ editor }: CustomSideMenuProps) => {
   return (
     <SideMenuController
-      sideMenu={(props) => (
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        <SideMenu {...props}>
-          <DragHandleButton
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            {...props}
-            dragHandleMenu={(props) => (
+      sideMenu={(props) => {
+        return (
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          <SideMenu {...props}>
+            <DragHandleButton
               // eslint-disable-next-line react/jsx-props-no-spreading
-              <DragHandleMenu {...props}>
-                <CustomAddBlockItem editor={editor}>
-                  <CustomSideMenuOptions
-                    LeftIcon={IconPlus}
-                    text={'Add Block'}
-                    Variant="normal"
-                  />
-                </CustomAddBlockItem>
-                {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-                <BlockColorsItem {...props}>
-                  <CustomSideMenuOptions
-                    LeftIcon={IconColorSwatch}
-                    text={'Change Color'}
-                    Variant="normal"
-                  />
-                </BlockColorsItem>
-                {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-                <RemoveBlockItem {...props}>
-                  {' '}
-                  <CustomSideMenuOptions
-                    LeftIcon={IconTrash}
-                    text={'Delete'}
-                    Variant="danger"
-                  />
-                </RemoveBlockItem>
-              </DragHandleMenu>
-            )}
-          />
-          <StyledDivToCreateGap />
-        </SideMenu>
-      )}
+              {...props}
+              dragHandleMenu={(props) => {
+                return (
+                  // eslint-disable-next-line react/jsx-props-no-spreading
+                  <DragHandleMenu {...props}>
+                    <CustomAddBlockItem editor={editor}>
+                      <CustomSideMenuOptions
+                        LeftIcon={IconPlus}
+                        text={'Add Block'}
+                        Variant="normal"
+                      />
+                    </CustomAddBlockItem>
+                    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+                    <BlockColorsItem {...props}>
+                      <CustomSideMenuOptions
+                        LeftIcon={IconColorSwatch}
+                        text={'Change Color'}
+                        Variant="normal"
+                      />
+                    </BlockColorsItem>
+                    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+                    <RemoveBlockItem {...props}>
+                      {' '}
+                      <CustomSideMenuOptions
+                        LeftIcon={IconTrash}
+                        text={'Delete'}
+                        Variant="danger"
+                      />
+                    </RemoveBlockItem>
+                  </DragHandleMenu>
+                );
+              }}
+            />
+            <StyledDivToCreateGap />
+          </SideMenu>
+        );
+      }}
     />
   );
 };

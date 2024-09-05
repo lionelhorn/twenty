@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -40,6 +41,8 @@ interface AnimatedPlaceholderProps {
 }
 
 const AnimatedPlaceholder = ({ type }: AnimatedPlaceholderProps) => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
 
   const x = useMotionValue(window.innerWidth / 2);
@@ -87,14 +90,14 @@ const AnimatedPlaceholder = ({ type }: AnimatedPlaceholderProps) => {
     <StyledContainer>
       <StyledBackgroundImage
         src={theme.name === 'dark' ? DARK_BACKGROUND[type] : BACKGROUND[type]}
-        alt="Background"
+        alt={t('animatedPlaceholder.background')}
         type={type}
       />
       <StyledMovingImage
         src={
           theme.name === 'dark' ? DARK_MOVING_IMAGE[type] : MOVING_IMAGE[type]
         }
-        alt="Moving"
+        alt={t('animatedPlaceholder.moving')}
         style={{ translateX, translateY }}
         transition={{ type: 'spring', stiffness: 100, damping: 10 }}
         type={type}

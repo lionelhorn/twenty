@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -63,6 +64,8 @@ const SWITCH_INFOS = {
 };
 
 export const SettingsBilling = () => {
+  const { t } = useTranslation();
+
   const { enqueueSnackBar } = useSnackBar();
   const onboardingStatus = useOnboardingStatus();
   const subscriptionStatus = useSubscriptionStatus();
@@ -140,9 +143,12 @@ export const SettingsBilling = () => {
   };
 
   return (
-    <SubMenuTopBarContainer Icon={IconCurrencyDollar} title="Billing">
+    <SubMenuTopBarContainer
+      Icon={IconCurrencyDollar}
+      title={t('settingsBilling.billing')}
+    >
       <SettingsPageContainer>
-        <StyledH1Title title="Billing" />
+        <StyledH1Title title={t('settingsBilling.billing')} />
         <SettingsBillingCoverImage />
         {displayPaymentFailInfo && (
           <Info
@@ -171,12 +177,14 @@ export const SettingsBilling = () => {
           <>
             <Section>
               <H2Title
-                title="Manage your subscription"
-                description="Edit payment method, see your invoices and more"
+                title={t('settingsBilling.manage-your-subscription')}
+                description={t(
+                  'settingsBilling.edit-payment-method-see-your-invoices-an',
+                )}
               />
               <Button
                 Icon={IconCreditCard}
-                title="View billing details"
+                title={t('settingsBilling.view-billing-details')}
                 variant="secondary"
                 onClick={openBillingPortal}
                 disabled={billingPortalButtonDisabled}
@@ -184,7 +192,7 @@ export const SettingsBilling = () => {
             </Section>
             <Section>
               <H2Title
-                title="Edit billing interval"
+                title={t('settingsBilling.edit-billing-interval')}
                 description={`Switch ${switchingInfo.from}`}
               />
               <Button
@@ -197,12 +205,14 @@ export const SettingsBilling = () => {
             </Section>
             <Section>
               <H2Title
-                title="Cancel your subscription"
-                description="Your workspace will be disabled"
+                title={t('settingsBilling.cancel-your-subscription')}
+                description={t(
+                  'settingsBilling.your-workspace-will-be-disabled',
+                )}
               />
               <Button
                 Icon={IconCircleX}
-                title="Cancel Plan"
+                title={t('settingsBilling.cancel-plan')}
                 variant="secondary"
                 accent="danger"
                 onClick={openBillingPortal}

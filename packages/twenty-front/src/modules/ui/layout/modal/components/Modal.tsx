@@ -110,25 +110,25 @@ type ModalHeaderProps = React.PropsWithChildren & {
   className?: string;
 };
 
-const ModalHeader = ({ children, className }: ModalHeaderProps) => (
-  <StyledHeader className={className}>{children}</StyledHeader>
-);
+const ModalHeader = ({ children, className }: ModalHeaderProps) => {
+  return <StyledHeader className={className}>{children}</StyledHeader>;
+};
 
 type ModalContentProps = React.PropsWithChildren & {
   className?: string;
 };
 
-const ModalContent = ({ children, className }: ModalContentProps) => (
-  <StyledContent className={className}>{children}</StyledContent>
-);
+const ModalContent = ({ children, className }: ModalContentProps) => {
+  return <StyledContent className={className}>{children}</StyledContent>;
+};
 
 type ModalFooterProps = React.PropsWithChildren & {
   className?: string;
 };
 
-const ModalFooter = ({ children, className }: ModalFooterProps) => (
-  <StyledFooter className={className}>{children}</StyledFooter>
-);
+const ModalFooter = ({ children, className }: ModalFooterProps) => {
+  return <StyledFooter className={className}>{children}</StyledFooter>;
+};
 
 export type ModalSize = 'small' | 'medium' | 'large';
 export type ModalPadding = 'none' | 'small' | 'medium' | 'large';

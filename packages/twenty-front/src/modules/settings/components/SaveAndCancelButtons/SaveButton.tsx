@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { IconDeviceFloppy } from 'twenty-ui';
 
 import { Button } from '@/ui/input/button/components/Button';
@@ -8,9 +9,11 @@ type SaveButtonProps = {
 };
 
 export const SaveButton = ({ onSave, disabled }: SaveButtonProps) => {
+  const { t } = useTranslation();
+
   return (
     <Button
-      title="Save"
+      title={t('saveButton.save')}
       variant="primary"
       size="small"
       accent="blue"

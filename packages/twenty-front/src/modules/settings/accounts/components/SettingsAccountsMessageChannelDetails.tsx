@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { H2Title } from 'twenty-ui';
 
@@ -34,6 +35,8 @@ const StyledDetailsContainer = styled.div`
 export const SettingsAccountsMessageChannelDetails = ({
   messageChannel,
 }: SettingsAccountsMessageChannelDetailsProps) => {
+  const { t } = useTranslation();
+
   const { updateOneRecord } = useUpdateOneRecord<MessageChannel>({
     objectNameSingular: CoreObjectNameSingular.MessageChannel,
   });
@@ -80,8 +83,10 @@ export const SettingsAccountsMessageChannelDetails = ({
     <StyledDetailsContainer>
       <Section>
         <H2Title
-          title="Visibility"
-          description="Define what will be visible to other users in your workspace"
+          title={t('settingsAccountsMessageChannelDetails.visibility')}
+          description={t(
+            'settingsAccountsMessageChannelDetails.define-what-will-be-visible-to-other-use',
+          )}
         />
         <SettingsAccountsMessageVisibilityCard
           value={messageChannel.visibility}
@@ -90,8 +95,12 @@ export const SettingsAccountsMessageChannelDetails = ({
       </Section>
       <Section>
         <H2Title
-          title="Contact auto-creation"
-          description="Automatically create People records when receiving or sending emails"
+          title={t(
+            'settingsAccountsMessageChannelDetails.contact-auto-creation',
+          )}
+          description={t(
+            'settingsAccountsMessageChannelDetails.automatically-create-people-records-when',
+          )}
         />
         <SettingsAccountsMessageAutoCreationCard
           value={messageChannel.contactAutoCreationPolicy}

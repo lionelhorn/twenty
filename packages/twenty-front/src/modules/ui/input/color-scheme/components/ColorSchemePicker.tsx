@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import styled from '@emotion/styled';
 
@@ -35,31 +36,35 @@ export const ColorSchemePicker = ({
   value,
   onChange,
   className,
-}: ColorSchemePickerProps) => (
-  <StyledContainer className={className}>
-    <StyledCardContainer>
-      <ColorSchemeCard
-        onClick={() => onChange('Light')}
-        variant="Light"
-        selected={value === 'Light'}
-      />
-      <StyledLabel>Light</StyledLabel>
-    </StyledCardContainer>
-    <StyledCardContainer>
-      <ColorSchemeCard
-        onClick={() => onChange('Dark')}
-        variant="Dark"
-        selected={value === 'Dark'}
-      />
-      <StyledLabel>Dark</StyledLabel>
-    </StyledCardContainer>
-    <StyledCardContainer>
-      <ColorSchemeCard
-        onClick={() => onChange('System')}
-        variant="System"
-        selected={value === 'System'}
-      />
-      <StyledLabel>System settings</StyledLabel>
-    </StyledCardContainer>
-  </StyledContainer>
-);
+}: ColorSchemePickerProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <StyledContainer className={className}>
+      <StyledCardContainer>
+        <ColorSchemeCard
+          onClick={() => onChange('Light')}
+          variant="Light"
+          selected={value === 'Light'}
+        />
+        <StyledLabel>{t('colorSchemePicker.light')}</StyledLabel>
+      </StyledCardContainer>
+      <StyledCardContainer>
+        <ColorSchemeCard
+          onClick={() => onChange('Dark')}
+          variant="Dark"
+          selected={value === 'Dark'}
+        />
+        <StyledLabel>{t('colorSchemePicker.dark')}</StyledLabel>
+      </StyledCardContainer>
+      <StyledCardContainer>
+        <ColorSchemeCard
+          onClick={() => onChange('System')}
+          variant="System"
+          selected={value === 'System'}
+        />
+        <StyledLabel>{t('colorSchemePicker.system-settings')}</StyledLabel>
+      </StyledCardContainer>
+    </StyledContainer>
+  );
+};

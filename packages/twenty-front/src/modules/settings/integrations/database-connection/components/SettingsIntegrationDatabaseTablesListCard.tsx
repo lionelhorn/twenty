@@ -106,21 +106,23 @@ export const SettingsIntegrationDatabaseTablesListCard = ({
         status: RemoteTableStatus;
         updatesText?: string | null;
       };
-    }) => (
-      <StyledRowRightContainer>
-        {item.updatesText && (
-          <SettingsIntegrationRemoteTableSchemaUpdate
-            updatesText={item.updatesText}
-            onUpdate={() => onSyncSchemaUpdate(item.name)}
+    }) => {
+      return (
+        <StyledRowRightContainer>
+          {item.updatesText && (
+            <SettingsIntegrationRemoteTableSchemaUpdate
+              updatesText={item.updatesText}
+              onUpdate={() => onSyncSchemaUpdate(item.name)}
+            />
+          )}
+          <SettingsIntegrationRemoteTableSyncStatusToggle
+            tableName={item.name}
+            tableStatus={item.status}
+            onSyncUpdate={onSyncUpdate}
           />
-        )}
-        <SettingsIntegrationRemoteTableSyncStatusToggle
-          tableName={item.name}
-          tableStatus={item.status}
-          onSyncUpdate={onSyncUpdate}
-        />
-      </StyledRowRightContainer>
-    ),
+        </StyledRowRightContainer>
+      );
+    },
     [onSyncSchemaUpdate, onSyncUpdate],
   );
   return (

@@ -40,11 +40,13 @@ const StyledLeftContainer = styled.div<LeftContainerProps>`
   width: 100%;
 `;
 
-export const PageBody = ({ children }: PageBodyProps) => (
-  <StyledMainContainer>
-    <StyledLeftContainer>
-      <PagePanel>{children}</PagePanel>
-    </StyledLeftContainer>
-    <RightDrawer />
-  </StyledMainContainer>
-);
+export const PageBody = ({ children }: PageBodyProps) => {
+  return (
+    <StyledMainContainer>
+      <StyledLeftContainer>
+        <PagePanel>{children}</PagePanel>
+      </StyledLeftContainer>
+      <RightDrawer />
+    </StyledMainContainer>
+  );
+};

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { Key } from 'ts-key-enum';
 import {
@@ -53,6 +54,8 @@ export const RecordIndexOptionsDropdownContent = ({
   recordIndexId,
   objectNameSingular,
 }: RecordIndexOptionsDropdownContentProps) => {
+  const { t } = useTranslation();
+
   const { currentViewWithCombinedFiltersAndSorts } = useGetCurrentView();
 
   const { closeDropdown } = useDropdown(RECORD_INDEX_OPTIONS_DROPDOWN_ID);
@@ -173,10 +176,10 @@ export const RecordIndexOptionsDropdownContent = ({
       {currentMenu === 'fields' && (
         <>
           <DropdownMenuHeader StartIcon={IconChevronLeft} onClick={resetMenu}>
-            Fields
+            {t('recordIndexOptionsDropdownContent.fields')}
           </DropdownMenuHeader>
           <ViewFieldsVisibilityDropdownSection
-            title="Visible"
+            title={t('recordIndexOptionsDropdownContent.visible')}
             fields={visibleRecordFields}
             isDraggable
             onDragEnd={handleReorderFields}
@@ -200,12 +203,12 @@ export const RecordIndexOptionsDropdownContent = ({
             StartIcon={IconChevronLeft}
             onClick={() => setCurrentMenu('fields')}
           >
-            Hidden Fields
+            {t('recordIndexOptionsDropdownContent.hidden-fields')}
           </DropdownMenuHeader>
           {hiddenRecordFields.length > 0 && (
             <>
               <ViewFieldsVisibilityDropdownSection
-                title="Hidden"
+                title={t('recordIndexOptionsDropdownContent.hidden')}
                 fields={hiddenRecordFields}
                 isDraggable={false}
                 onVisibilityChange={handleChangeFieldVisibility}
@@ -229,7 +232,6 @@ export const RecordIndexOptionsDropdownContent = ({
           </UndecoratedLink>
         </>
       )}
-
       {viewType === ViewType.Kanban && !currentMenu && (
         <>
           <DropdownMenuSeparator />

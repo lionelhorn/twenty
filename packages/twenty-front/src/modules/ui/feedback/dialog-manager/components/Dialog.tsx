@@ -146,18 +146,20 @@ export const Dialog = ({
         {title && <StyledDialogTitle>{title}</StyledDialogTitle>}
         {message && <StyledDialogMessage>{message}</StyledDialogMessage>}
         {children}
-        {buttons.map(({ accent, onClick, role, title: key, variant }) => (
-          <StyledDialogButton
-            onClick={(event) => {
-              onClick?.(event);
-              closeSnackbar();
-            }}
-            fullWidth={true}
-            variant={variant ?? 'secondary'}
-            title={key}
-            {...{ accent, key, role }}
-          />
-        ))}
+        {buttons.map(({ accent, onClick, role, title: key, variant }) => {
+          return (
+            <StyledDialogButton
+              onClick={(event) => {
+                onClick?.(event);
+                closeSnackbar();
+              }}
+              fullWidth={true}
+              variant={variant ?? 'secondary'}
+              title={key}
+              {...{ accent, key, role }}
+            />
+          );
+        })}
       </StyledDialogContainer>
     </StyledDialogOverlay>
   );

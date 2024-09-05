@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useRef, useState } from 'react';
 import { HotkeysEvent } from 'react-hotkeys-hook/dist/types';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -128,6 +129,8 @@ export const AutosizeTextInput = ({
   autoFocus,
   disabled,
 }: AutosizeTextInputProps) => {
+  const { t } = useTranslation();
+
   const [isFocused, setIsFocused] = useState(false);
   const [isHidden, setIsHidden] = useState(
     variant === AutosizeTextInputVariant.Button,
@@ -251,7 +254,7 @@ export const AutosizeTextInput = ({
                     onFocus?.();
                   }}
                 >
-                  Write a comment
+                  {t('autosizeTextInput.write-a-comment')}
                 </StyledCommentText>
               ) : (
                 `${words} word${words === 1 ? '' : 's'}`

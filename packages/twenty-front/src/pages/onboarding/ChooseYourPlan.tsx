@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { isNonEmptyString, isNumber } from '@sniptt/guards';
@@ -74,6 +75,8 @@ const benefits = [
 ];
 
 export const ChooseYourPlan = () => {
+  const { t } = useTranslation();
+
   const billing = useRecoilValue(billingState);
 
   const [planSelected, setPlanSelected] = useState(SubscriptionInterval.Month);
@@ -144,42 +147,53 @@ export const ChooseYourPlan = () => {
   return (
     prices?.getProductPrices?.productPrices && (
       <>
-        <Title noMarginTop>Choose your Plan</Title>
+        <Title noMarginTop>{t('chooseYourPlan.choose-your-plan')}</Title>
         <SubTitle>
-          Enjoy a {billing?.billingFreeTrialDurationInDays}-day free trial
+          {t('chooseYourPlan.enjoy-a')}{' '}
+          {billing?.billingFreeTrialDurationInDays}
+          {t('chooseYourPlan.day-free-trial')}
         </SubTitle>
         <StyledChoosePlanContainer>
-          {prices.getProductPrices.productPrices.map((price, index) => (
-            <CardPicker
-              checked={price.recurringInterval === planSelected}
-              handleChange={handlePlanChange(price.recurringInterval)}
-              key={index}
-            >
-              <SubscriptionCard
-                type={price.recurringInterval}
-                price={price.unitAmount / 100}
-                info={computeInfo(price, prices.getProductPrices.productPrices)}
-              />
-            </CardPicker>
-          ))}
+          {prices.getProductPrices.productPrices.map((price, index) => {
+            return (
+              <CardPicker
+                checked={price.recurringInterval === planSelected}
+                handleChange={handlePlanChange(price.recurringInterval)}
+                key={index}
+              >
+                <SubscriptionCard
+                  type={price.recurringInterval}
+                  price={price.unitAmount / 100}
+                  info={computeInfo(
+                    price,
+                    prices.getProductPrices.productPrices,
+                  )}
+                />
+              </CardPicker>
+            );
+          })}
         </StyledChoosePlanContainer>
         <StyledBenefitsContainer>
-          {benefits.map((benefit, index) => (
-            <SubscriptionBenefit key={index}>{benefit}</SubscriptionBenefit>
-          ))}
+          {benefits.map((benefit, index) => {
+            return (
+              <SubscriptionBenefit key={index}>{benefit}</SubscriptionBenefit>
+            );
+          })}
         </StyledBenefitsContainer>
         <MainButton
-          title="Continue"
+          title={t('chooseYourPlan.continue')}
           onClick={handleButtonClick}
           width={200}
           Icon={() => isSubmitting && <Loader />}
           disabled={isSubmitting}
         />
         <StyledLinkGroup>
-          <ActionLink onClick={signOut}>Log out</ActionLink>
+          <ActionLink onClick={signOut}>
+            {t('chooseYourPlan.log-out')}
+          </ActionLink>
           <span />
           <ActionLink href={CAL_LINK} target="_blank" rel="noreferrer">
-            Book a Call
+            {t('chooseYourPlan.book-a-call')}
           </ActionLink>
         </StyledLinkGroup>
       </>

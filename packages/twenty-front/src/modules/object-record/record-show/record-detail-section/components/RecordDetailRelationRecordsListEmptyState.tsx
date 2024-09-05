@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useIcons } from 'twenty-ui';
@@ -21,6 +22,8 @@ const StyledRelationRecordsListEmptyState = styled.div`
 export const RecordDetailRelationRecordsListEmptyState = ({
   relationObjectMetadataItem,
 }: RecordDetailRelationRecordsListEmptyStateProps) => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
 
   const { getIcon } = useIcons();
@@ -29,7 +32,10 @@ export const RecordDetailRelationRecordsListEmptyState = ({
   return (
     <StyledRelationRecordsListEmptyState>
       <Icon size={theme.icon.size.sm} />
-      <div>No {relationObjectMetadataItem.labelSingular}</div>
+      <div>
+        {t('recordDetailRelationRecordsListEmptyState.no')}{' '}
+        {relationObjectMetadataItem.labelSingular}
+      </div>
     </StyledRelationRecordsListEmptyState>
   );
 };

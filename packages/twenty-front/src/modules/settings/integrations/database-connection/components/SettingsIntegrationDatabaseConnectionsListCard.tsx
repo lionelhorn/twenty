@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { IconChevronRight } from 'twenty-ui';
@@ -40,19 +41,25 @@ export const SettingsIntegrationDatabaseConnectionsListCard = ({
   return (
     <SettingsListCard
       items={connections}
-      RowIcon={() => (
-        <StyledDatabaseLogoContainer>
-          <StyledDatabaseLogo alt="" src={integration.from.image} />
-        </StyledDatabaseLogoContainer>
-      )}
-      RowRightComponent={({ item: connection }) => (
-        <StyledRowRightContainer>
-          <SettingsIntegrationDatabaseConnectionSyncStatus
-            connectionId={connection.id}
-          />
-          <LightIconButton Icon={IconChevronRight} accent="tertiary" />
-        </StyledRowRightContainer>
-      )}
+      RowIcon={() => {
+        const { t } = useTranslation();
+
+        return (
+          <StyledDatabaseLogoContainer>
+            <StyledDatabaseLogo alt={t('.')} src={integration.from.image} />
+          </StyledDatabaseLogoContainer>
+        );
+      }}
+      RowRightComponent={({ item: connection }) => {
+        return (
+          <StyledRowRightContainer>
+            <SettingsIntegrationDatabaseConnectionSyncStatus
+              connectionId={connection.id}
+            />
+            <LightIconButton Icon={IconChevronRight} accent="tertiary" />
+          </StyledRowRightContainer>
+        );
+      }}
       onRowClick={(connection) => navigate(`./${connection.id}`)}
       getItemLabel={(connection) => connection.label}
       hasFooter

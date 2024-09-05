@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { ReactNode, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -98,6 +99,8 @@ export const ViewBarDetails = ({
   rightComponent,
   filterDropdownId,
 }: ViewBarDetailsProps) => {
+  const { t } = useTranslation();
+
   const {
     canPersistViewSelector,
     isViewBarExpandedState,
@@ -161,16 +164,18 @@ export const ViewBarDetails = ({
     <StyledBar>
       <StyledFilterContainer>
         <StyledChipcontainer>
-          {otherViewFilters.map((viewFilter) => (
-            <VariantFilterChip
-              key={viewFilter.fieldMetadataId}
-              // Why do we have two types, Filter and ViewFilter?
-              // Why key defition is already present in the Filter type and added on the fly here with mapViewFiltersToFilters ?
-              // Also as filter is spread into viewFilter, definition is present
-              // FixMe: Ugly hack to make it work
-              viewFilter={viewFilter as unknown as Filter}
-            />
-          ))}
+          {otherViewFilters.map((viewFilter) => {
+            return (
+              <VariantFilterChip
+                key={viewFilter.fieldMetadataId}
+                // Why do we have two types, Filter and ViewFilter?
+                // Why key defition is already present in the Filter type and added on the fly here with mapViewFiltersToFilters ?
+                // Also as filter is spread into viewFilter, definition is present
+                // FixMe: Ugly hack to make it work
+                viewFilter={viewFilter as unknown as Filter}
+              />
+            );
+          })}
           {!!otherViewFilters.length &&
             !!currentViewWithCombinedFiltersAndSorts?.viewSorts?.length && (
               <StyledSeperatorContainer>
@@ -180,9 +185,11 @@ export const ViewBarDetails = ({
           {mapViewSortsToSorts(
             currentViewWithCombinedFiltersAndSorts?.viewSorts ?? [],
             availableSortDefinitions,
-          ).map((sort) => (
-            <EditableSortChip key={sort.fieldMetadataId} viewSort={sort} />
-          ))}
+          ).map((sort) => {
+            return (
+              <EditableSortChip key={sort.fieldMetadataId} viewSort={sort} />
+            );
+          })}
           {!!currentViewWithCombinedFiltersAndSorts?.viewSorts?.length &&
             !!defaultViewFilters.length && (
               <StyledSeperatorContainer>
@@ -192,23 +199,25 @@ export const ViewBarDetails = ({
           {mapViewFiltersToFilters(
             defaultViewFilters,
             availableFilterDefinitions,
-          ).map((viewFilter) => (
-            <ObjectFilterDropdownScope
-              key={viewFilter.id}
-              filterScopeId={viewFilter.id}
-            >
-              <DropdownScope dropdownScopeId={viewFilter.id}>
-                <ViewBarFilterEffect filterDropdownId={viewFilter.id} />
-                <EditableFilterDropdownButton
-                  viewFilter={viewFilter}
-                  hotkeyScope={{
-                    scope: viewFilter.id,
-                  }}
-                  viewFilterDropdownId={viewFilter.id}
-                />
-              </DropdownScope>
-            </ObjectFilterDropdownScope>
-          ))}
+          ).map((viewFilter) => {
+            return (
+              <ObjectFilterDropdownScope
+                key={viewFilter.id}
+                filterScopeId={viewFilter.id}
+              >
+                <DropdownScope dropdownScopeId={viewFilter.id}>
+                  <ViewBarFilterEffect filterDropdownId={viewFilter.id} />
+                  <EditableFilterDropdownButton
+                    viewFilter={viewFilter}
+                    hotkeyScope={{
+                      scope: viewFilter.id,
+                    }}
+                    viewFilterDropdownId={viewFilter.id}
+                  />
+                </DropdownScope>
+              </ObjectFilterDropdownScope>
+            );
+          })}
         </StyledChipcontainer>
         {hasFilterButton && (
           <StyledAddFilterContainer>
@@ -223,7 +232,7 @@ export const ViewBarDetails = ({
           data-testid="cancel-button"
           onClick={handleCancelClick}
         >
-          Reset
+          {t('viewBarDetails.reset')}
         </StyledCancelButton>
       )}
       {rightComponent}

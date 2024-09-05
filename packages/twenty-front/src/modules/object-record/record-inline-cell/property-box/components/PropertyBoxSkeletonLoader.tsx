@@ -20,12 +20,14 @@ export const PropertyBoxSkeletonLoader = () => {
       highlightColor={theme.background.transparent.lighter}
       borderRadius={4}
     >
-      {skeletonItems.map(({ id }) => (
-        <StyledSkeletonDiv key={id}>
-          <Skeleton width={92} height={16} />
-          <Skeleton width={154} height={16} />
-        </StyledSkeletonDiv>
-      ))}
+      {skeletonItems.map(({ id }) => {
+        return (
+          <StyledSkeletonDiv key={id}>
+            <Skeleton width={92} height={16} />
+            <Skeleton width={154} height={16} />
+          </StyledSkeletonDiv>
+        );
+      })}
     </SkeletonTheme>
   );
 };

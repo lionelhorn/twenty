@@ -35,13 +35,15 @@ export const ContactLink = ({
   children,
   onClick,
   maxWidth,
-}: ContactLinkProps) => (
-  <StyledClickableLink
-    maxWidth={maxWidth}
-    target="_blank"
-    onClick={onClick}
-    href={href}
-  >
-    {children}
-  </StyledClickableLink>
-);
+}: ContactLinkProps) => {
+  return (
+    <StyledClickableLink
+      maxWidth={maxWidth}
+      target="_blank"
+      onClick={onClick}
+      href={href}
+    >
+      {children}
+    </StyledClickableLink>
+  );
+};

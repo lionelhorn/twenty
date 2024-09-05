@@ -10,13 +10,15 @@ type PageFavoriteButtonProps = {
 export const PageFavoriteButton = ({
   isFavorite,
   onClick,
-}: PageFavoriteButtonProps) => (
-  <IconButton
-    Icon={IconHeart}
-    size="medium"
-    variant="secondary"
-    data-testid="add-button"
-    accent={isFavorite ? 'danger' : 'default'}
-    onClick={onClick}
-  />
-);
+}: PageFavoriteButtonProps) => {
+  return (
+    <IconButton
+      Icon={IconHeart}
+      size="medium"
+      variant="secondary"
+      data-testid="add-button"
+      accent={isFavorite ? 'danger' : 'default'}
+      onClick={onClick}
+    />
+  );
+};

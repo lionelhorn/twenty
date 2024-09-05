@@ -65,17 +65,19 @@ export const ActionBarItem = ({ item }: ActionBarItemProps) => {
           }
           dropdownComponents={
             <DropdownMenuItemsContainer>
-              {item.subActions.map((subAction) => (
-                <MenuItem
-                  key={subAction.label}
-                  text={subAction.label}
-                  LeftIcon={subAction.Icon}
-                  onClick={() => {
-                    closeDropdown();
-                    subAction.onClick?.();
-                  }}
-                />
-              ))}
+              {item.subActions.map((subAction) => {
+                return (
+                  <MenuItem
+                    key={subAction.label}
+                    text={subAction.label}
+                    LeftIcon={subAction.Icon}
+                    onClick={() => {
+                      closeDropdown();
+                      subAction.onClick?.();
+                    }}
+                  />
+                );
+              })}
             </DropdownMenuItemsContainer>
           }
         />

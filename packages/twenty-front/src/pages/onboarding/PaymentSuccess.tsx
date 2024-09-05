@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -31,6 +32,8 @@ const StyledButtonContainer = styled.div`
 `;
 
 export const PaymentSuccess = () => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
   const currentUser = useRecoilValue(currentUserState);
   const color =
@@ -47,11 +50,11 @@ export const PaymentSuccess = () => {
           <IconCheck color={color} size={24} stroke={3} />
         </StyledCheckContainer>
       </AnimatedEaseIn>
-      <Title>All set!</Title>
-      <SubTitle>Your account has been activated.</SubTitle>
+      <Title>{t('paymentSuccess.all-set')}</Title>
+      <SubTitle>{t('paymentSuccess.your-account-has-been-activated')}</SubTitle>
       <StyledButtonContainer>
         <UndecoratedLink to={AppPath.CreateWorkspace}>
-          <MainButton title="Start" width={200} />
+          <MainButton title={t('paymentSuccess.start')} width={200} />
         </UndecoratedLink>
       </StyledButtonContainer>
     </>

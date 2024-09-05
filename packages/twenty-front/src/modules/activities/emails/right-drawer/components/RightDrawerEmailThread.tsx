@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useEffect, useMemo } from 'react';
 import { useRecoilCallback, useSetRecoilState } from 'recoil';
@@ -38,6 +39,8 @@ const StyledButtonContainer = styled.div`
 `;
 
 export const RightDrawerEmailThread = () => {
+  const { t } = useTranslation();
+
   const setMessageThread = useSetRecoilState(messageThreadState);
 
   const {
@@ -127,14 +130,16 @@ export const RightDrawerEmailThread = () => {
             subject={subject}
             lastMessageSentAt={lastMessage.receivedAt}
           />
-          {firstMessages.map((message) => (
-            <EmailThreadMessage
-              key={message.id}
-              participants={message.messageParticipants}
-              body={message.text}
-              sentAt={message.receivedAt}
-            />
-          ))}
+          {firstMessages.map((message) => {
+            return (
+              <EmailThreadMessage
+                key={message.id}
+                participants={message.messageParticipants}
+                body={message.text}
+                sentAt={message.receivedAt}
+              />
+            );
+          })}
           <IntermediaryMessages messages={intermediaryMessages} />
           <EmailThreadMessage
             key={lastMessage.id}
@@ -153,7 +158,7 @@ export const RightDrawerEmailThread = () => {
         <StyledButtonContainer>
           <Button
             onClick={handleReplyClick}
-            title="Reply (View in Gmail)"
+            title={t('rightDrawerEmailThread.reply-view-in-gmail')}
             Icon={IconArrowBackUp}
             disabled={!canReply}
           ></Button>

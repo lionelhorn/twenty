@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { IconPlus } from 'twenty-ui';
 
@@ -30,6 +31,8 @@ export const Notes = ({
 }: {
   targetableObject: ActivityTargetableObject;
 }) => {
+  const { t } = useTranslation();
+
   const { notes, loading } = useNotes(targetableObject);
 
   const openCreateActivity = useOpenCreateActivityDrawer({
@@ -51,15 +54,15 @@ export const Notes = ({
         <AnimatedPlaceholder type="noNote" />
         <AnimatedPlaceholderEmptyTextContainer>
           <AnimatedPlaceholderEmptyTitle>
-            No notes
+            {t('notes.no-notes')}
           </AnimatedPlaceholderEmptyTitle>
           <AnimatedPlaceholderEmptySubTitle>
-            There are no associated notes with this record.
+            {t('notes.there-are-no-associated-notes-with-this-')}
           </AnimatedPlaceholderEmptySubTitle>
         </AnimatedPlaceholderEmptyTextContainer>
         <Button
           Icon={IconPlus}
-          title="New note"
+          title={t('notes.new-note')}
           variant="secondary"
           onClick={() =>
             openCreateActivity({
@@ -74,14 +77,14 @@ export const Notes = ({
   return (
     <StyledNotesContainer>
       <NoteList
-        title="All"
+        title={t('notes.all')}
         notes={notes}
         button={
           <Button
             Icon={IconPlus}
             size="small"
             variant="secondary"
-            title="Add note"
+            title={t('notes.add-note')}
             onClick={() =>
               openCreateActivity({
                 targetableObjects: [targetableObject],

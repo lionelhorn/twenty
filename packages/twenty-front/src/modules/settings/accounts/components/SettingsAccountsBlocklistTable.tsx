@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 
 import { BlocklistItem } from '@/accounts/types/BlocklistItem';
@@ -24,23 +25,31 @@ export const SettingsAccountsBlocklistTable = ({
   blocklist,
   handleBlockedEmailRemove,
 }: SettingsAccountsBlocklistTableProps) => {
+  const { t } = useTranslation();
+
   return (
     <>
       {blocklist.length > 0 && (
         <StyledTable>
           <TableRow>
-            <TableHeader>Email/Domain</TableHeader>
-            <TableHeader>Added to blocklist</TableHeader>
+            <TableHeader>
+              {t('settingsAccountsBlocklistTable.emaildomain')}
+            </TableHeader>
+            <TableHeader>
+              {t('settingsAccountsBlocklistTable.added-to-blocklist')}
+            </TableHeader>
             <TableHeader></TableHeader>
           </TableRow>
           <StyledTableBody>
-            {blocklist.map((blocklistItem) => (
-              <SettingsAccountsBlocklistTableRow
-                key={blocklistItem.id}
-                blocklistItem={blocklistItem}
-                onRemove={handleBlockedEmailRemove}
-              />
-            ))}
+            {blocklist.map((blocklistItem) => {
+              return (
+                <SettingsAccountsBlocklistTableRow
+                  key={blocklistItem.id}
+                  blocklistItem={blocklistItem}
+                  onRemove={handleBlockedEmailRemove}
+                />
+              );
+            })}
           </StyledTableBody>
         </StyledTable>
       )}

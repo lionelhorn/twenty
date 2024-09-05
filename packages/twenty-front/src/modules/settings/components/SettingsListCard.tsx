@@ -68,16 +68,18 @@ export const SettingsListCard = <
 
   return (
     <Card>
-      {items.map((item, index) => (
-        <SettingsListItemCardContent
-          key={item.id}
-          LeftIcon={RowIcon}
-          label={getItemLabel(item)}
-          rightComponent={<RowRightComponent item={item} />}
-          divider={index < items.length - 1}
-          onClick={() => onRowClick?.(item)}
-        />
-      ))}
+      {items.map((item, index) => {
+        return (
+          <SettingsListItemCardContent
+            key={item.id}
+            LeftIcon={RowIcon}
+            label={getItemLabel(item)}
+            rightComponent={<RowRightComponent item={item} />}
+            divider={index < items.length - 1}
+            onClick={() => onRowClick?.(item)}
+          />
+        );
+      })}
       {hasFooter && (
         <StyledFooter divider={!!items.length}>
           <StyledButton onClick={onFooterButtonClick}>

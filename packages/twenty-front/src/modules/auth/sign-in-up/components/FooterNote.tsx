@@ -20,6 +20,6 @@ const StyledContainer = styled.div`
   }
 `;
 
-export const FooterNote = ({ children }: FooterNoteProps) => (
-  <StyledContainer>{children}</StyledContainer>
-);
+export const FooterNote = ({ children }: FooterNoteProps) => {
+  return <StyledContainer>{children}</StyledContainer>;
+};

@@ -6,6 +6,8 @@ type MoneyDisplayProps = {
   value: number | null;
 };
 
-export const MoneyDisplay = ({ value }: MoneyDisplayProps) => (
-  <EllipsisDisplay>{value ? `$${formatNumber(value)}` : ''}</EllipsisDisplay>
-);
+export const MoneyDisplay = ({ value }: MoneyDisplayProps) => {
+  return (
+    <EllipsisDisplay>{value ? `$${formatNumber(value)}` : ''}</EllipsisDisplay>
+  );
+};

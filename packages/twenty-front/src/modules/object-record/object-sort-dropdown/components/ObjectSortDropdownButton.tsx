@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
 import { IconChevronDown, useIcons } from 'twenty-ui';
@@ -48,6 +49,8 @@ export const ObjectSortDropdownButton = ({
   sortDropdownId,
   hotkeyScope,
 }: ObjectSortDropdownButtonProps) => {
+  const { t } = useTranslation();
+
   const {
     isSortDirectionMenuUnfolded,
     setIsSortDirectionMenuUnfolded,
@@ -90,23 +93,25 @@ export const ObjectSortDropdownButton = ({
             isUnfolded={isDropdownOpen}
             onClick={handleButtonClick}
           >
-            Sort
+            {t('objectSortDropdownButton.sort')}
           </StyledHeaderDropdownButton>
         }
         dropdownComponents={
           <>
             {isSortDirectionMenuUnfolded ? (
               <DropdownMenuItemsContainer>
-                {SORT_DIRECTIONS.map((sortOrder, index) => (
-                  <MenuItem
-                    key={index}
-                    onClick={() => {
-                      setSelectedSortDirection(sortOrder);
-                      setIsSortDirectionMenuUnfolded(false);
-                    }}
-                    text={sortOrder === 'asc' ? 'Ascending' : 'Descending'}
-                  />
-                ))}
+                {SORT_DIRECTIONS.map((sortOrder, index) => {
+                  return (
+                    <MenuItem
+                      key={index}
+                      onClick={() => {
+                        setSelectedSortDirection(sortOrder);
+                        setIsSortDirectionMenuUnfolded(false);
+                      }}
+                      text={sortOrder === 'asc' ? 'Ascending' : 'Descending'}
+                    />
+                  );
+                })}
               </DropdownMenuItemsContainer>
             ) : (
               <>
@@ -134,18 +139,20 @@ export const ObjectSortDropdownButton = ({
                           objectSortDropdownSearchInput.toLocaleLowerCase(),
                         ),
                     )
-                    .map((availableSortDefinition, index) => (
-                      <MenuItem
-                        testId={`select-sort-${index}`}
-                        key={index}
-                        onClick={() => {
-                          setObjectSortDropdownSearchInput('');
-                          handleAddSort(availableSortDefinition);
-                        }}
-                        LeftIcon={getIcon(availableSortDefinition.iconName)}
-                        text={availableSortDefinition.label}
-                      />
-                    ))}
+                    .map((availableSortDefinition, index) => {
+                      return (
+                        <MenuItem
+                          testId={`select-sort-${index}`}
+                          key={index}
+                          onClick={() => {
+                            setObjectSortDropdownSearchInput('');
+                            handleAddSort(availableSortDefinition);
+                          }}
+                          LeftIcon={getIcon(availableSortDefinition.iconName)}
+                          text={availableSortDefinition.label}
+                        />
+                      );
+                    })}
                 </DropdownMenuItemsContainer>
               </>
             )}

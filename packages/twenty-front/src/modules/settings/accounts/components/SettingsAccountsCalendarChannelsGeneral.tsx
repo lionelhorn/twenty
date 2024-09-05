@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { CalendarMonthCard } from '@/activities/calendar/components/CalendarMonthCard';
 import { CalendarContext } from '@/activities/calendar/contexts/CalendarContext';
 import { currentWorkspaceMemberState } from '@/auth/states/currentWorkspaceMemberState';
@@ -20,6 +21,8 @@ const StyledGeneralContainer = styled.div`
 `;
 
 export const SettingsAccountsCalendarChannelsGeneral = () => {
+  const { t } = useTranslation();
+
   const currentWorkspaceMember = useRecoilValue(currentWorkspaceMemberState);
 
   const exampleStartDate = new Date();
@@ -65,15 +68,19 @@ export const SettingsAccountsCalendarChannelsGeneral = () => {
     <StyledGeneralContainer>
       <Section>
         <H2Title
-          title="Display"
-          description="Configure how we should display your events in your calendar"
+          title={t('settingsAccountsCalendarChannelsGeneral.display')}
+          description={t(
+            'settingsAccountsCalendarChannelsGeneral.configure-how-we-should-display-your-eve',
+          )}
         />
         <SettingsAccountsCalendarDisplaySettings />
       </Section>
       <Section>
         <H2Title
-          title="Color code"
-          description="Events you participated in are displayed in red."
+          title={t('settingsAccountsCalendarChannelsGeneral.color-code')}
+          description={t(
+            'settingsAccountsCalendarChannelsGeneral.events-you-participated-in-are-displayed',
+          )}
         />
         <CalendarContext.Provider
           value={{

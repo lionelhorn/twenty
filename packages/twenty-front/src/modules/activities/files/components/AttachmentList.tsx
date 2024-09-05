@@ -92,9 +92,14 @@ export const AttachmentList = ({
               />
             ) : (
               <StyledAttachmentContainer>
-                {attachments.map((attachment) => (
-                  <AttachmentRow key={attachment.id} attachment={attachment} />
-                ))}
+                {attachments.map((attachment) => {
+                  return (
+                    <AttachmentRow
+                      key={attachment.id}
+                      attachment={attachment}
+                    />
+                  );
+                })}
               </StyledAttachmentContainer>
             )}
           </StyledDropZoneContainer>

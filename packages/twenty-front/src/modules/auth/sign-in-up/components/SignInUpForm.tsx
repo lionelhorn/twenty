@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
@@ -48,6 +49,8 @@ const StyledInputContainer = styled.div`
 `;
 
 export const SignInUpForm = () => {
+  const { t } = useTranslation();
+
   const captchaProvider = useRecoilValue(captchaProviderState);
   const isRequestingCaptchaToken = useRecoilValue(
     isRequestingCaptchaTokenState,
@@ -127,8 +130,10 @@ export const SignInUpForm = () => {
         {authProviders.google && (
           <>
             <MainButton
-              Icon={() => <IconGoogle size={theme.icon.size.lg} />}
-              title="Continue with Google"
+              Icon={() => {
+                return <IconGoogle size={theme.icon.size.lg} />;
+              }}
+              title={t('signInUpForm.continue-with-google')}
               onClick={signInWithGoogle}
               fullWidth
             />
@@ -139,8 +144,10 @@ export const SignInUpForm = () => {
         {authProviders.microsoft && (
           <>
             <MainButton
-              Icon={() => <IconMicrosoft size={theme.icon.size.lg} />}
-              title="Continue with Microsoft"
+              Icon={() => {
+                return <IconMicrosoft size={theme.icon.size.lg} />;
+              }}
+              title={t('signInUpForm.continue-with-microsoft')}
               onClick={signInWithMicrosoft}
               fullWidth
             />
@@ -170,26 +177,28 @@ export const SignInUpForm = () => {
                   render={({
                     field: { onChange, onBlur, value },
                     fieldState: { error },
-                  }) => (
-                    <StyledInputContainer>
-                      <TextInput
-                        autoFocus
-                        value={value}
-                        placeholder="Email"
-                        onBlur={onBlur}
-                        onChange={(value: string) => {
-                          onChange(value);
-                          if (signInUpStep === SignInUpStep.Password) {
-                            continueWithEmail();
-                          }
-                        }}
-                        error={showErrors ? error?.message : undefined}
-                        fullWidth
-                        disableHotkeys
-                        onKeyDown={handleKeyDown}
-                      />
-                    </StyledInputContainer>
-                  )}
+                  }) => {
+                    return (
+                      <StyledInputContainer>
+                        <TextInput
+                          autoFocus
+                          value={value}
+                          placeholder="Email"
+                          onBlur={onBlur}
+                          onChange={(value: string) => {
+                            onChange(value);
+                            if (signInUpStep === SignInUpStep.Password) {
+                              continueWithEmail();
+                            }
+                          }}
+                          error={showErrors ? error?.message : undefined}
+                          fullWidth
+                          disableHotkeys
+                          onKeyDown={handleKeyDown}
+                        />
+                      </StyledInputContainer>
+                    );
+                  }}
                 />
               </StyledFullWidthMotionDiv>
             )}
@@ -209,22 +218,24 @@ export const SignInUpForm = () => {
                   render={({
                     field: { onChange, onBlur, value },
                     fieldState: { error },
-                  }) => (
-                    <StyledInputContainer>
-                      <TextInput
-                        autoFocus
-                        value={value}
-                        type="password"
-                        placeholder="Password"
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        error={showErrors ? error?.message : undefined}
-                        fullWidth
-                        disableHotkeys
-                        onKeyDown={handleKeyDown}
-                      />
-                    </StyledInputContainer>
-                  )}
+                  }) => {
+                    return (
+                      <StyledInputContainer>
+                        <TextInput
+                          autoFocus
+                          value={value}
+                          type="password"
+                          placeholder="Password"
+                          onBlur={onBlur}
+                          onChange={onChange}
+                          error={showErrors ? error?.message : undefined}
+                          fullWidth
+                          disableHotkeys
+                          onKeyDown={handleKeyDown}
+                        />
+                      </StyledInputContainer>
+                    );
+                  }}
                 />
               </StyledFullWidthMotionDiv>
             )}
@@ -253,26 +264,26 @@ export const SignInUpForm = () => {
       </StyledContentContainer>
       {signInUpStep === SignInUpStep.Password && (
         <ActionLink onClick={handleResetPassword(form.getValues('email'))}>
-          Forgot your password?
+          {t('signInUpForm.forgot-your-password')}
         </ActionLink>
       )}
       {signInUpStep === SignInUpStep.Init && (
         <FooterNote>
-          By using Twenty, you agree to the{' '}
+          {t('signInUpForm.by-using-twenty-you-agree-to-the')}{' '}
           <a
             href="https://twenty.com/legal/terms"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Terms of Service
+            {t('signInUpForm.terms-of-service')}
           </a>{' '}
-          and{' '}
+          {t('signInUpForm.and')}{' '}
           <a
             href="https://twenty.com/legal/privacy"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Privacy Policy
+            {t('signInUpForm.privacy-policy')}
           </a>
           .
         </FooterNote>

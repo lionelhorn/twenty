@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   StyledItem,
   StyledShortcutKey,
@@ -10,6 +11,8 @@ type KeyboardMenuItemProps = {
 };
 
 export const KeyboardMenuItem = ({ shortcut }: KeyboardMenuItemProps) => {
+  const { t } = useTranslation();
+
   return (
     <StyledItem>
       {shortcut.label}
@@ -22,7 +25,7 @@ export const KeyboardMenuItem = ({ shortcut }: KeyboardMenuItemProps) => {
         ) : (
           <StyledShortcutKeyContainer>
             <StyledShortcutKey>{shortcut.firstHotKey}</StyledShortcutKey>
-            then
+            {t('keyboardMenuItem.then')}
             <StyledShortcutKey>{shortcut.secondHotKey}</StyledShortcutKey>
           </StyledShortcutKeyContainer>
         )

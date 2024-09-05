@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useRecoilValue } from 'recoil';
 
 import { viewableRecordIdState } from '@/object-record/record-right-drawer/states/viewableRecordIdState';
@@ -8,17 +9,19 @@ import { RecordValueSetterEffect } from '@/object-record/record-store/components
 import { RecordFieldValueSelectorContextProvider } from '@/object-record/record-store/contexts/RecordFieldValueSelectorContext';
 
 export const RightDrawerRecord = () => {
+  const { t } = useTranslation();
+
   const viewableRecordNameSingular = useRecoilValue(
     viewableRecordNameSingularState,
   );
   const viewableRecordId = useRecoilValue(viewableRecordIdState);
 
   if (!viewableRecordNameSingular) {
-    throw new Error(`Object name is not defined`);
+    throw new Error(t('rightDrawerRecord.object-name-is-not-defined', {}));
   }
 
   if (!viewableRecordId) {
-    throw new Error(`Record id is not defined`);
+    throw new Error(t('rightDrawerRecord.record-id-is-not-defined', {}));
   }
 
   const { objectNameSingular, objectRecordId } = useRecordShowPage(

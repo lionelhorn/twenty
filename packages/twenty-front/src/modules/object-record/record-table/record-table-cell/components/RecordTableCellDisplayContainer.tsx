@@ -32,15 +32,19 @@ export const RecordTableCellDisplayContainer = ({
   softFocus,
   onClick,
   scrollRef,
-}: React.PropsWithChildren<EditableCellDisplayContainerProps>) => (
-  <StyledOuterContainer
-    data-testid={
-      softFocus ? 'editable-cell-soft-focus-mode' : 'editable-cell-display-mode'
-    }
-    onClick={onClick}
-    ref={scrollRef}
-    hasSoftFocus={softFocus}
-  >
-    <StyledInnerContainer>{children}</StyledInnerContainer>
-  </StyledOuterContainer>
-);
+}: React.PropsWithChildren<EditableCellDisplayContainerProps>) => {
+  return (
+    <StyledOuterContainer
+      data-testid={
+        softFocus
+          ? 'editable-cell-soft-focus-mode'
+          : 'editable-cell-display-mode'
+      }
+      onClick={onClick}
+      ref={scrollRef}
+      hasSoftFocus={softFocus}
+    >
+      <StyledInnerContainer>{children}</StyledInnerContainer>
+    </StyledOuterContainer>
+  );
+};

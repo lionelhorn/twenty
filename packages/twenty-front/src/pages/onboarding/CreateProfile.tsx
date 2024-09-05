@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useCallback, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import styled from '@emotion/styled';
@@ -56,6 +57,8 @@ const validationSchema = z
 type Form = z.infer<typeof validationSchema>;
 
 export const CreateProfile = () => {
+  const { t } = useTranslation();
+
   const onboardingStatus = useOnboardingStatus();
   const setNextOnboardingStatus = useSetNextOnboardingStatus();
   const { enqueueSnackBar } = useSnackBar();
@@ -149,17 +152,21 @@ export const CreateProfile = () => {
 
   return (
     <>
-      <Title noMarginTop>Create profile</Title>
-      <SubTitle>How you'll be identified on the app.</SubTitle>
+      <Title noMarginTop>{t('createProfile.create-profile')}</Title>
+      <SubTitle>
+        {t('createProfile.how-youll-be-identified-on-the-app')}
+      </SubTitle>
       <StyledContentContainer>
         <StyledSectionContainer>
-          <H2Title title="Picture" />
+          <H2Title title={t('createProfile.picture')} />
           <ProfilePictureUploader />
         </StyledSectionContainer>
         <StyledSectionContainer>
           <H2Title
-            title="Name"
-            description="Your name as it will be displayed on the app"
+            title={t('createProfile.name')}
+            description={t(
+              'createProfile.your-name-as-it-will-be-displayed-on-the',
+            )}
           />
           {/* TODO: When react-web-hook-form is added to edit page we should create a dedicated component with context */}
           <StyledComboInputContainer>
@@ -169,22 +176,24 @@ export const CreateProfile = () => {
               render={({
                 field: { onChange, onBlur, value },
                 fieldState: { error },
-              }) => (
-                <TextInputV2
-                  autoFocus
-                  label="First Name"
-                  value={value}
-                  onFocus={() => setIsEditingMode(true)}
-                  onBlur={() => {
-                    onBlur();
-                    setIsEditingMode(false);
-                  }}
-                  onChange={onChange}
-                  placeholder="Tim"
-                  error={error?.message}
-                  fullWidth
-                />
-              )}
+              }) => {
+                return (
+                  <TextInputV2
+                    autoFocus
+                    label="First Name"
+                    value={value}
+                    onFocus={() => setIsEditingMode(true)}
+                    onBlur={() => {
+                      onBlur();
+                      setIsEditingMode(false);
+                    }}
+                    onChange={onChange}
+                    placeholder="Tim"
+                    error={error?.message}
+                    fullWidth
+                  />
+                );
+              }}
             />
             <Controller
               name="lastName"
@@ -192,28 +201,30 @@ export const CreateProfile = () => {
               render={({
                 field: { onChange, onBlur, value },
                 fieldState: { error },
-              }) => (
-                <TextInputV2
-                  label="Last Name"
-                  value={value}
-                  onFocus={() => setIsEditingMode(true)}
-                  onBlur={() => {
-                    onBlur();
-                    setIsEditingMode(false);
-                  }}
-                  onChange={onChange}
-                  placeholder="Cook"
-                  error={error?.message}
-                  fullWidth
-                />
-              )}
+              }) => {
+                return (
+                  <TextInputV2
+                    label="Last Name"
+                    value={value}
+                    onFocus={() => setIsEditingMode(true)}
+                    onBlur={() => {
+                      onBlur();
+                      setIsEditingMode(false);
+                    }}
+                    onChange={onChange}
+                    placeholder="Cook"
+                    error={error?.message}
+                    fullWidth
+                  />
+                );
+              }}
             />
           </StyledComboInputContainer>
         </StyledSectionContainer>
       </StyledContentContainer>
       <StyledButtonContainer>
         <MainButton
-          title="Continue"
+          title={t('createProfile.continue')}
           onClick={handleSubmit(onSubmit)}
           disabled={!isValid || isSubmitting}
           fullWidth

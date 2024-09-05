@@ -26,12 +26,14 @@ export const RawLink = ({
   href,
   children,
   onClick,
-}: RawLinkProps) => (
-  <div>
-    <StyledClickable className={className}>
-      <ReactLink target="_blank" onClick={onClick} to={href}>
-        {children}
-      </ReactLink>
-    </StyledClickable>
-  </div>
-);
+}: RawLinkProps) => {
+  return (
+    <div>
+      <StyledClickable className={className}>
+        <ReactLink target="_blank" onClick={onClick} to={href}>
+          {children}
+        </ReactLink>
+      </StyledClickable>
+    </div>
+  );
+};

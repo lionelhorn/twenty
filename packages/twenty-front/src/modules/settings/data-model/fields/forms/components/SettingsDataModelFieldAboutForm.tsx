@@ -56,48 +56,54 @@ export const SettingsDataModelFieldAboutForm = ({
           name="icon"
           control={control}
           defaultValue={fieldMetadataItem?.icon ?? 'IconUsers'}
-          render={({ field: { onChange, value } }) => (
-            <IconPicker
-              disabled={disabled}
-              selectedIconKey={value ?? ''}
-              onChange={({ iconKey }) => onChange(iconKey)}
-              variant="primary"
-            />
-          )}
+          render={({ field: { onChange, value } }) => {
+            return (
+              <IconPicker
+                disabled={disabled}
+                selectedIconKey={value ?? ''}
+                onChange={({ iconKey }) => onChange(iconKey)}
+                variant="primary"
+              />
+            );
+          }}
         />
         <Controller
           name={LABEL}
           control={control}
           defaultValue={fieldMetadataItem?.label}
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              placeholder="Employees"
-              value={value}
-              onChange={(e) => {
-                onChange(e);
-                trigger(LABEL);
-              }}
-              error={getErrorMessageFromError(errors.label?.message)}
-              disabled={disabled}
-              maxLength={maxLength}
-              fullWidth
-            />
-          )}
+          render={({ field: { onChange, value } }) => {
+            return (
+              <TextInput
+                placeholder="Employees"
+                value={value}
+                onChange={(e) => {
+                  onChange(e);
+                  trigger(LABEL);
+                }}
+                error={getErrorMessageFromError(errors.label?.message)}
+                disabled={disabled}
+                maxLength={maxLength}
+                fullWidth
+              />
+            );
+          }}
         />
       </StyledInputsContainer>
       <Controller
         name="description"
         control={control}
         defaultValue={fieldMetadataItem?.description}
-        render={({ field: { onChange, value } }) => (
-          <TextArea
-            placeholder="Write a description"
-            minRows={4}
-            value={value ?? undefined}
-            onChange={onChange}
-            disabled={disabled}
-          />
-        )}
+        render={({ field: { onChange, value } }) => {
+          return (
+            <TextArea
+              placeholder="Write a description"
+              minRows={4}
+              value={value ?? undefined}
+              onChange={onChange}
+              disabled={disabled}
+            />
+          );
+        }}
       />
     </>
   );

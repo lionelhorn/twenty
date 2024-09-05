@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -28,6 +29,8 @@ const StyledAddCustomFieldButton = styled(Button)`
 `;
 
 export const SettingsObjectNewFieldStep1 = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const { objectSlug = '' } = useParams();
@@ -111,8 +114,10 @@ export const SettingsObjectNewFieldStep1 = () => {
       <SettingsPageContainer>
         <StyledSection>
           <H2Title
-            title="Check deactivated fields"
-            description="Before creating a custom field, check if it already exists in the deactivated section."
+            title={t('settingsObjectNewFieldStep1.check-deactivated-fields')}
+            description={t(
+              'settingsObjectNewFieldStep1.before-creating-a-custom-field-check-if-',
+            )}
           />
           <SettingsObjectFieldTable
             objectMetadataItem={activeObjectMetadataItem}
@@ -120,7 +125,7 @@ export const SettingsObjectNewFieldStep1 = () => {
           />
           <StyledAddCustomFieldButton
             Icon={IconPlus}
-            title="Add Custom Field"
+            title={t('settingsObjectNewFieldStep1.add-custom-field')}
             size="small"
             variant="secondary"
             to={`/settings/objects/${objectSlug}/new-field/step-2`}

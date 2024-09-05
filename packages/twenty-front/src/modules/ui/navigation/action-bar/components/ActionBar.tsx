@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useEffect, useRef } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -46,6 +47,8 @@ export const ActionBar = ({
   selectedIds = [],
   totalNumberOfSelectedRecords,
 }: ActionBarProps) => {
+  const { t } = useTranslation();
+
   const setContextMenuOpenState = useSetRecoilState(contextMenuIsOpenState);
 
   useEffect(() => {
@@ -76,11 +79,13 @@ export const ActionBar = ({
         ref={wrapperRef}
       >
         {showSelectedNumberLabel && (
-          <StyledLabel>{selectedNumberLabel} selected:</StyledLabel>
+          <StyledLabel>
+            {selectedNumberLabel} {t('actionBar.selected')}
+          </StyledLabel>
         )}
-        {actionBarEntries.map((item, index) => (
-          <ActionBarItem key={index} item={item} />
-        ))}
+        {actionBarEntries.map((item, index) => {
+          return <ActionBarItem key={index} item={item} />;
+        })}
       </StyledContainerActionBar>
       <SharedNavigationModal
         actionBarEntries={actionBarEntries}

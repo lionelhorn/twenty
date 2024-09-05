@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useCallback } from 'react';
 import {
   Controller,
@@ -63,6 +64,8 @@ const validationSchema = z.object({
 type FormInput = z.infer<typeof validationSchema>;
 
 export const InviteTeam = () => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
   const { enqueueSnackBar } = useSnackBar();
   const [sendInviteLink] = useSendInviteLinkMutation();
@@ -166,42 +169,46 @@ export const InviteTeam = () => {
 
   return (
     <>
-      <Title noMarginTop>Invite your team</Title>
+      <Title noMarginTop>{t('inviteTeam.invite-your-team')}</Title>
       <SubTitle>
-        Get the most out of your workspace by inviting your team.
+        {t('inviteTeam.get-the-most-out-of-your-workspace-by-in')}
       </SubTitle>
       <StyledAnimatedContainer>
-        {fields.map((field, index) => (
-          <Controller
-            key={index}
-            name={`emails.${index}.email`}
-            control={control}
-            render={({
-              field: { onChange, onBlur, value },
-              fieldState: { error },
-            }) => (
-              <AnimatedTranslation>
-                <TextInputV2
-                  autoFocus={index === 0}
-                  type="email"
-                  value={value}
-                  placeholder={getPlaceholder(index)}
-                  onBlur={onBlur}
-                  error={error?.message}
-                  onChange={onChange}
-                  noErrorHelper
-                  fullWidth
-                />
-              </AnimatedTranslation>
-            )}
-          />
-        ))}
+        {fields.map((field, index) => {
+          return (
+            <Controller
+              key={index}
+              name={`emails.${index}.email`}
+              control={control}
+              render={({
+                field: { onChange, onBlur, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <AnimatedTranslation>
+                    <TextInputV2
+                      autoFocus={index === 0}
+                      type="email"
+                      value={value}
+                      placeholder={getPlaceholder(index)}
+                      onBlur={onBlur}
+                      error={error?.message}
+                      onChange={onChange}
+                      noErrorHelper
+                      fullWidth
+                    />
+                  </AnimatedTranslation>
+                );
+              }}
+            />
+          );
+        })}
         {isDefined(currentWorkspace?.inviteHash) && (
           <>
-            <SeparatorLineText>Or</SeparatorLineText>
+            <SeparatorLineText>{t('inviteTeam.or')}</SeparatorLineText>
             <StyledActionLinkContainer>
               <LightButton
-                title="Copy invitation link"
+                title={t('inviteTeam.copy-invitation-link')}
                 accent="tertiary"
                 onClick={copyInviteLink}
                 Icon={IconCopy}
@@ -212,7 +219,7 @@ export const InviteTeam = () => {
       </StyledAnimatedContainer>
       <StyledButtonContainer>
         <MainButton
-          title="Finish"
+          title={t('inviteTeam.finish')}
           disabled={!isValid || isSubmitting}
           onClick={handleSubmit(onSubmit)}
           fullWidth

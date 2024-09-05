@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -26,6 +27,8 @@ const StyledButtonContainer = styled.div`
 `;
 
 export const SettingsWorkspaceMembers = () => {
+  const { t } = useTranslation();
+
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [workspaceMemberToDelete, setWorkspaceMemberToDelete] = useState<
     string | undefined
@@ -46,20 +49,27 @@ export const SettingsWorkspaceMembers = () => {
   };
 
   return (
-    <SubMenuTopBarContainer Icon={IconUsers} title="Members">
+    <SubMenuTopBarContainer
+      Icon={IconUsers}
+      title={t('settingsWorkspaceMembers.members')}
+    >
       <SettingsPageContainer>
         <Section>
           <H2Title
-            title="Invite by email"
-            description="Send an invite email to your team"
+            title={t('settingsWorkspaceMembers.invite-by-email')}
+            description={t(
+              'settingsWorkspaceMembers.send-an-invite-email-to-your-team',
+            )}
           />
           <WorkspaceInviteTeam />
         </Section>
         {currentWorkspace?.inviteHash && (
           <Section>
             <H2Title
-              title="Or send an invite link"
-              description="Copy and send an invite link directly"
+              title={t('settingsWorkspaceMembers.or-send-an-invite-link')}
+              description={t(
+                'settingsWorkspaceMembers.copy-and-send-an-invite-link-directly',
+              )}
             />
             <WorkspaceInviteLink
               inviteLink={`${window.location.origin}/invite/${currentWorkspace?.inviteHash}`}
@@ -68,40 +78,45 @@ export const SettingsWorkspaceMembers = () => {
         )}
         <Section>
           <H2Title
-            title="Members"
-            description="Manage the members of your space here"
+            title={t('settingsWorkspaceMembers.members')}
+            description={t(
+              'settingsWorkspaceMembers.manage-the-members-of-your-space-here',
+            )}
           />
-          {workspaceMembers?.map((member) => (
-            <WorkspaceMemberCard
-              key={member.id}
-              workspaceMember={member as WorkspaceMember}
-              accessory={
-                currentWorkspaceMember?.id !== member.id && (
-                  <StyledButtonContainer>
-                    <IconButton
-                      onClick={() => {
-                        setIsConfirmationModalOpen(true);
-                        setWorkspaceMemberToDelete(member.id);
-                      }}
-                      variant="tertiary"
-                      size="medium"
-                      Icon={IconTrash}
-                    />
-                  </StyledButtonContainer>
-                )
-              }
-            />
-          ))}
+          {workspaceMembers?.map((member) => {
+            return (
+              <WorkspaceMemberCard
+                key={member.id}
+                workspaceMember={member as WorkspaceMember}
+                accessory={
+                  currentWorkspaceMember?.id !== member.id && (
+                    <StyledButtonContainer>
+                      <IconButton
+                        onClick={() => {
+                          setIsConfirmationModalOpen(true);
+                          setWorkspaceMemberToDelete(member.id);
+                        }}
+                        variant="tertiary"
+                        size="medium"
+                        Icon={IconTrash}
+                      />
+                    </StyledButtonContainer>
+                  )
+                }
+              />
+            );
+          })}
         </Section>
       </SettingsPageContainer>
       <ConfirmationModal
         isOpen={isConfirmationModalOpen}
         setIsOpen={setIsConfirmationModalOpen}
-        title="Account Deletion"
+        title={t('settingsWorkspaceMembers.account-deletion')}
         subtitle={
           <>
-            This action cannot be undone. This will permanently delete this user
-            and remove them from all their assignements.
+            {t(
+              'settingsWorkspaceMembers.this-action-cannot-be-undone-this-will-p',
+            )}
           </>
         }
         onConfirmClick={() =>

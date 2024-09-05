@@ -80,15 +80,17 @@ export const Favorites = () => {
                       <StyledNavigationDrawerItem
                         key={id}
                         label={labelIdentifier}
-                        Icon={() => (
-                          <StyledAvatar
-                            placeholderColorSeed={recordId}
-                            avatarUrl={avatarUrl}
-                            type={avatarType}
-                            placeholder={labelIdentifier}
-                            className="fav-avatar"
-                          />
-                        )}
+                        Icon={() => {
+                          return (
+                            <StyledAvatar
+                              placeholderColorSeed={recordId}
+                              avatarUrl={avatarUrl}
+                              type={avatarType}
+                              placeholder={labelIdentifier}
+                              className="fav-avatar"
+                            />
+                          );
+                        }}
                         to={link}
                       />
                     }

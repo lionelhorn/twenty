@@ -39,15 +39,19 @@ export const EmailsDisplay = ({ value, isFocused }: EmailsDisplayProps) => {
 
   return isFocused ? (
     <ExpandableList isChipCountDisplayed>
-      {emails.map((email, index) => (
-        <RoundedLink key={index} label={email} href={`mailto:${email}`} />
-      ))}
+      {emails.map((email, index) => {
+        return (
+          <RoundedLink key={index} label={email} href={`mailto:${email}`} />
+        );
+      })}
     </ExpandableList>
   ) : (
     <StyledContainer>
-      {emails.map((email, index) => (
-        <RoundedLink key={index} label={email} href={`mailto:${email}`} />
-      ))}
+      {emails.map((email, index) => {
+        return (
+          <RoundedLink key={index} label={email} href={`mailto:${email}`} />
+        );
+      })}
     </StyledContainer>
   );
 };

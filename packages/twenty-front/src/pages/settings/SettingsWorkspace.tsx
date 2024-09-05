@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { H2Title, IconSettings } from 'twenty-ui';
 
 import { SettingsPageContainer } from '@/settings/components/SettingsPageContainer';
@@ -8,27 +9,39 @@ import { WorkspaceLogoUploader } from '@/settings/workspace/components/Workspace
 import { SubMenuTopBarContainer } from '@/ui/layout/page/SubMenuTopBarContainer';
 import { Section } from '@/ui/layout/section/components/Section';
 
-export const SettingsWorkspace = () => (
-  <SubMenuTopBarContainer Icon={IconSettings} title="General">
-    <SettingsPageContainer>
-      <Section>
-        <H2Title title="Picture" />
-        <WorkspaceLogoUploader />
-      </Section>
-      <Section>
-        <H2Title title="Name" description="Name of your workspace" />
-        <NameField />
-      </Section>
-      <Section>
-        <H2Title
-          title="Support"
-          addornment={<ToggleImpersonate />}
-          description="Grant Twenty support temporary access to your workspace so we can troubleshoot problems or recover content on your behalf. You can revoke access at any time."
-        />
-      </Section>
-      <Section>
-        <DeleteWorkspace />
-      </Section>
-    </SettingsPageContainer>
-  </SubMenuTopBarContainer>
-);
+export const SettingsWorkspace = () => {
+  const { t } = useTranslation();
+
+  return (
+    <SubMenuTopBarContainer
+      Icon={IconSettings}
+      title={t('settingsWorkspace.general')}
+    >
+      <SettingsPageContainer>
+        <Section>
+          <H2Title title={t('settingsWorkspace.picture')} />
+          <WorkspaceLogoUploader />
+        </Section>
+        <Section>
+          <H2Title
+            title={t('settingsWorkspace.name')}
+            description={t('settingsWorkspace.name-of-your-workspace')}
+          />
+          <NameField />
+        </Section>
+        <Section>
+          <H2Title
+            title={t('settingsWorkspace.support')}
+            addornment={<ToggleImpersonate />}
+            description={t(
+              'settingsWorkspace.grant-twenty-support-temporary-access-to',
+            )}
+          />
+        </Section>
+        <Section>
+          <DeleteWorkspace />
+        </Section>
+      </SettingsPageContainer>
+    </SubMenuTopBarContainer>
+  );
+};

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 
 import { SignInBackgroundMockPage } from '@/sign-in-background-mock/components/SignInBackgroundMockPage';
@@ -33,24 +34,25 @@ const StyledButtonContainer = styled.div`
 `;
 
 export const NotFound = () => {
+  const { t } = useTranslation();
+
   return (
     <>
-      <PageTitle title="Page Not Found | Twenty" />
+      <PageTitle title={t('notFound.page-not-found-or-twenty')} />
       <StyledBackDrop>
         <AnimatedPlaceholderErrorContainer>
           <AnimatedPlaceholder type="error404" />
           <AnimatedPlaceholderEmptyTextContainer>
             <AnimatedPlaceholderErrorTitle>
-              Off the beaten path
+              {t('notFound.off-the-beaten-path')}
             </AnimatedPlaceholderErrorTitle>
             <AnimatedPlaceholderErrorSubTitle>
-              The page you're seeking is either gone or never was. Let's get you
-              back on track
+              {t('notFound.the-page-youre-seeking-is-either-gone-or')}
             </AnimatedPlaceholderErrorSubTitle>
           </AnimatedPlaceholderEmptyTextContainer>
           <StyledButtonContainer>
             <UndecoratedLink to={AppPath.Index}>
-              <MainButton title="Back to content" fullWidth />
+              <MainButton title={t('notFound.back-to-content')} fullWidth />
             </UndecoratedLink>
           </StyledButtonContainer>
         </AnimatedPlaceholderErrorContainer>

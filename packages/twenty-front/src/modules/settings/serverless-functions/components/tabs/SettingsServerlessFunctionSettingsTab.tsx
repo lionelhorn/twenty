@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { SettingsServerlessFunctionNewForm } from '@/settings/serverless-functions/components/SettingsServerlessFunctionNewForm';
 import { useDeleteOneServerlessFunction } from '@/settings/serverless-functions/hooks/useDeleteOneServerlessFunction';
 import { ServerlessFunctionFormValues } from '@/settings/serverless-functions/hooks/useServerlessFunctionUpdateFormState';
@@ -23,6 +24,8 @@ export const SettingsServerlessFunctionSettingsTab = ({
   serverlessFunctionId: string;
   onChange: (key: string) => (value: string) => void;
 }) => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const [isDeleteFunctionModalOpen, setIsDeleteFunctionModalOpen] =
     useState(false);
@@ -59,13 +62,18 @@ export const SettingsServerlessFunctionSettingsTab = ({
         onChange={onChange}
       />
       <Section>
-        <H2Title title="Danger zone" description="Delete this function" />
+        <H2Title
+          title={t('settingsServerlessFunctionSettingsTab.danger-zone')}
+          description={t(
+            'settingsServerlessFunctionSettingsTab.delete-this-function',
+          )}
+        />
         <Button
           accent="danger"
           onClick={() => setIsDeleteFunctionModalOpen(true)}
           variant="secondary"
           size="small"
-          title="Delete function"
+          title={t('settingsServerlessFunctionSettingsTab.delete-function')}
         />
       </Section>
       <ConfirmationModal
@@ -73,11 +81,16 @@ export const SettingsServerlessFunctionSettingsTab = ({
         confirmationPlaceholder={formValues.name}
         isOpen={isDeleteFunctionModalOpen}
         setIsOpen={setIsDeleteFunctionModalOpen}
-        title="Function Deletion"
+        title={t('settingsServerlessFunctionSettingsTab.function-deletion')}
         subtitle={
           <>
-            This action cannot be undone. This will permanently delete your
-            function. <br /> Please type in the function name to confirm.
+            {t(
+              'settingsServerlessFunctionSettingsTab.this-action-cannot-be-undone-this-will-p',
+            )}{' '}
+            <br />{' '}
+            {t(
+              'settingsServerlessFunctionSettingsTab.please-type-in-the-function-name-to-conf',
+            )}
           </>
         }
         onConfirmClick={deleteFunction}

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { FallbackProps } from 'react-error-boundary';
 import { useLocation } from 'react-router-dom';
@@ -21,6 +22,8 @@ export const GenericErrorFallback = ({
   error,
   resetErrorBoundary,
 }: GenericErrorFallbackProps) => {
+  const { t } = useTranslation();
+
   const location = useLocation();
 
   const [previousLocation] = useState(location);
@@ -39,7 +42,7 @@ export const GenericErrorFallback = ({
         <AnimatedPlaceholder type="errorIndex" />
         <AnimatedPlaceholderEmptyTextContainer>
           <AnimatedPlaceholderEmptyTitle>
-            Server’s on a coffee break
+            {t('genericErrorFallback.servers-on-a-coffee-break')}
           </AnimatedPlaceholderEmptyTitle>
           <AnimatedPlaceholderEmptySubTitle>
             {error.message}
@@ -47,7 +50,7 @@ export const GenericErrorFallback = ({
         </AnimatedPlaceholderEmptyTextContainer>
         <Button
           Icon={IconRefresh}
-          title="Reload"
+          title={t('genericErrorFallback.reload')}
           variant={'secondary'}
           onClick={() => resetErrorBoundary()}
         />

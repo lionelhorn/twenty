@@ -40,17 +40,19 @@ export const RecordBoardColumnDropdownMenu = ({
     <StyledMenuContainer ref={boardColumnMenuRef}>
       <DropdownMenu data-select-disable>
         <DropdownMenuItemsContainer>
-          {columnDefinition.actions.map((action) => (
-            <MenuItem
-              key={action.id}
-              onClick={() => {
-                action.callback();
-                closeMenu();
-              }}
-              LeftIcon={action.icon}
-              text={action.label}
-            />
-          ))}
+          {columnDefinition.actions.map((action) => {
+            return (
+              <MenuItem
+                key={action.id}
+                onClick={() => {
+                  action.callback();
+                  closeMenu();
+                }}
+                LeftIcon={action.icon}
+                text={action.label}
+              />
+            );
+          })}
         </DropdownMenuItemsContainer>
       </DropdownMenu>
     </StyledMenuContainer>

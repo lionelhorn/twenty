@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useUpdateOneObjectMetadataItem } from '@/object-metadata/hooks/useUpdateOneObjectMetadataItem';
 import { ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
 import { getDisabledFieldMetadataItems } from '@/object-metadata/utils/getDisabledFieldMetadataItems';
@@ -29,6 +30,8 @@ export type SettingsObjectDetailPageContentProps = {
 export const SettingsObjectDetailPageContent = ({
   objectMetadataItem,
 }: SettingsObjectDetailPageContentProps) => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const { updateOneObjectMetadataItem } = useUpdateOneObjectMetadataItem();
@@ -60,7 +63,12 @@ export const SettingsObjectDetailPageContent = ({
     >
       <SettingsPageContainer>
         <Section>
-          <H2Title title="About" description="Manage your object" />
+          <H2Title
+            title={t('settingsObjectDetailPageContent.about')}
+            description={t(
+              'settingsObjectDetailPageContent.manage-your-object',
+            )}
+          />
           <SettingsObjectSummaryCard
             iconKey={objectMetadataItem.icon ?? undefined}
             name={objectMetadataItem.labelPlural || ''}
@@ -71,7 +79,7 @@ export const SettingsObjectDetailPageContent = ({
         </Section>
         <Section>
           <H2Title
-            title="Fields"
+            title={t('settingsObjectDetailPageContent.fields')}
             description={`Customise the fields available in the ${objectMetadataItem.labelSingular} views and their display order in the ${objectMetadataItem.labelSingular} detail view and menus.`}
           />
           <SettingsObjectFieldTable
@@ -89,7 +97,7 @@ export const SettingsObjectDetailPageContent = ({
               >
                 <Button
                   Icon={IconPlus}
-                  title="Add Field"
+                  title={t('settingsObjectDetailPageContent.add-field')}
                   size="small"
                   variant="secondary"
                 />

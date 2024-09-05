@@ -104,25 +104,27 @@ export const MultiWorkspaceDropdownButton = ({
       }
       dropdownComponents={
         <DropdownMenuItemsContainer>
-          {workspaces.map((workspace) => (
-            <MenuItemSelectAvatar
-              key={workspace.id}
-              text={workspace.displayName ?? ''}
-              avatar={
-                <StyledLogo
-                  logo={
-                    getImageAbsoluteURI(
-                      workspace.logo === null
-                        ? DEFAULT_WORKSPACE_LOGO
-                        : workspace.logo,
-                    ) ?? ''
-                  }
-                />
-              }
-              selected={currentWorkspace?.id === workspace.id}
-              onClick={() => handleChange(workspace.id)}
-            />
-          ))}
+          {workspaces.map((workspace) => {
+            return (
+              <MenuItemSelectAvatar
+                key={workspace.id}
+                text={workspace.displayName ?? ''}
+                avatar={
+                  <StyledLogo
+                    logo={
+                      getImageAbsoluteURI(
+                        workspace.logo === null
+                          ? DEFAULT_WORKSPACE_LOGO
+                          : workspace.logo,
+                      ) ?? ''
+                    }
+                  />
+                }
+                selected={currentWorkspace?.id === workspace.id}
+                onClick={() => handleChange(workspace.id)}
+              />
+            );
+          })}
         </DropdownMenuItemsContainer>
       }
     />

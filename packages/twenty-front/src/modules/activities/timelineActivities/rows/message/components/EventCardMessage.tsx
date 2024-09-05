@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { isUndefined } from '@sniptt/guards';
 import { OverflowingTextWithTooltip } from 'twenty-ui';
@@ -56,6 +57,8 @@ export const EventCardMessage = ({
   messageId: string;
   authorFullName: string;
 }) => {
+  const { t } = useTranslation();
+
   const { upsertRecords } = useUpsertRecordsInStore();
 
   const {
@@ -95,14 +98,14 @@ export const EventCardMessage = ({
     );
 
     if (shouldHandleNotFound) {
-      return <div>Message not found</div>;
+      return <div>{t('eventCardMessage.message-not-found')}</div>;
     }
 
-    return <div>Error loading message</div>;
+    return <div>{t('eventCardMessage.error-loading-message')}</div>;
   }
 
   if (loading || isUndefined(message)) {
-    return <div>Loading...</div>;
+    return <div>{t('eventCardMessage.loading')}</div>;
   }
 
   const messageParticipantHandles = message.messageParticipants

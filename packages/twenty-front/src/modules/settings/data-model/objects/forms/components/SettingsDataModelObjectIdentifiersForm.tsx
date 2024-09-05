@@ -73,35 +73,37 @@ export const SettingsDataModelObjectIdentifiersForm = ({
           fieldName: 'imageIdentifierFieldMetadataId' as const,
           options: imageIdentifierFieldOptions,
         },
-      ].map(({ fieldName, label, options }) => (
-        <Controller
-          key={fieldName}
-          name={fieldName}
-          control={control}
-          defaultValue={
-            fieldName === 'labelIdentifierFieldMetadataId'
-              ? isDefined(objectMetadataItem[fieldName])
-                ? objectMetadataItem[fieldName]
-                : defaultLabelIdentifierFieldMetadataId
-              : objectMetadataItem[fieldName]
-          }
-          render={({ field: { onBlur, onChange, value } }) => {
-            return (
-              <Select
-                label={label}
-                disabled={!objectMetadataItem.isCustom || !options.length}
-                fullWidth
-                dropdownId={`${fieldName}-select`}
-                emptyOption={emptyOption}
-                options={options}
-                value={value}
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            );
-          }}
-        />
-      ))}
+      ].map(({ fieldName, label, options }) => {
+        return (
+          <Controller
+            key={fieldName}
+            name={fieldName}
+            control={control}
+            defaultValue={
+              fieldName === 'labelIdentifierFieldMetadataId'
+                ? isDefined(objectMetadataItem[fieldName])
+                  ? objectMetadataItem[fieldName]
+                  : defaultLabelIdentifierFieldMetadataId
+                : objectMetadataItem[fieldName]
+            }
+            render={({ field: { onBlur, onChange, value } }) => {
+              return (
+                <Select
+                  label={label}
+                  disabled={!objectMetadataItem.isCustom || !options.length}
+                  fullWidth
+                  dropdownId={`${fieldName}-select`}
+                  emptyOption={emptyOption}
+                  options={options}
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                />
+              );
+            }}
+          />
+        );
+      })}
     </StyledContainer>
   );
 };

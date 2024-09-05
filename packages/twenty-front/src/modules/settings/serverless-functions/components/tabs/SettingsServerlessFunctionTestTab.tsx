@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Section } from '@/ui/layout/section/components/Section';
 import { H2Title, IconPlayerPlay } from 'twenty-ui';
 
@@ -30,6 +31,8 @@ export const SettingsServerlessFunctionTestTab = ({
 }: {
   handleExecute: () => void;
 }) => {
+  const { t } = useTranslation();
+
   const settingsServerlessFunctionCodeEditorOutputParams = useRecoilValue(
     settingsServerlessFunctionCodeEditorOutputParamsState,
   );
@@ -49,7 +52,7 @@ export const SettingsServerlessFunctionTestTab = ({
       title={'Input'}
       rightNodes={[
         <Button
-          title="Run Function"
+          title={t('settingsServerlessFunctionTestTab.run-function')}
           variant="primary"
           accent="blue"
           size="small"
@@ -82,8 +85,10 @@ export const SettingsServerlessFunctionTestTab = ({
   return (
     <Section>
       <H2Title
-        title="Test your function"
-        description='Insert a JSON input, then press "Run" to test your function.'
+        title={t('settingsServerlessFunctionTestTab.test-your-function')}
+        description={t(
+          'settingsServerlessFunctionTestTab.insert-a-json-input-then-press-run-to-te',
+        )}
       />
       <StyledInputsContainer>
         <CodeEditor

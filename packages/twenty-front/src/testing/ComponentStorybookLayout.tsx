@@ -21,6 +21,6 @@ type ComponentStorybookLayoutProps = {
 export const ComponentStorybookLayout = ({
   width,
   children,
-}: ComponentStorybookLayoutProps) => (
-  <StyledLayout width={width}>{children}</StyledLayout>
-);
+}: ComponentStorybookLayoutProps) => {
+  return <StyledLayout width={width}>{children}</StyledLayout>;
+};

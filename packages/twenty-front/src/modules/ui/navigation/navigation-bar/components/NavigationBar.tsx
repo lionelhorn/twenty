@@ -19,15 +19,19 @@ type NavigationBarProps = {
 export const NavigationBar = ({
   activeItemName,
   items,
-}: NavigationBarProps) => (
-  <StyledContainer>
-    {items.map(({ Icon, name, onClick }) => (
-      <NavigationBarItem
-        key={name}
-        Icon={Icon}
-        isActive={activeItemName === name}
-        onClick={onClick}
-      />
-    ))}
-  </StyledContainer>
-);
+}: NavigationBarProps) => {
+  return (
+    <StyledContainer>
+      {items.map(({ Icon, name, onClick }) => {
+        return (
+          <NavigationBarItem
+            key={name}
+            Icon={Icon}
+            isActive={activeItemName === name}
+            onClick={onClick}
+          />
+        );
+      })}
+    </StyledContainer>
+  );
+};

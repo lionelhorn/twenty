@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useFilteredObjectMetadataItems } from '@/object-metadata/hooks/useFilteredObjectMetadataItems';
 import { Select, SelectOption } from '@/ui/input/components/Select';
 import { OBJECT_EVENT_TRIGGERS } from '@/workflow/constants/ObjectEventTriggers';
@@ -52,6 +53,8 @@ export const WorkflowEditTriggerForm = ({
   trigger: WorkflowTrigger;
   onUpdateTrigger: (trigger: WorkflowTrigger) => void;
 }) => {
+  const { t } = useTranslation();
+
   const theme = useTheme();
 
   const { activeObjectMetadataItems } = useFilteredObjectMetadataItems();
@@ -89,14 +92,15 @@ export const WorkflowEditTriggerForm = ({
         </StyledTriggerHeaderIconContainer>
 
         <StyledTriggerHeaderTitle>
-          When a {recordTypeMetadata.labelSingular} is {selectedEvent.label}
+          {t('workflowEditTriggerForm.when-a')}{' '}
+          {recordTypeMetadata.labelSingular} {t('workflowEditTriggerForm.is')}{' '}
+          {selectedEvent.label}
         </StyledTriggerHeaderTitle>
 
         <StyledTriggerHeaderType>
-          Trigger . Record is {selectedEvent.label}
+          {t('workflowEditTriggerForm.trigger-record-is')} {selectedEvent.label}
         </StyledTriggerHeaderType>
       </StyledTriggerHeader>
-
       <StyledTriggerSettings>
         <Select
           dropdownId="workflow-edit-trigger-record-type"

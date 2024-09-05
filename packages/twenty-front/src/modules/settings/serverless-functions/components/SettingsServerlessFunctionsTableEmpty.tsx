@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   AnimatedPlaceholderEmptyContainer,
   AnimatedPlaceholderEmptySubTitle,
@@ -17,6 +18,8 @@ const StyledEmptyFunctionsContainer = styled.div`
 `;
 
 export const SettingsServerlessFunctionsTableEmpty = () => {
+  const { t } = useTranslation();
+
   return (
     <StyledEmptyFunctionsContainer>
       <AnimatedPlaceholderEmptyContainer
@@ -26,15 +29,17 @@ export const SettingsServerlessFunctionsTableEmpty = () => {
         <AnimatedPlaceholder type="emptyFunctions" />
         <AnimatedPlaceholderEmptyTextContainer>
           <AnimatedPlaceholderEmptyTitle>
-            Add your first Function
+            {t('settingsServerlessFunctionsTableEmpty.add-your-first-function')}
           </AnimatedPlaceholderEmptyTitle>
           <AnimatedPlaceholderEmptySubTitle>
-            Add your first Function to get started
+            {t(
+              'settingsServerlessFunctionsTableEmpty.add-your-first-function-to-get-started',
+            )}
           </AnimatedPlaceholderEmptySubTitle>
         </AnimatedPlaceholderEmptyTextContainer>
         <Button
           Icon={IconPlus}
-          title="New function"
+          title={t('settingsServerlessFunctionsTableEmpty.new-function')}
           to={getSettingsPagePath(SettingsPath.NewServerlessFunction)}
         />
       </AnimatedPlaceholderEmptyContainer>

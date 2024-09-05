@@ -30,13 +30,15 @@ export const CalendarEventParticipantsResponseStatus = ({
 
   return (
     <>
-      {responseStatusOrder.map((responseStatus) => (
-        <CalendarEventParticipantsResponseStatusField
-          key={responseStatus}
-          responseStatus={responseStatus}
-          participants={groupedParticipants[responseStatus] || []}
-        />
-      ))}
+      {responseStatusOrder.map((responseStatus) => {
+        return (
+          <CalendarEventParticipantsResponseStatusField
+            key={responseStatus}
+            responseStatus={responseStatus}
+            participants={groupedParticipants[responseStatus] || []}
+          />
+        );
+      })}
     </>
   );
 };

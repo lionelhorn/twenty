@@ -13,30 +13,32 @@ export const SettingsAccountsCalendarTimeFormatSelect = ({
   onChange,
   timeZone,
   value,
-}: SettingsAccountsCalendarTimeFormatSelectProps) => (
-  <Select
-    dropdownId="settings-accounts-calendar-time-format"
-    label="Time format"
-    fullWidth
-    value={value}
-    options={[
-      {
-        label: `24h (${formatInTimeZone(
-          Date.now(),
-          timeZone,
-          TimeFormat.HOUR_24,
-        )})`,
-        value: TimeFormat.HOUR_24,
-      },
-      {
-        label: `12h (${formatInTimeZone(
-          Date.now(),
-          timeZone,
-          TimeFormat.HOUR_12,
-        )})`,
-        value: TimeFormat.HOUR_12,
-      },
-    ]}
-    onChange={onChange}
-  />
-);
+}: SettingsAccountsCalendarTimeFormatSelectProps) => {
+  return (
+    <Select
+      dropdownId="settings-accounts-calendar-time-format"
+      label="Time format"
+      fullWidth
+      value={value}
+      options={[
+        {
+          label: `24h (${formatInTimeZone(
+            Date.now(),
+            timeZone,
+            TimeFormat.HOUR_24,
+          )})`,
+          value: TimeFormat.HOUR_24,
+        },
+        {
+          label: `12h (${formatInTimeZone(
+            Date.now(),
+            timeZone,
+            TimeFormat.HOUR_12,
+          )})`,
+          value: TimeFormat.HOUR_12,
+        },
+      ]}
+      onChange={onChange}
+    />
+  );
+};

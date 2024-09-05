@@ -106,20 +106,22 @@ export const SettingsNavigationDrawerItems = () => {
             path={SettingsPath.Accounts}
             Icon={IconAt}
           />
-          {accountSubSettings.map((navigationItem, index) => (
-            <SettingsNavigationDrawerItem
-              key={index}
-              label={navigationItem.label}
-              path={navigationItem.path}
-              Icon={navigationItem.Icon}
-              indentationLevel={navigationItem.indentationLevel}
-              subItemState={getNavigationSubItemState({
-                arrayLength: accountSubSettings.length,
-                index,
-                selectedIndex,
-              })}
-            />
-          ))}
+          {accountSubSettings.map((navigationItem, index) => {
+            return (
+              <SettingsNavigationDrawerItem
+                key={index}
+                label={navigationItem.label}
+                path={navigationItem.path}
+                Icon={navigationItem.Icon}
+                indentationLevel={navigationItem.indentationLevel}
+                subItemState={getNavigationSubItemState({
+                  arrayLength: accountSubSettings.length,
+                  index,
+                  selectedIndex,
+                })}
+              />
+            );
+          })}
         </NavigationDrawerItemGroup>
       </NavigationDrawerSection>
       <NavigationDrawerSection>

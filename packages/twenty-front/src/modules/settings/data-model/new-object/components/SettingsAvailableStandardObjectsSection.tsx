@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { H2Title } from 'twenty-ui';
 
 import { ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
@@ -21,34 +22,48 @@ export const SettingsAvailableStandardObjectsSection = ({
   objectItems,
   onChange,
   selectedIds,
-}: SettingsAvailableStandardObjectsSectionProps) => (
-  <Section>
-    <H2Title
-      title="Available"
-      description="Select one or several standard objects to activate below"
-    />
-    <Table>
-      <StyledAvailableStandardObjectTableRow>
-        <TableHeader></TableHeader>
-        <TableHeader>Name</TableHeader>
-        <TableHeader>Description</TableHeader>
-        <TableHeader align="right">Fields</TableHeader>
-      </StyledAvailableStandardObjectTableRow>
-      <TableBody>
-        {objectItems.map((objectItem) => (
-          <SettingsAvailableStandardObjectItemTableRow
-            key={objectItem.id}
-            isSelected={selectedIds[objectItem.id]}
-            objectItem={objectItem}
-            onClick={() =>
-              onChange({
-                ...selectedIds,
-                [objectItem.id]: !selectedIds[objectItem.id],
-              })
-            }
-          />
-        ))}
-      </TableBody>
-    </Table>
-  </Section>
-);
+}: SettingsAvailableStandardObjectsSectionProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <Section>
+      <H2Title
+        title={t('settingsAvailableStandardObjectsSection.available')}
+        description={t(
+          'settingsAvailableStandardObjectsSection.select-one-or-several-standard-objects-t',
+        )}
+      />
+      <Table>
+        <StyledAvailableStandardObjectTableRow>
+          <TableHeader></TableHeader>
+          <TableHeader>
+            {t('settingsAvailableStandardObjectsSection.name')}
+          </TableHeader>
+          <TableHeader>
+            {t('settingsAvailableStandardObjectsSection.description')}
+          </TableHeader>
+          <TableHeader align="right">
+            {t('settingsAvailableStandardObjectsSection.fields')}
+          </TableHeader>
+        </StyledAvailableStandardObjectTableRow>
+        <TableBody>
+          {objectItems.map((objectItem) => {
+            return (
+              <SettingsAvailableStandardObjectItemTableRow
+                key={objectItem.id}
+                isSelected={selectedIds[objectItem.id]}
+                objectItem={objectItem}
+                onClick={() =>
+                  onChange({
+                    ...selectedIds,
+                    [objectItem.id]: !selectedIds[objectItem.id],
+                  })
+                }
+              />
+            );
+          })}
+        </TableBody>
+      </Table>
+    </Section>
+  );
+};

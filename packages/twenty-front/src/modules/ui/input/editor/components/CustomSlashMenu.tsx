@@ -26,15 +26,17 @@ export const CustomSlashMenu = (props: CustomSlashMenuProps) => {
     <StyledSlashMenu>
       <DropdownMenu style={{ zIndex: 2001 }}>
         <DropdownMenuItemsContainer>
-          {props.items.map((item, index) => (
-            <MenuItemSuggestion
-              key={item.title}
-              onClick={() => item.onItemClick()}
-              text={item.title}
-              LeftIcon={item.Icon}
-              selected={props.selectedIndex === index}
-            />
-          ))}
+          {props.items.map((item, index) => {
+            return (
+              <MenuItemSuggestion
+                key={item.title}
+                onClick={() => item.onItemClick()}
+                text={item.title}
+                LeftIcon={item.Icon}
+                selected={props.selectedIndex === index}
+              />
+            );
+          })}
         </DropdownMenuItemsContainer>
       </DropdownMenu>
     </StyledSlashMenu>

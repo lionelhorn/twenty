@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
 import {
   SettingsObjectFieldItemTableRow,
@@ -90,6 +91,8 @@ export const SettingsObjectFieldTable = ({
   objectMetadataItem,
   mode,
 }: SettingsObjectFieldTableProps) => {
+  const { t } = useTranslation();
+
   const [searchTerm, setSearchTerm] = useState('');
 
   const tableMetadata = objectMetadataItem.isCustom
@@ -181,42 +184,48 @@ export const SettingsObjectFieldTable = ({
       />
       <Table>
         <StyledObjectFieldTableRow>
-          {tableMetadata.fields.map((item) => (
-            <SortableTableHeader
-              key={item.fieldName}
-              fieldName={item.fieldName}
-              label={item.fieldLabel}
-              tableId={tableMetadata.tableId}
-              initialSort={tableMetadata.initialSort}
-            />
-          ))}
+          {tableMetadata.fields.map((item) => {
+            return (
+              <SortableTableHeader
+                key={item.fieldName}
+                fieldName={item.fieldName}
+                label={item.fieldLabel}
+                tableId={tableMetadata.tableId}
+                initialSort={tableMetadata.initialSort}
+              />
+            );
+          })}
           <TableHeader></TableHeader>
         </StyledObjectFieldTableRow>
         {isNonEmptyArray(filteredActiveItems) && (
-          <TableSection title="Active">
-            {filteredActiveItems.map((objectSettingsDetailItem) => (
-              <SettingsObjectFieldItemTableRow
-                key={objectSettingsDetailItem.fieldMetadataItem.id}
-                settingsObjectDetailTableItem={objectSettingsDetailItem}
-                status="active"
-                mode={mode}
-              />
-            ))}
+          <TableSection title={t('settingsObjectFieldTable.active')}>
+            {filteredActiveItems.map((objectSettingsDetailItem) => {
+              return (
+                <SettingsObjectFieldItemTableRow
+                  key={objectSettingsDetailItem.fieldMetadataItem.id}
+                  settingsObjectDetailTableItem={objectSettingsDetailItem}
+                  status="active"
+                  mode={mode}
+                />
+              );
+            })}
           </TableSection>
         )}
         {isNonEmptyArray(filteredDisabledItems) && (
           <TableSection
             isInitiallyExpanded={mode === 'new-field' ? true : false}
-            title="Inactive"
+            title={t('settingsObjectFieldTable.inactive')}
           >
-            {filteredDisabledItems.map((objectSettingsDetailItem) => (
-              <SettingsObjectFieldItemTableRow
-                key={objectSettingsDetailItem.fieldMetadataItem.id}
-                settingsObjectDetailTableItem={objectSettingsDetailItem}
-                status="disabled"
-                mode={mode}
-              />
-            ))}
+            {filteredDisabledItems.map((objectSettingsDetailItem) => {
+              return (
+                <SettingsObjectFieldItemTableRow
+                  key={objectSettingsDetailItem.fieldMetadataItem.id}
+                  settingsObjectDetailTableItem={objectSettingsDetailItem}
+                  status="disabled"
+                  mode={mode}
+                />
+              );
+            })}
           </TableSection>
         )}
       </Table>

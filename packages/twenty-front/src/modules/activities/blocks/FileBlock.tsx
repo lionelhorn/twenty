@@ -1,3 +1,4 @@
+import i18n from '~/utils/translation-utils';
 import { createReactBlockSpec } from '@blocknote/react';
 import styled from '@emotion/styled';
 import { isNonEmptyString } from '@sniptt/guards';
@@ -113,7 +114,7 @@ export const FileBlock = createReactBlockSpec(
             />
             <Button
               onClick={handleUploadFileClick}
-              title="Upload File"
+              title={i18n.t('.upload-file')}
             ></Button>
           </StyledUploadFileContainer>
         </AppThemeProvider>

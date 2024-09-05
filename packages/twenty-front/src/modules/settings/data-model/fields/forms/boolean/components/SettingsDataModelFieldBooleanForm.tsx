@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Controller, useFormContext } from 'react-hook-form';
 import styled from '@emotion/styled';
 import { IconCheck, IconX } from 'twenty-ui';
@@ -38,6 +39,8 @@ export const SettingsDataModelFieldBooleanForm = ({
   className,
   fieldMetadataItem,
 }: SettingsDataModelFieldBooleanFormProps) => {
+  const { t } = useTranslation();
+
   const { control } = useFormContext<SettingsDataModelFieldBooleanFormValues>();
 
   const isEditMode = isDefined(fieldMetadataItem?.defaultValue);
@@ -47,35 +50,39 @@ export const SettingsDataModelFieldBooleanForm = ({
 
   return (
     <StyledContainer>
-      <StyledLabel>Default Value</StyledLabel>
+      <StyledLabel>
+        {t('settingsDataModelFieldBooleanForm.default-value')}
+      </StyledLabel>
       <Controller
         name="defaultValue"
         control={control}
         defaultValue={initialDefaultValue}
-        render={({ field: { onChange, value } }) => (
-          <Select
-            className={className}
-            fullWidth
-            // TODO: temporary fix - disabling edition because after editing the defaultValue,
-            // newly created records are not taking into account the updated defaultValue properly.
-            disabled={isEditMode}
-            dropdownId="object-field-default-value-select"
-            value={value}
-            onChange={onChange}
-            options={[
-              {
-                value: true,
-                label: 'True',
-                Icon: IconCheck,
-              },
-              {
-                value: false,
-                label: 'False',
-                Icon: IconX,
-              },
-            ]}
-          />
-        )}
+        render={({ field: { onChange, value } }) => {
+          return (
+            <Select
+              className={className}
+              fullWidth
+              // TODO: temporary fix - disabling edition because after editing the defaultValue,
+              // newly created records are not taking into account the updated defaultValue properly.
+              disabled={isEditMode}
+              dropdownId="object-field-default-value-select"
+              value={value}
+              onChange={onChange}
+              options={[
+                {
+                  value: true,
+                  label: 'True',
+                  Icon: IconCheck,
+                },
+                {
+                  value: false,
+                  label: 'False',
+                  Icon: IconX,
+                },
+              ]}
+            />
+          );
+        }}
       />
     </StyledContainer>
   );

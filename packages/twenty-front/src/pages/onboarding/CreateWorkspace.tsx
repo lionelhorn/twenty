@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useCallback } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import styled from '@emotion/styled';
@@ -47,6 +48,8 @@ const validationSchema = z
 type Form = z.infer<typeof validationSchema>;
 
 export const CreateWorkspace = () => {
+  const { t } = useTranslation();
+
   const { enqueueSnackBar } = useSnackBar();
   const onboardingStatus = useOnboardingStatus();
 
@@ -113,20 +116,19 @@ export const CreateWorkspace = () => {
 
   return (
     <>
-      <Title noMarginTop>Create your workspace</Title>
+      <Title noMarginTop>{t('createWorkspace.create-your-workspace')}</Title>
       <SubTitle>
-        A shared environment where you will be able to manage your customer
-        relations with your team.
+        {t('createWorkspace.a-shared-environment-where-you-will-be-a')}
       </SubTitle>
       <StyledContentContainer>
         <StyledSectionContainer>
-          <H2Title title="Workspace logo" />
+          <H2Title title={t('createWorkspace.workspace-logo')} />
           <WorkspaceLogoUploader />
         </StyledSectionContainer>
         <StyledSectionContainer>
           <H2Title
-            title="Workspace name"
-            description="The name of your organization"
+            title={t('createWorkspace.workspace-name')}
+            description={t('createWorkspace.the-name-of-your-organization')}
           />
           <Controller
             name="name"
@@ -134,24 +136,26 @@ export const CreateWorkspace = () => {
             render={({
               field: { onChange, onBlur, value },
               fieldState: { error },
-            }) => (
-              <TextInputV2
-                autoFocus
-                value={value}
-                placeholder="Apple"
-                onBlur={onBlur}
-                onChange={onChange}
-                error={error?.message}
-                onKeyDown={handleKeyDown}
-                fullWidth
-              />
-            )}
+            }) => {
+              return (
+                <TextInputV2
+                  autoFocus
+                  value={value}
+                  placeholder="Apple"
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  error={error?.message}
+                  onKeyDown={handleKeyDown}
+                  fullWidth
+                />
+              );
+            }}
           />
         </StyledSectionContainer>
       </StyledContentContainer>
       <StyledButtonContainer>
         <MainButton
-          title="Continue"
+          title={t('createWorkspace.continue')}
           onClick={handleSubmit(onSubmit)}
           disabled={!isValid || isSubmitting}
           Icon={() => isSubmitting && <Loader />}

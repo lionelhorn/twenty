@@ -44,13 +44,15 @@ export const SpreadsheetImportStepperContainer = () => {
     <>
       <StyledHeader>
         <StepBar activeStep={activeStep}>
-          {steps.map((key) => (
-            <StepBar.Step
-              activeStep={activeStep}
-              label={stepTitles[key]}
-              key={key}
-            />
-          ))}
+          {steps.map((key) => {
+            return (
+              <StepBar.Step
+                activeStep={activeStep}
+                label={stepTitles[key]}
+                key={key}
+              />
+            );
+          })}
         </StepBar>
       </StyledHeader>
       <SpreadsheetImportStepper nextStep={nextStep} prevStep={prevStep} />

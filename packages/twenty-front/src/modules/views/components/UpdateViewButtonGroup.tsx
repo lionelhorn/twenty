@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useCallback } from 'react';
 import styled from '@emotion/styled';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -33,6 +34,8 @@ export type UpdateViewButtonGroupProps = {
 export const UpdateViewButtonGroup = ({
   hotkeyScope,
 }: UpdateViewButtonGroupProps) => {
+  const { t } = useTranslation();
+
   const { canPersistViewSelector, currentViewIdState } = useViewStates();
   const { saveCurrentViewFilterAndSorts } = useSaveCurrentViewFiltersAndSorts();
 
@@ -87,7 +90,10 @@ export const UpdateViewButtonGroup = ({
     <StyledContainer>
       {currentViewWithCombinedFiltersAndSorts?.key !== 'INDEX' ? (
         <ButtonGroup size="small" accent="blue">
-          <Button title="Update view" onClick={handleViewUpdate} />
+          <Button
+            title={t('updateViewButtonGroup.update-view')}
+            onClick={handleViewUpdate}
+          />
           <Dropdown
             dropdownId={UPDATE_VIEW_BUTTON_DROPDOWN_ID}
             dropdownHotkeyScope={hotkeyScope}
@@ -114,7 +120,7 @@ export const UpdateViewButtonGroup = ({
         </ButtonGroup>
       ) : (
         <Button
-          title="Save as new view"
+          title={t('updateViewButtonGroup.save-as-new-view')}
           onClick={handleViewCreate}
           accent="blue"
           size="small"

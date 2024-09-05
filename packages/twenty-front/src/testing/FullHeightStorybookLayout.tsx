@@ -13,4 +13,6 @@ type FullHeightStorybookLayoutProps = {
 
 export const FullHeightStorybookLayout = ({
   children,
-}: FullHeightStorybookLayoutProps) => <StyledLayout>{children}</StyledLayout>;
+}: FullHeightStorybookLayoutProps) => {
+  return <StyledLayout>{children}</StyledLayout>;
+};

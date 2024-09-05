@@ -68,16 +68,18 @@ export const SettingsAccountsCalendarChannelsContainer = () => {
           />
         </StyledCalenderContainer>
       )}
-      {calendarChannels.map((calendarChannel) => (
-        <React.Fragment key={calendarChannel.id}>
-          {(calendarChannels.length === 1 ||
-            calendarChannel.id === activeTabId) && (
-            <SettingsAccountsCalendarChannelDetails
-              calendarChannel={calendarChannel}
-            />
-          )}
-        </React.Fragment>
-      ))}
+      {calendarChannels.map((calendarChannel) => {
+        return (
+          <React.Fragment key={calendarChannel.id}>
+            {(calendarChannels.length === 1 ||
+              calendarChannel.id === activeTabId) && (
+              <SettingsAccountsCalendarChannelDetails
+                calendarChannel={calendarChannel}
+              />
+            )}
+          </React.Fragment>
+        );
+      })}
       {false && activeTabId === 'general' && (
         <SettingsAccountsCalendarChannelsGeneral />
       )}

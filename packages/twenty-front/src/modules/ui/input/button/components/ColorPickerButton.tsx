@@ -31,11 +31,15 @@ export const ColorPickerButton = ({
   colorName,
   isSelected,
   onClick,
-}: ColorPickerButtonProps) => (
-  <StyledButton
-    size="medium"
-    isSelected={isSelected}
-    Icon={() => <ColorSample colorName={colorName} />}
-    onClick={onClick}
-  />
-);
+}: ColorPickerButtonProps) => {
+  return (
+    <StyledButton
+      size="medium"
+      isSelected={isSelected}
+      Icon={() => {
+        return <ColorSample colorName={colorName} />;
+      }}
+      onClick={onClick}
+    />
+  );
+};

@@ -62,14 +62,16 @@ export const MessageThreadSubscribersChip = ({
           />
         ) : (
           <AvatarGroup
-            avatars={subscriberNames.map((name, index) => (
-              <Avatar
-                key={name}
-                avatarUrl={susbcriberAvatarUrls[index] ?? ''}
-                placeholder={name}
-                type="rounded"
-              />
-            ))}
+            avatars={subscriberNames.map((name, index) => {
+              return (
+                <Avatar
+                  key={name}
+                  avatarUrl={susbcriberAvatarUrls[index] ?? ''}
+                  placeholder={name}
+                  type="rounded"
+                />
+              );
+            })}
           />
         )
       }

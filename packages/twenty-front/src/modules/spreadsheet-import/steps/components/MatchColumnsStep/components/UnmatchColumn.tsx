@@ -93,15 +93,17 @@ export const UnmatchColumn = <T extends string>({
               <AccordionIcon as={StyledIconChevronDown} />
             </StyledAccordionButton>
             <AccordionPanel mt={16} gap={12} display="flex" flexDir="column">
-              {column.matchedOptions.map((option) => (
-                <SubMatchingSelect
-                  option={option}
-                  column={column}
-                  onSubChange={onSubChange}
-                  key={option.entry}
-                  placeholder="Select an option"
-                />
-              ))}
+              {column.matchedOptions.map((option) => {
+                return (
+                  <SubMatchingSelect
+                    option={option}
+                    column={column}
+                    onSubChange={onSubChange}
+                    key={option.entry}
+                    placeholder="Select an option"
+                  />
+                );
+              })}
             </AccordionPanel>
           </AccordionItem>
         </Accordion>

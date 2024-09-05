@@ -48,22 +48,24 @@ export const EventList = ({ events, targetableObject }: EventListProps) => {
   return (
     <ScrollWrapper contextProviderName="eventList">
       <StyledTimelineContainer>
-        {groupedEvents.map((group, index) => (
-          <EventsGroup
-            mainObjectMetadataItem={mainObjectMetadataItem}
-            key={group.year.toString() + group.month}
-            group={group}
-            month={new Date(group.items[0].createdAt).toLocaleString(
-              'default',
-              { month: 'long' },
-            )}
-            year={
-              index === 0 || group.year !== groupedEvents[index - 1].year
-                ? group.year
-                : undefined
-            }
-          />
-        ))}
+        {groupedEvents.map((group, index) => {
+          return (
+            <EventsGroup
+              mainObjectMetadataItem={mainObjectMetadataItem}
+              key={group.year.toString() + group.month}
+              group={group}
+              month={new Date(group.items[0].createdAt).toLocaleString(
+                'default',
+                { month: 'long' },
+              )}
+              year={
+                index === 0 || group.year !== groupedEvents[index - 1].year
+                  ? group.year
+                  : undefined
+              }
+            />
+          );
+        })}
       </StyledTimelineContainer>
     </ScrollWrapper>
   );

@@ -58,15 +58,17 @@ export const Status = ({
   text,
   onClick,
   weight = 'regular',
-}: StatusProps) => (
-  <StyledStatus
-    className={className}
-    color={themeColorSchema.catch('gray').parse(color)}
-    onClick={onClick}
-    weight={weight}
-    isLoaderVisible={isLoaderVisible}
-  >
-    <StyledContent>{text}</StyledContent>
-    {isLoaderVisible ? <Loader color={color} /> : null}
-  </StyledStatus>
-);
+}: StatusProps) => {
+  return (
+    <StyledStatus
+      className={className}
+      color={themeColorSchema.catch('gray').parse(color)}
+      onClick={onClick}
+      weight={weight}
+      isLoaderVisible={isLoaderVisible}
+    >
+      <StyledContent>{text}</StyledContent>
+      {isLoaderVisible ? <Loader color={color} /> : null}
+    </StyledStatus>
+  );
+};

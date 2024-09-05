@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { useCallback, useState } from 'react';
 
@@ -41,6 +42,8 @@ export const SelectHeaderStep = ({
   onBack,
   currentStepState,
 }: SelectHeaderStepProps) => {
+  const { t } = useTranslation();
+
   const [selectedRowIndexes, setSelectedRowIndexes] = useState<
     ReadonlySet<number>
   >(new Set([0]));
@@ -90,7 +93,7 @@ export const SelectHeaderStep = ({
   return (
     <>
       <Modal.Content>
-        <StyledHeading title="Select header row" />
+        <StyledHeading title={t('selectHeaderStep.select-header-row')} />
         <StyledTableContainer>
           <SelectHeaderTable
             importedRows={importedRows}
@@ -102,7 +105,7 @@ export const SelectHeaderStep = ({
       <StepNavigationButton
         onClick={handleOnContinue}
         onBack={onBack}
-        title="Continue"
+        title={t('selectHeaderStep.continue')}
         isLoading={isLoading}
       />
     </>

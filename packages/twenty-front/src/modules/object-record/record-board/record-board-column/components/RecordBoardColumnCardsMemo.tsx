@@ -9,10 +9,15 @@ type RecordBoardColumnCardsMemoProps = {
 
 export const RecordBoardColumnCardsMemo = React.memo(
   ({ recordIds }: RecordBoardColumnCardsMemoProps) => {
-    return recordIds.map((recordId, index) => (
-      <RecordBoardCardContext.Provider value={{ recordId }} key={recordId}>
-        <RecordBoardCardDraggableContainer recordId={recordId} index={index} />
-      </RecordBoardCardContext.Provider>
-    ));
+    return recordIds.map((recordId, index) => {
+      return (
+        <RecordBoardCardContext.Provider value={{ recordId }} key={recordId}>
+          <RecordBoardCardDraggableContainer
+            recordId={recordId}
+            index={index}
+          />
+        </RecordBoardCardContext.Provider>
+      );
+    });
   },
 );

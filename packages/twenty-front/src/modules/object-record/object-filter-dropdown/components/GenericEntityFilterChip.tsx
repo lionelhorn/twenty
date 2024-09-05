@@ -10,12 +10,14 @@ type GenericEntityFilterChipProps = {
 export const GenericEntityFilterChip = ({
   filter,
   Icon,
-}: GenericEntityFilterChipProps) => (
-  <AvatarChip
-    placeholderColorSeed={filter.value}
-    name={filter.displayValue}
-    avatarType="rounded"
-    avatarUrl={filter.displayAvatarUrl}
-    LeftIcon={Icon}
-  />
-);
+}: GenericEntityFilterChipProps) => {
+  return (
+    <AvatarChip
+      placeholderColorSeed={filter.value}
+      name={filter.displayValue}
+      avatarType="rounded"
+      avatarUrl={filter.displayAvatarUrl}
+      LeftIcon={Icon}
+    />
+  );
+};

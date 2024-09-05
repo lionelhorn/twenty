@@ -244,119 +244,133 @@ export const SettingsRoutes = ({
   isBillingEnabled,
   isCRMMigrationEnabled,
   isServerlessFunctionSettingsEnabled,
-}: SettingsRoutesProps) => (
-  <Suspense fallback={null}>
-    <Routes>
-      <Route path={SettingsPath.ProfilePage} element={<SettingsProfile />} />
-      <Route path={SettingsPath.Appearance} element={<SettingsAppearance />} />
-      <Route path={SettingsPath.Accounts} element={<SettingsAccounts />} />
-      <Route path={SettingsPath.NewAccount} element={<SettingsNewAccount />} />
-      <Route
-        path={SettingsPath.AccountsCalendars}
-        element={<SettingsAccountsCalendars />}
-      />
-      <Route
-        path={SettingsPath.AccountsEmails}
-        element={<SettingsAccountsEmails />}
-      />
-      {isBillingEnabled && (
-        <Route path={SettingsPath.Billing} element={<SettingsBilling />} />
-      )}
-      <Route
-        path={SettingsPath.WorkspaceMembersPage}
-        element={<SettingsWorkspaceMembers />}
-      />
-      <Route path={SettingsPath.Workspace} element={<SettingsWorkspace />} />
-      <Route path={SettingsPath.Objects} element={<SettingsObjects />} />
-      <Route
-        path={SettingsPath.ObjectOverview}
-        element={<SettingsObjectOverview />}
-      />
-      <Route
-        path={SettingsPath.ObjectDetail}
-        element={<SettingsObjectDetailPage />}
-      />
-      <Route path={SettingsPath.ObjectEdit} element={<SettingsObjectEdit />} />
-      <Route path={SettingsPath.NewObject} element={<SettingsNewObject />} />
-      <Route path={SettingsPath.Developers} element={<SettingsDevelopers />} />
-      {isCRMMigrationEnabled && (
+}: SettingsRoutesProps) => {
+  return (
+    <Suspense fallback={null}>
+      <Routes>
+        <Route path={SettingsPath.ProfilePage} element={<SettingsProfile />} />
         <Route
-          path={SettingsPath.CRMMigration}
-          element={<SettingsCRMMigration />}
+          path={SettingsPath.Appearance}
+          element={<SettingsAppearance />}
         />
-      )}
-      <Route
-        path={AppPath.DevelopersCatchAll}
-        element={
-          <Routes>
-            <Route
-              path={SettingsPath.DevelopersNewApiKey}
-              element={<SettingsDevelopersApiKeysNew />}
-            />
-            <Route
-              path={SettingsPath.DevelopersApiKeyDetail}
-              element={<SettingsDevelopersApiKeyDetail />}
-            />
-            <Route
-              path={SettingsPath.DevelopersNewWebhook}
-              element={<SettingsDevelopersWebhooksNew />}
-            />
-            <Route
-              path={SettingsPath.DevelopersNewWebhookDetail}
-              element={<SettingsDevelopersWebhooksDetail />}
-            />
-          </Routes>
-        }
-      />
-      {isServerlessFunctionSettingsEnabled && (
-        <>
+        <Route path={SettingsPath.Accounts} element={<SettingsAccounts />} />
+        <Route
+          path={SettingsPath.NewAccount}
+          element={<SettingsNewAccount />}
+        />
+        <Route
+          path={SettingsPath.AccountsCalendars}
+          element={<SettingsAccountsCalendars />}
+        />
+        <Route
+          path={SettingsPath.AccountsEmails}
+          element={<SettingsAccountsEmails />}
+        />
+        {isBillingEnabled && (
+          <Route path={SettingsPath.Billing} element={<SettingsBilling />} />
+        )}
+        <Route
+          path={SettingsPath.WorkspaceMembersPage}
+          element={<SettingsWorkspaceMembers />}
+        />
+        <Route path={SettingsPath.Workspace} element={<SettingsWorkspace />} />
+        <Route path={SettingsPath.Objects} element={<SettingsObjects />} />
+        <Route
+          path={SettingsPath.ObjectOverview}
+          element={<SettingsObjectOverview />}
+        />
+        <Route
+          path={SettingsPath.ObjectDetail}
+          element={<SettingsObjectDetailPage />}
+        />
+        <Route
+          path={SettingsPath.ObjectEdit}
+          element={<SettingsObjectEdit />}
+        />
+        <Route path={SettingsPath.NewObject} element={<SettingsNewObject />} />
+        <Route
+          path={SettingsPath.Developers}
+          element={<SettingsDevelopers />}
+        />
+        {isCRMMigrationEnabled && (
           <Route
-            path={SettingsPath.ServerlessFunctions}
-            element={<SettingsServerlessFunctions />}
+            path={SettingsPath.CRMMigration}
+            element={<SettingsCRMMigration />}
           />
-          <Route
-            path={SettingsPath.NewServerlessFunction}
-            element={<SettingsServerlessFunctionsNew />}
-          />
-          <Route
-            path={SettingsPath.ServerlessFunctionDetail}
-            element={<SettingsServerlessFunctionDetailWrapper />}
-          />
-        </>
-      )}
-      <Route
-        path={SettingsPath.Integrations}
-        element={<SettingsIntegrations />}
-      />
-      <Route
-        path={SettingsPath.IntegrationDatabase}
-        element={<SettingsIntegrationDatabase />}
-      />
-      <Route
-        path={SettingsPath.IntegrationNewDatabaseConnection}
-        element={<SettingsIntegrationNewDatabaseConnection />}
-      />
-      <Route
-        path={SettingsPath.IntegrationEditDatabaseConnection}
-        element={<SettingsIntegrationEditDatabaseConnection />}
-      />
-      <Route
-        path={SettingsPath.IntegrationDatabaseConnection}
-        element={<SettingsIntegrationShowDatabaseConnection />}
-      />
-      <Route
-        path={SettingsPath.ObjectNewFieldStep1}
-        element={<SettingsObjectNewFieldStep1 />}
-      />
-      <Route
-        path={SettingsPath.ObjectNewFieldStep2}
-        element={<SettingsObjectNewFieldStep2 />}
-      />
-      <Route
-        path={SettingsPath.ObjectFieldEdit}
-        element={<SettingsObjectFieldEdit />}
-      />
-      <Route path={SettingsPath.Releases} element={<Releases />} />
-    </Routes>
-  </Suspense>
-);
+        )}
+        <Route
+          path={AppPath.DevelopersCatchAll}
+          element={
+            <Routes>
+              <Route
+                path={SettingsPath.DevelopersNewApiKey}
+                element={<SettingsDevelopersApiKeysNew />}
+              />
+              <Route
+                path={SettingsPath.DevelopersApiKeyDetail}
+                element={<SettingsDevelopersApiKeyDetail />}
+              />
+              <Route
+                path={SettingsPath.DevelopersNewWebhook}
+                element={<SettingsDevelopersWebhooksNew />}
+              />
+              <Route
+                path={SettingsPath.DevelopersNewWebhookDetail}
+                element={<SettingsDevelopersWebhooksDetail />}
+              />
+            </Routes>
+          }
+        />
+        {isServerlessFunctionSettingsEnabled && (
+          <>
+            <Route
+              path={SettingsPath.ServerlessFunctions}
+              element={<SettingsServerlessFunctions />}
+            />
+            <Route
+              path={SettingsPath.NewServerlessFunction}
+              element={<SettingsServerlessFunctionsNew />}
+            />
+            <Route
+              path={SettingsPath.ServerlessFunctionDetail}
+              element={<SettingsServerlessFunctionDetailWrapper />}
+            />
+          </>
+        )}
+        <Route
+          path={SettingsPath.Integrations}
+          element={<SettingsIntegrations />}
+        />
+        <Route
+          path={SettingsPath.IntegrationDatabase}
+          element={<SettingsIntegrationDatabase />}
+        />
+        <Route
+          path={SettingsPath.IntegrationNewDatabaseConnection}
+          element={<SettingsIntegrationNewDatabaseConnection />}
+        />
+        <Route
+          path={SettingsPath.IntegrationEditDatabaseConnection}
+          element={<SettingsIntegrationEditDatabaseConnection />}
+        />
+        <Route
+          path={SettingsPath.IntegrationDatabaseConnection}
+          element={<SettingsIntegrationShowDatabaseConnection />}
+        />
+        <Route
+          path={SettingsPath.ObjectNewFieldStep1}
+          element={<SettingsObjectNewFieldStep1 />}
+        />
+        <Route
+          path={SettingsPath.ObjectNewFieldStep2}
+          element={<SettingsObjectNewFieldStep2 />}
+        />
+        <Route
+          path={SettingsPath.ObjectFieldEdit}
+          element={<SettingsObjectFieldEdit />}
+        />
+        <Route path={SettingsPath.Releases} element={<Releases />} />
+      </Routes>
+    </Suspense>
+  );
+};

@@ -26,26 +26,28 @@ export const IconButtonGroup = ({
   size,
   variant,
   className,
-}: IconButtonGroupProps) => (
-  <StyledIconButtonGroupContainer className={className}>
-    {iconButtons.map(({ Icon, onClick }, index) => {
-      const position: IconButtonPosition =
-        index === 0
-          ? 'left'
-          : index === iconButtons.length - 1
-            ? 'right'
-            : 'middle';
+}: IconButtonGroupProps) => {
+  return (
+    <StyledIconButtonGroupContainer className={className}>
+      {iconButtons.map(({ Icon, onClick }, index) => {
+        const position: IconButtonPosition =
+          index === 0
+            ? 'left'
+            : index === iconButtons.length - 1
+              ? 'right'
+              : 'middle';
 
-      return (
-        <IconButton
-          accent={accent}
-          Icon={Icon}
-          onClick={onClick}
-          position={position}
-          size={size}
-          variant={variant}
-        />
-      );
-    })}
-  </StyledIconButtonGroupContainer>
-);
+        return (
+          <IconButton
+            accent={accent}
+            Icon={Icon}
+            onClick={onClick}
+            position={position}
+            size={size}
+            variant={variant}
+          />
+        );
+      })}
+    </StyledIconButtonGroupContainer>
+  );
+};

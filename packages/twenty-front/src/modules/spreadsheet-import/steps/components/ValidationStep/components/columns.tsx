@@ -103,22 +103,24 @@ export const generateColumns = <T extends string>(
       name: column.label,
       minWidth: 150,
       resizable: true,
-      headerRenderer: () => (
-        <StyledHeaderContainer>
-          <StyledHeaderLabel id={`${column.key}`}>
-            {column.label}
-          </StyledHeaderLabel>
-          {column.description &&
-            createPortal(
-              <AppTooltip
-                anchorSelect={`#${column.key}`}
-                place="top"
-                content={column.description}
-              />,
-              document.body,
-            )}
-        </StyledHeaderContainer>
-      ),
+      headerRenderer: () => {
+        return (
+          <StyledHeaderContainer>
+            <StyledHeaderLabel id={`${column.key}`}>
+              {column.label}
+            </StyledHeaderLabel>
+            {column.description &&
+              createPortal(
+                <AppTooltip
+                  anchorSelect={`#${column.key}`}
+                  place="top"
+                  content={column.description}
+                />,
+                document.body,
+              )}
+          </StyledHeaderContainer>
+        );
+      },
       editable: column.fieldType.type !== 'checkbox',
       // Todo: remove usage of react-data-grid
       editor: ({ row, onRowChange, onClose }: any) => {

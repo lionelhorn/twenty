@@ -19,20 +19,22 @@ export const RecordDetailRelationRecordsList = ({
 
   return (
     <RecordDetailRecordsList>
-      {relationRecords.slice(0, 5).map((relationRecord) => (
-        <Fragment key={relationRecord.id}>
-          <RecordDetailRelationRecordsListItemEffect
-            key={`${relationRecord.id}-effect`}
-            relationRecordId={relationRecord.id}
-          />
-          <RecordDetailRelationRecordsListItem
-            key={relationRecord.id}
-            isExpanded={expandedItem === relationRecord.id}
-            onClick={handleItemClick}
-            relationRecord={relationRecord}
-          />
-        </Fragment>
-      ))}
+      {relationRecords.slice(0, 5).map((relationRecord) => {
+        return (
+          <Fragment key={relationRecord.id}>
+            <RecordDetailRelationRecordsListItemEffect
+              key={`${relationRecord.id}-effect`}
+              relationRecordId={relationRecord.id}
+            />
+            <RecordDetailRelationRecordsListItem
+              key={relationRecord.id}
+              isExpanded={expandedItem === relationRecord.id}
+              onClick={handleItemClick}
+              relationRecord={relationRecord}
+            />
+          </Fragment>
+        );
+      })}
     </RecordDetailRecordsList>
   );
 };

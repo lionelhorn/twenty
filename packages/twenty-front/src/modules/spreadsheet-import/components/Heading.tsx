@@ -27,9 +27,11 @@ const StyledDescription = styled.span`
   text-align: center;
 `;
 
-export const Heading = ({ title, description }: HeadingProps) => (
-  <StyledContainer>
-    <StyledTitle>{title}</StyledTitle>
-    {description && <StyledDescription>{description}</StyledDescription>}
-  </StyledContainer>
-);
+export const Heading = ({ title, description }: HeadingProps) => {
+  return (
+    <StyledContainer>
+      <StyledTitle>{title}</StyledTitle>
+      {description && <StyledDescription>{description}</StyledDescription>}
+    </StyledContainer>
+  );
+};

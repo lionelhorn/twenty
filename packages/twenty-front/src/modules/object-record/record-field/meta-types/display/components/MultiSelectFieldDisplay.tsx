@@ -35,24 +35,28 @@ export const MultiSelectFieldDisplay = () => {
 
   return isFocused ? (
     <ExpandableList isChipCountDisplayed={isFocused}>
-      {selectedOptions.map((selectedOption, index) => (
-        <Tag
-          key={index}
-          color={selectedOption.color}
-          text={selectedOption.label}
-        />
-      ))}
+      {selectedOptions.map((selectedOption, index) => {
+        return (
+          <Tag
+            key={index}
+            color={selectedOption.color}
+            text={selectedOption.label}
+          />
+        );
+      })}
     </ExpandableList>
   ) : (
     <StyledContainer>
-      {selectedOptions.map((selectedOption, index) => (
-        <Tag
-          preventShrink
-          key={index}
-          color={selectedOption.color}
-          text={selectedOption.label}
-        />
-      ))}
+      {selectedOptions.map((selectedOption, index) => {
+        return (
+          <Tag
+            preventShrink
+            key={index}
+            color={selectedOption.color}
+            text={selectedOption.label}
+          />
+        );
+      })}
     </StyledContainer>
   );
 };

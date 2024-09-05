@@ -58,9 +58,9 @@ export const TaskList = ({ title, tasks, button }: TaskListProps) => (
           {button}
         </StyledTitleBar>
         <StyledTaskRows>
-          {tasks.map((task) => (
-            <TaskRow key={task.id} task={task} />
-          ))}
+          {tasks.map((task) => {
+            return <TaskRow key={task.id} task={task} />;
+          })}
         </StyledTaskRows>
       </StyledContainer>
     )}

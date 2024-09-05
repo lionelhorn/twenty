@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import React, { useEffect, useState } from 'react';
 import rehypeStringify from 'rehype-stringify';
@@ -82,6 +83,8 @@ const StyledReleaseDate = styled.span`
 `;
 
 export const Releases = () => {
+  const { t } = useTranslation();
+
   const [releases, setReleases] = useState<ReleaseNote[]>([]);
 
   useEffect(() => {
@@ -108,18 +111,20 @@ export const Releases = () => {
   }, []);
 
   return (
-    <SubMenuTopBarContainer Icon={IconRocket} title="Releases">
+    <SubMenuTopBarContainer Icon={IconRocket} title={t('releases.releases')}>
       <SettingsPageContainer>
-        <StyledH1Title title="Releases" />
+        <StyledH1Title title={t('releases.releases')} />
         <ScrollWrapper contextProviderName="releases">
           <StyledReleaseContainer>
-            {releases.map((release) => (
-              <React.Fragment key={release.slug}>
-                <StyledReleaseHeader>{release.release}</StyledReleaseHeader>
-                <StyledReleaseDate>{release.date}</StyledReleaseDate>
-                <div dangerouslySetInnerHTML={{ __html: release.html }}></div>
-              </React.Fragment>
-            ))}
+            {releases.map((release) => {
+              return (
+                <React.Fragment key={release.slug}>
+                  <StyledReleaseHeader>{release.release}</StyledReleaseHeader>
+                  <StyledReleaseDate>{release.date}</StyledReleaseDate>
+                  <div dangerouslySetInnerHTML={{ __html: release.html }}></div>
+                </React.Fragment>
+              );
+            })}
           </StyledReleaseContainer>
         </ScrollWrapper>
       </SettingsPageContainer>

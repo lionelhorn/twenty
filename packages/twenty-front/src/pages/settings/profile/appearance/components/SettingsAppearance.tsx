@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { H2Title, IconColorSwatch } from 'twenty-ui';
 
 import { SettingsPageContainer } from '@/settings/components/SettingsPageContainer';
@@ -8,19 +9,26 @@ import { useColorScheme } from '@/ui/theme/hooks/useColorScheme';
 import { DateTimeSettings } from '~/pages/settings/profile/appearance/components/DateTimeSettings';
 
 export const SettingsAppearance = () => {
+  const { t } = useTranslation();
+
   const { colorScheme, setColorScheme } = useColorScheme();
 
   return (
-    <SubMenuTopBarContainer Icon={IconColorSwatch} title="Appearance">
+    <SubMenuTopBarContainer
+      Icon={IconColorSwatch}
+      title={t('settingsAppearance.appearance')}
+    >
       <SettingsPageContainer>
         <Section>
-          <H2Title title="Theme" />
+          <H2Title title={t('settingsAppearance.theme')} />
           <ColorSchemePicker value={colorScheme} onChange={setColorScheme} />
         </Section>
         <Section>
           <H2Title
-            title="Date and time"
-            description="Configure how dates are displayed across the app"
+            title={t('settingsAppearance.date-and-time')}
+            description={t(
+              'settingsAppearance.configure-how-dates-are-displayed-across',
+            )}
           />
           <DateTimeSettings />
         </Section>

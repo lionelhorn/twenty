@@ -78,17 +78,19 @@ export const RecordBoardColumnCardsContainer = ({
               columnDefinition.position,
             ),
           },
-          (_, index) => (
-            <StyledSkeletonCardContainer
-              key={`${columnDefinition.id}-${index}`}
-            >
-              <RecordBoardColumnCardContainerSkeletonLoader
-                numberOfFields={numberOfFields}
-                titleSkeletonWidth={isCompactModeActive ? 72 : 54}
-                isCompactModeActive={isCompactModeActive}
-              />
-            </StyledSkeletonCardContainer>
-          ),
+          (_, index) => {
+            return (
+              <StyledSkeletonCardContainer
+                key={`${columnDefinition.id}-${index}`}
+              >
+                <RecordBoardColumnCardContainerSkeletonLoader
+                  numberOfFields={numberOfFields}
+                  titleSkeletonWidth={isCompactModeActive ? 72 : 54}
+                  isCompactModeActive={isCompactModeActive}
+                />
+              </StyledSkeletonCardContainer>
+            );
+          },
         )
       ) : (
         <RecordBoardColumnCardsMemo recordIds={recordIds} />
@@ -99,22 +101,24 @@ export const RecordBoardColumnCardsContainer = ({
         index={recordIds.length}
         isDragDisabled={true}
       >
-        {(draggableProvided) => (
-          <div
-            ref={draggableProvided?.innerRef}
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            {...draggableProvided?.draggableProps}
-          >
-            <StyledNewButtonContainer>
-              {objectMetadataItem.nameSingular ===
-              CoreObjectNameSingular.Opportunity ? (
-                <RecordBoardColumnNewOpportunityButton />
-              ) : (
-                <RecordBoardColumnNewButton />
-              )}
-            </StyledNewButtonContainer>
-          </div>
-        )}
+        {(draggableProvided) => {
+          return (
+            <div
+              ref={draggableProvided?.innerRef}
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...draggableProvided?.draggableProps}
+            >
+              <StyledNewButtonContainer>
+                {objectMetadataItem.nameSingular ===
+                CoreObjectNameSingular.Opportunity ? (
+                  <RecordBoardColumnNewOpportunityButton />
+                ) : (
+                  <RecordBoardColumnNewButton />
+                )}
+              </StyledNewButtonContainer>
+            </div>
+          );
+        }}
       </Draggable>
     </StyledColumnCardsContainer>
   );

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Controller, useFormContext } from 'react-hook-form';
 import styled from '@emotion/styled';
 import { useIcons } from 'twenty-ui';
@@ -75,6 +76,8 @@ const RELATION_TYPE_OPTIONS = Object.entries(RELATION_TYPES)
 export const SettingsDataModelFieldRelationForm = ({
   fieldMetadataItem,
 }: SettingsDataModelFieldRelationFormProps) => {
+  const { t } = useTranslation();
+
   const { control, watch: watchFormValue } =
     useFormContext<SettingsDataModelFieldRelationFormValues>();
   const { getIcon } = useIcons();
@@ -100,73 +103,82 @@ export const SettingsDataModelFieldRelationForm = ({
           name="relation.type"
           control={control}
           defaultValue={initialRelationType}
-          render={({ field: { onChange, value } }) => (
-            <Select
-              label="Relation type"
-              dropdownId="relation-type-select"
-              fullWidth
-              disabled={disableRelationEdition}
-              value={value}
-              options={RELATION_TYPE_OPTIONS}
-              onChange={onChange}
-            />
-          )}
+          render={({ field: { onChange, value } }) => {
+            return (
+              <Select
+                label="Relation type"
+                dropdownId="relation-type-select"
+                fullWidth
+                disabled={disableRelationEdition}
+                value={value}
+                options={RELATION_TYPE_OPTIONS}
+                onChange={onChange}
+              />
+            );
+          }}
         />
         <Controller
           name="relation.objectMetadataId"
           control={control}
           defaultValue={initialRelationObjectMetadataItem.id}
-          render={({ field: { onChange, value } }) => (
-            <Select
-              label="Object destination"
-              dropdownId="object-destination-select"
-              fullWidth
-              disabled={disableRelationEdition}
-              value={value}
-              options={objectMetadataItems
-                .filter(isObjectMetadataAvailableForRelation)
-                .map((objectMetadataItem) => ({
-                  label: objectMetadataItem.labelPlural,
-                  value: objectMetadataItem.id,
-                  Icon: getIcon(objectMetadataItem.icon),
-                }))}
-              onChange={onChange}
-            />
-          )}
+          render={({ field: { onChange, value } }) => {
+            return (
+              <Select
+                label="Object destination"
+                dropdownId="object-destination-select"
+                fullWidth
+                disabled={disableRelationEdition}
+                value={value}
+                options={objectMetadataItems
+                  .filter(isObjectMetadataAvailableForRelation)
+                  .map((objectMetadataItem) => ({
+                    label: objectMetadataItem.labelPlural,
+                    value: objectMetadataItem.id,
+                    Icon: getIcon(objectMetadataItem.icon),
+                  }))}
+                onChange={onChange}
+              />
+            );
+          }}
         />
       </StyledSelectsContainer>
       <StyledInputsLabel>
-        Field on {selectedObjectMetadataItem?.labelPlural}
+        {t('settingsDataModelFieldRelationForm.field-on')}{' '}
+        {selectedObjectMetadataItem?.labelPlural}
       </StyledInputsLabel>
       <StyledInputsContainer>
         <Controller
           name="relation.field.icon"
           control={control}
           defaultValue={initialRelationFieldMetadataItem.icon}
-          render={({ field: { onChange, value } }) => (
-            <IconPicker
-              disabled={disableFieldEdition}
-              dropdownId="field-destination-icon-picker"
-              selectedIconKey={value ?? undefined}
-              onChange={({ iconKey }) => onChange(iconKey)}
-              variant="primary"
-            />
-          )}
+          render={({ field: { onChange, value } }) => {
+            return (
+              <IconPicker
+                disabled={disableFieldEdition}
+                dropdownId="field-destination-icon-picker"
+                selectedIconKey={value ?? undefined}
+                onChange={({ iconKey }) => onChange(iconKey)}
+                variant="primary"
+              />
+            );
+          }}
         />
         <Controller
           name="relation.field.label"
           control={control}
           defaultValue={initialRelationFieldMetadataItem.label}
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              disabled={disableFieldEdition}
-              placeholder="Field name"
-              value={value}
-              onChange={onChange}
-              fullWidth
-              maxLength={FIELD_NAME_MAXIMUM_LENGTH}
-            />
-          )}
+          render={({ field: { onChange, value } }) => {
+            return (
+              <TextInput
+                disabled={disableFieldEdition}
+                placeholder="Field name"
+                value={value}
+                onChange={onChange}
+                fullWidth
+                maxLength={FIELD_NAME_MAXIMUM_LENGTH}
+              />
+            );
+          }}
         />
       </StyledInputsContainer>
     </StyledContainer>

@@ -55,18 +55,20 @@ export const LinksFieldInput = ({ onCancel }: LinksFieldInputProps) => {
         handleEdit,
         handleSetPrimary,
         handleDelete,
-      }) => (
-        <LinksFieldMenuItem
-          key={index}
-          dropdownId={`${hotkeyScope}-links-${index}`}
-          isPrimary={index === 0}
-          label={link.label}
-          onEdit={handleEdit}
-          onSetAsPrimary={handleSetPrimary}
-          onDelete={handleDelete}
-          url={link.url}
-        />
-      )}
+      }) => {
+        return (
+          <LinksFieldMenuItem
+            key={index}
+            dropdownId={`${hotkeyScope}-links-${index}`}
+            isPrimary={index === 0}
+            label={link.label}
+            onEdit={handleEdit}
+            onSetAsPrimary={handleSetPrimary}
+            onDelete={handleDelete}
+            url={link.url}
+          />
+        );
+      }}
       hotkeyScope={hotkeyScope}
     />
   );

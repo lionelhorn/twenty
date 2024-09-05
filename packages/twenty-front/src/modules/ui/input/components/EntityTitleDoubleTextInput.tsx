@@ -58,32 +58,36 @@ export const EntityTitleDoubleTextInput = ({
   return (
     <StyledDoubleTextContainer className={className}>
       <ComputeNodeDimensions node={firstValue || firstValuePlaceholder}>
-        {(nodeDimensions) => (
-          <StyledTextInput
-            width={nodeDimensions?.width}
-            placeholder={firstValuePlaceholder}
-            value={firstValue}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onChange={(event: ChangeEvent<HTMLInputElement>) => {
-              onChange(event.target.value, secondValue);
-            }}
-          />
-        )}
+        {(nodeDimensions) => {
+          return (
+            <StyledTextInput
+              width={nodeDimensions?.width}
+              placeholder={firstValuePlaceholder}
+              value={firstValue}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                onChange(event.target.value, secondValue);
+              }}
+            />
+          );
+        }}
       </ComputeNodeDimensions>
       <ComputeNodeDimensions node={secondValue || secondValuePlaceholder}>
-        {(nodeDimensions) => (
-          <StyledTextInput
-            width={nodeDimensions?.width}
-            autoComplete="off"
-            placeholder={secondValuePlaceholder}
-            value={secondValue}
-            onFocus={handleFocus}
-            onChange={(event: ChangeEvent<HTMLInputElement>) => {
-              onChange(firstValue, event.target.value);
-            }}
-          />
-        )}
+        {(nodeDimensions) => {
+          return (
+            <StyledTextInput
+              width={nodeDimensions?.width}
+              autoComplete="off"
+              placeholder={secondValuePlaceholder}
+              value={secondValue}
+              onFocus={handleFocus}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                onChange(firstValue, event.target.value);
+              }}
+            />
+          );
+        }}
       </ComputeNodeDimensions>
     </StyledDoubleTextContainer>
   );

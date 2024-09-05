@@ -24,36 +24,38 @@ export const ButtonGroup = ({
   variant,
   size,
   accent,
-}: ButtonGroupProps) => (
-  <StyledButtonGroupContainer className={className}>
-    {React.Children.map(children, (child, index) => {
-      if (!React.isValidElement(child)) return null;
+}: ButtonGroupProps) => {
+  return (
+    <StyledButtonGroupContainer className={className}>
+      {React.Children.map(children, (child, index) => {
+        if (!React.isValidElement(child)) return null;
 
-      let position: ButtonPosition;
+        let position: ButtonPosition;
 
-      if (index === 0) {
-        position = 'left';
-      } else if (index === children.length - 1) {
-        position = 'right';
-      } else {
-        position = 'middle';
-      }
+        if (index === 0) {
+          position = 'left';
+        } else if (index === children.length - 1) {
+          position = 'right';
+        } else {
+          position = 'middle';
+        }
 
-      const additionalProps: any = { position, variant, accent, size };
+        const additionalProps: any = { position, variant, accent, size };
 
-      if (isDefined(variant)) {
-        additionalProps.variant = variant;
-      }
+        if (isDefined(variant)) {
+          additionalProps.variant = variant;
+        }
 
-      if (isDefined(accent)) {
-        additionalProps.variant = variant;
-      }
+        if (isDefined(accent)) {
+          additionalProps.variant = variant;
+        }
 
-      if (isDefined(size)) {
-        additionalProps.size = size;
-      }
+        if (isDefined(size)) {
+          additionalProps.size = size;
+        }
 
-      return React.cloneElement(child, additionalProps);
-    })}
-  </StyledButtonGroupContainer>
-);
+        return React.cloneElement(child, additionalProps);
+      })}
+    </StyledButtonGroupContainer>
+  );
+};

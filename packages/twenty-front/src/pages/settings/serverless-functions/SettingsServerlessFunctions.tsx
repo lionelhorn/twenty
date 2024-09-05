@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { SettingsHeaderContainer } from '@/settings/components/SettingsHeaderContainer';
 import { SettingsPageContainer } from '@/settings/components/SettingsPageContainer';
 import { SettingsServerlessFunctionsTable } from '@/settings/serverless-functions/components/SettingsServerlessFunctionsTable';
@@ -11,17 +12,19 @@ import { UndecoratedLink } from '@/ui/navigation/link/components/UndecoratedLink
 import { IconFunction, IconPlus } from 'twenty-ui';
 
 export const SettingsServerlessFunctions = () => {
+  const { t } = useTranslation();
+
   return (
     <SubMenuTopBarContainer
       Icon={IconFunction}
-      title="Functions"
+      title={t('settingsServerlessFunctions.functions')}
       actionButton={
         <UndecoratedLink
           to={getSettingsPagePath(SettingsPath.NewServerlessFunction)}
         >
           <Button
             Icon={IconPlus}
-            title="New Function"
+            title={t('settingsServerlessFunctions.new-function')}
             accent="blue"
             size="small"
           />

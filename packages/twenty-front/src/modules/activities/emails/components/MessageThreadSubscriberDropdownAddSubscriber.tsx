@@ -30,11 +30,13 @@ export const MessageThreadSubscriberDropdownAddSubscriber = ({
     <DropdownMenuItemsContainer>
       <DropdownMenuSearchInput />
       <DropdownMenuSeparator />
-      {workspaceMembersLeftToAdd.map((workspaceMember) => (
-        <MessageThreadSubscriberDropdownAddSubscriberMenuItem
-          workspaceMember={workspaceMember}
-        />
-      ))}
+      {workspaceMembersLeftToAdd.map((workspaceMember) => {
+        return (
+          <MessageThreadSubscriberDropdownAddSubscriberMenuItem
+            workspaceMember={workspaceMember}
+          />
+        );
+      })}
     </DropdownMenuItemsContainer>
   );
 };

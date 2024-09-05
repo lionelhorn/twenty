@@ -94,20 +94,22 @@ export const SettingsDataModelFieldTypeSelect = ({
           ? (fieldMetadataItem.type as SettingsSupportedFieldType)
           : FieldMetadataType.Text
       }
-      render={({ field: { onChange, value } }) => (
-        <Select
-          className={className}
-          fullWidth
-          disabled={disabled}
-          dropdownId="object-field-type-select"
-          value={value}
-          onChange={(nextValue) => {
-            onChange(nextValue);
-            resetDefaultValueField(nextValue);
-          }}
-          options={fieldTypeOptions}
-        />
-      )}
+      render={({ field: { onChange, value } }) => {
+        return (
+          <Select
+            className={className}
+            fullWidth
+            disabled={disabled}
+            dropdownId="object-field-type-select"
+            value={value}
+            onChange={(nextValue) => {
+              onChange(nextValue);
+              resetDefaultValueField(nextValue);
+            }}
+            options={fieldTypeOptions}
+          />
+        );
+      }}
     />
   );
 };

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 
 import {
@@ -21,6 +22,8 @@ export const EventRowMainObject = ({
   event,
   mainObjectMetadataItem,
 }: EventRowMainObjectProps) => {
+  const { t } = useTranslation();
+
   const [, eventAction] = event.name.split('.');
 
   switch (eventAction) {
@@ -30,7 +33,9 @@ export const EventRowMainObject = ({
           <StyledEventRowItemColumn>
             {labelIdentifierValue}
           </StyledEventRowItemColumn>
-          <StyledEventRowItemAction>was created by</StyledEventRowItemAction>
+          <StyledEventRowItemAction>
+            {t('eventRowMainObject.was-created-by')}
+          </StyledEventRowItemAction>
           <StyledEventRowItemColumn>{authorFullName}</StyledEventRowItemColumn>
         </StyledMainContainer>
       );
@@ -51,7 +56,9 @@ export const EventRowMainObject = ({
           <StyledEventRowItemColumn>
             {labelIdentifierValue}
           </StyledEventRowItemColumn>
-          <StyledEventRowItemAction>was deleted by</StyledEventRowItemAction>
+          <StyledEventRowItemAction>
+            {t('eventRowMainObject.was-deleted-by')}
+          </StyledEventRowItemAction>
           <StyledEventRowItemColumn>{authorFullName}</StyledEventRowItemColumn>
         </StyledMainContainer>
       );

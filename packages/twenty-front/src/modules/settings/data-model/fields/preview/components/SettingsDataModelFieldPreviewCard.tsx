@@ -30,17 +30,21 @@ export const SettingsDataModelFieldPreviewCard = ({
   relationObjectMetadataItem,
   shrink,
   withFieldLabel = true,
-}: SettingsDataModelFieldPreviewCardProps) => (
-  <StyledCard className={className} fullWidth>
-    <StyledCardContent>
-      <SettingsDataModelObjectSummary objectMetadataItem={objectMetadataItem} />
-      <SettingsDataModelFieldPreview
-        objectMetadataItem={objectMetadataItem}
-        fieldMetadataItem={fieldMetadataItem}
-        relationObjectMetadataItem={relationObjectMetadataItem}
-        shrink={shrink}
-        withFieldLabel={withFieldLabel}
-      />
-    </StyledCardContent>
-  </StyledCard>
-);
+}: SettingsDataModelFieldPreviewCardProps) => {
+  return (
+    <StyledCard className={className} fullWidth>
+      <StyledCardContent>
+        <SettingsDataModelObjectSummary
+          objectMetadataItem={objectMetadataItem}
+        />
+        <SettingsDataModelFieldPreview
+          objectMetadataItem={objectMetadataItem}
+          fieldMetadataItem={fieldMetadataItem}
+          relationObjectMetadataItem={relationObjectMetadataItem}
+          shrink={shrink}
+          withFieldLabel={withFieldLabel}
+        />
+      </StyledCardContent>
+    </StyledCard>
+  );
+};

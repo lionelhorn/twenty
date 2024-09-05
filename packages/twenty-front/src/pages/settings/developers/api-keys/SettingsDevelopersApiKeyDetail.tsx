@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { isNonEmptyString } from '@sniptt/guards';
 import { DateTime } from 'luxon';
@@ -40,6 +41,8 @@ const StyledInputContainer = styled.div`
 `;
 
 export const SettingsDevelopersApiKeyDetail = () => {
+  const { t } = useTranslation();
+
   const [isRegenerateKeyModalOpen, setIsRegenerateKeyModalOpen] =
     useState(false);
   const [isDeleteApiKeyModalOpen, setIsDeleteApiKeyModalOpen] = useState(false);
@@ -136,8 +139,10 @@ export const SettingsDevelopersApiKeyDetail = () => {
               {apiKeyToken ? (
                 <>
                   <H2Title
-                    title="API Key"
-                    description="Copy this key as it will only be visible this one time"
+                    title={t('settingsDevelopersApiKeyDetail.api-key')}
+                    description={t(
+                      'settingsDevelopersApiKeyDetail.copy-this-key-as-it-will-only-be-visible',
+                    )}
                   />
                   <ApiKeyInput apiKey={apiKeyToken} />
                   <StyledInfo>
@@ -147,12 +152,14 @@ export const SettingsDevelopersApiKeyDetail = () => {
               ) : (
                 <>
                   <H2Title
-                    title="API Key"
-                    description="Regenerate an API key"
+                    title={t('settingsDevelopersApiKeyDetail.api-key')}
+                    description={t(
+                      'settingsDevelopersApiKeyDetail.regenerate-an-api-key',
+                    )}
                   />
                   <StyledInputContainer>
                     <Button
-                      title="Regenerate Key"
+                      title={t('settingsDevelopersApiKeyDetail.regenerate-key')}
                       Icon={IconRepeat}
                       onClick={() => setIsRegenerateKeyModalOpen(true)}
                     />
@@ -168,7 +175,12 @@ export const SettingsDevelopersApiKeyDetail = () => {
               )}
             </Section>
             <Section>
-              <H2Title title="Name" description="Name of your API key" />
+              <H2Title
+                title={t('settingsDevelopersApiKeyDetail.name')}
+                description={t(
+                  'settingsDevelopersApiKeyDetail.name-of-your-api-key',
+                )}
+              />
               <ApiKeyNameInput
                 apiKeyName={apiKeyName}
                 apiKeyId={apiKeyData?.id}
@@ -178,8 +190,10 @@ export const SettingsDevelopersApiKeyDetail = () => {
             </Section>
             <Section>
               <H2Title
-                title="Expiration"
-                description="When the key will be diasbled"
+                title={t('settingsDevelopersApiKeyDetail.expiration')}
+                description={t(
+                  'settingsDevelopersApiKeyDetail.when-the-key-will-be-diasbled',
+                )}
               />
               <TextInput
                 placeholder="E.g. backoffice integration"
@@ -194,13 +208,15 @@ export const SettingsDevelopersApiKeyDetail = () => {
             </Section>
             <Section>
               <H2Title
-                title="Danger zone"
-                description="Delete this integration"
+                title={t('settingsDevelopersApiKeyDetail.danger-zone')}
+                description={t(
+                  'settingsDevelopersApiKeyDetail.delete-this-integration',
+                )}
               />
               <Button
                 accent="danger"
                 variant="secondary"
-                title="Delete"
+                title={t('settingsDevelopersApiKeyDetail.delete')}
                 Icon={IconTrash}
                 onClick={() => setIsDeleteApiKeyModalOpen(true)}
               />
@@ -213,11 +229,12 @@ export const SettingsDevelopersApiKeyDetail = () => {
         confirmationValue="yes"
         isOpen={isDeleteApiKeyModalOpen}
         setIsOpen={setIsDeleteApiKeyModalOpen}
-        title="Delete API key"
+        title={t('settingsDevelopersApiKeyDetail.delete-api-key')}
         subtitle={
           <>
-            Please type "yes" to confirm you want to delete this API Key. Be
-            aware that any script using this key will stop working.
+            {t(
+              'settingsDevelopersApiKeyDetail.please-type-yes-to-confirm-you-want-to-d',
+            )}
           </>
         }
         onConfirmClick={deleteIntegration}
@@ -228,12 +245,12 @@ export const SettingsDevelopersApiKeyDetail = () => {
         confirmationValue="yes"
         isOpen={isRegenerateKeyModalOpen}
         setIsOpen={setIsRegenerateKeyModalOpen}
-        title="Regenerate an API key"
+        title={t('settingsDevelopersApiKeyDetail.regenerate-an-api-key')}
         subtitle={
           <>
-            If you’ve lost this key, you can regenerate it, but be aware that
-            any script using this key will need to be updated. Please type "yes"
-            to confirm.
+            {t(
+              'settingsDevelopersApiKeyDetail.if-youve-lost-this-key-you-can-regenerat',
+            )}
           </>
         }
         onConfirmClick={regenerateApiKey}

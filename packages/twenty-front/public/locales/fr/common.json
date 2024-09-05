@@ -1,0 +1,742 @@
+{
+  "": {
+    "columns-not-matched": "Les colonnes ne correspondent pas :",
+    "ms": "ms",
+    "navigated-to": "Navigué vers",
+    "settingsaccountscalendars": "/settings/accounts/calendars",
+    "settingsaccountsemails": "/settings/accounts/emails",
+    "upload-file": "Télécharger le fichier"
+  },
+  "actionBar": {
+    "selected": "sélectionné :"
+  },
+  "addObjectFilterFromDetailsButton": {
+    "add-filter": "Ajouter un filtre"
+  },
+  "addTaskButton": {
+    "add-task": "Ajouter une tâche"
+  },
+  "animatedPlaceholder": {
+    "background": "Contexte",
+    "moving": "Déménagement"
+  },
+  "apiKeyInput": {
+    "copy": "Copie"
+  },
+  "appInaccessible": {
+    "twenty-icon": "vingt-icônes"
+  },
+  "attachments": {
+    "add-file": "Ajouter un fichier",
+    "all": "Tous",
+    "no-files": "Pas de fichiers",
+    "there-are-no-associated-files-with-this-": "Il n'y a pas de fichiers associés à cet enregistrement."
+  },
+  "authorize": {
+    "app-icon": "icône de l'application",
+    "authorize": "Autoriser",
+    "cancel": "Annuler",
+    "link-icon": "icône de lien",
+    "twenty-icon": "vingt-icônes",
+    "wants-to-access-your-account": "veut accéder à votre compte"
+  },
+  "autosizeTextInput": {
+    "write-a-comment": "Ecrire un commentaire"
+  },
+  "calendar": {
+    "no-events": "Pas d'événements",
+    "no-events-have-been-scheduled-with-this": "Aucun événement n'a été programmé avec cette",
+    "yet": "encore."
+  },
+  "calendarEventDetails": {
+    "created": "Créée"
+  },
+  "calendarEventRow": {
+    "not-shared": "Non partagé"
+  },
+  "cancelButton": {
+    "cancel": "Annuler"
+  },
+  "changePassword": {
+    "change-password": "Modifier le mot de passe",
+    "receive-an-email-containing-password-upd": "Recevoir un courriel contenant un lien de mise à jour du mot de passe"
+  },
+  "chooseYourPlan": {
+    "book-a-call": "Réserver un appel",
+    "choose-your-plan": "Choisissez votre plan",
+    "continue": "Continuer",
+    "day-free-trial": "-Essai gratuit d'une journée",
+    "enjoy-a": "Profitez d'un",
+    "log-out": "Déconnexion"
+  },
+  "chromeExtensionSidecarProvider": {
+    "twenty-is-not-accessible-inside-an-ifram": "Twenty n'est pas accessible à l'intérieur d'une iframe.",
+    "unauthorized-access-from-iframe-origin-i": "Accès non autorisé à partir de l'origine de l'iframe. Si vous essayez d'accéder à partir d'une extension chrome, veuillez vérifier votre ID d'extension chrome sur votre serveur."
+  },
+  "colorSchemePicker": {
+    "dark": "Sombre",
+    "light": "Lumière",
+    "system-settings": "Paramètres du système"
+  },
+  "colorSchemeSegment": {
+    "aa": "Aa"
+  },
+  "columnGrid": {
+    "imported-data": "Données importées",
+    "twenty-fields": "Vingt champs"
+  },
+  "commandMenu": {
+    "no-results-found": "Aucun résultat trouvé"
+  },
+  "confirmationModal": {
+    "cancel": "Annuler"
+  },
+  "createProfile": {
+    "continue": "Continuer",
+    "create-profile": "Créer un profil",
+    "how-youll-be-identified-on-the-app": "Comment vous serez identifié sur l'application.",
+    "name": "Nom",
+    "picture": "Photo",
+    "your-name-as-it-will-be-displayed-on-the": "Votre nom tel qu'il sera affiché sur l'application"
+  },
+  "createWorkspace": {
+    "a-shared-environment-where-you-will-be-a": "Un environnement partagé où vous pourrez gérer vos relations clients avec votre équipe.",
+    "continue": "Continuer",
+    "create-your-workspace": "Créez votre espace de travail",
+    "the-name-of-your-organization": "Le nom de votre organisation",
+    "workspace-logo": "Logo de l'espace de travail",
+    "workspace-name": "Nom de l'espace de travail"
+  },
+  "customResolverFetchMoreLoader": {
+    "loading-more": "Plus d'informations..."
+  },
+  "dateTimeSettingsDateFormatSelect": {
+    "system-settings": "Paramètres du système"
+  },
+  "deleteAccount": {
+    "account-deletion": "Suppression de compte",
+    "danger-zone": "Zone de danger",
+    "delete-account": "Supprimer le compte",
+    "delete-account-and-all-the-associated-da": "Supprimer le compte et toutes les données associées",
+    "please-type-in-your-email-to-confirm": "Veuillez saisir votre adresse électronique pour confirmer.",
+    "this-action-cannot-be-undone-this-will-p": "Cette action ne peut être annulée. Elle supprimera définitivement l'ensemble de votre compte."
+  },
+  "deleteWorkspace": {
+    "danger-zone": "Zone de danger",
+    "delete-workspace": "Supprimer l'espace de travail",
+    "delete-your-whole-workspace": "Supprimer l'ensemble de l'espace de travail",
+    "please-type-in-your-email-to-confirm": "Veuillez saisir votre adresse électronique pour confirmer.",
+    "this-action-cannot-be-undone-this-will-p": "Cette action ne peut être annulée. Elle supprime définitivement l'ensemble de votre espace de travail.",
+    "workspace-deletion": "Suppression de l'espace de travail"
+  },
+  "dragSelect": {
+    "absolute": "absolu"
+  },
+  "dropZone": {
+    "drag-and-drop-here": "Glisser-déposer ici",
+    "drop-file-here": "Déposer le fichier ici...",
+    "processing": "Traitement...",
+    "select-file": "Sélectionner un fichier",
+    "upload-a-file": "Télécharger un fichier",
+    "upload-xlsx-xls-or-csv-file": "Télécharger un fichier .xlsx, .xls ou .csv"
+  },
+  "emailThreadHeader": {
+    "last-message": "Dernier message"
+  },
+  "emailThreadNotShared": {
+    "not-shared": "Non partagé"
+  },
+  "emailThreads": {
+    "empty-inbox": "Boîte de réception vide",
+    "inbox": "Boîte de réception",
+    "no-email-exchange-has-occurred-with-this": "Cet enregistrement n'a pas encore fait l'objet d'un échange de courriels."
+  },
+  "eventCardCalendarEvent": {
+    "": "→",
+    "calendar-event-not-found": "Evénement du calendrier non trouvé",
+    "calendar-event-not-shared": "L'événement du calendrier n'est pas partagé",
+    "error-loading-calendar-event": "Erreur de chargement de l'événement du calendrier",
+    "loading": "Chargement..."
+  },
+  "eventCardMessage": {
+    "error-loading-message": "Erreur de chargement du message",
+    "loading": "Chargement...",
+    "message-not-found": "Message non trouvé"
+  },
+  "eventCardMessageNotShared": {
+    "not-shared-by": "Non partagé par",
+    "subject-not-shared": "Sujet non partagé"
+  },
+  "eventFieldDiff": {
+    "": "→",
+    "empty": "Vide"
+  },
+  "eventRowCalendarEvent": {
+    "linked-a-calendar-event-with": "a lié un événement de calendrier avec"
+  },
+  "eventRowMainObject": {
+    "was-created-by": "a été créée par",
+    "was-deleted-by": "a été supprimée par"
+  },
+  "eventRowMainObjectUpdated": {
+    "fields-on": "champs sur",
+    "updated": "mis à jour"
+  },
+  "eventRowMessage": {
+    "linked-an-email-with": "a envoyé un courriel à l'adresse suivante"
+  },
+  "genericErrorFallback": {
+    "reload": "Recharge",
+    "servers-on-a-coffee-break": "Le serveur est en pause café"
+  },
+  "handlePublish": {
+    "new-function-version-has-been-published": "Une nouvelle version de la fonction a été publiée"
+  },
+  "iconPicker": {
+    "no-icon-selected": "(aucune icône sélectionnée)"
+  },
+  "imageInput": {
+    "abort": "Abandonner",
+    "profile": "profil",
+    "remove": "Retirer",
+    "upload": "Télécharger",
+    "we-support-your-best-pngs-jpegs-and-gifs": "Nous prenons en charge vos meilleurs portraits PNG, JPEG et GIF de moins de 10 Mo."
+  },
+  "informationBannerDeletedRecord": {
+    "this-record-has-been-deleted": "Cet enregistrement a été supprimé"
+  },
+  "invite": {
+    "and": "et",
+    "by-using-twenty-you-agree-to-the": "En utilisant Twenty, vous acceptez les",
+    "continue": "Continuer",
+    "privacy-policy": "Politique de confidentialité",
+    "terms-of-service": "Conditions d'utilisation"
+  },
+  "inviteTeam": {
+    "copy-invitation-link": "Copier le lien de l'invitation",
+    "finish": "Finition",
+    "get-the-most-out-of-your-workspace-by-in": "Tirez le meilleur parti de votre espace de travail en y invitant votre équipe.",
+    "invite-your-team": "Invitez votre équipe",
+    "or": "Ou"
+  },
+  "keyboardMenuDialog": {
+    "keyboard-shortcuts": "Raccourcis clavier"
+  },
+  "keyboardMenuItem": {
+    "then": "puis"
+  },
+  "matchColumnsStep": {
+    "match-columns": "Colonnes de correspondance",
+    "next-step": "Prochaine étape",
+    "select-the-correct-field-for-each-column": "Sélectionnez le champ approprié pour chaque colonne que vous souhaitez importer."
+  },
+  "multipleFiltersButton": {
+    "filter": "Filtre"
+  },
+  "notFound": {
+    "back-to-content": "Retour au contenu",
+    "off-the-beaten-path": "Hors des sentiers battus",
+    "page-not-found-or-twenty": "Page Not Found | Twenty",
+    "the-page-youre-seeking-is-either-gone-or": "La page que vous recherchez a disparu ou n'a jamais existé. Remettons les choses en ordre"
+  },
+  "notes": {
+    "add-note": "Ajouter une note",
+    "all": "Tous",
+    "new-note": "Nouvelle note",
+    "no-notes": "Pas de notes",
+    "there-are-no-associated-notes-with-this-": "Il n'y a pas de notes associées à cet enregistrement."
+  },
+  "objectSortDropdownButton": {
+    "sort": "Trier"
+  },
+  "passwordReset": {
+    "change-password": "Modifier le mot de passe",
+    "reset-password": "Réinitialiser le mot de passe"
+  },
+  "paymentSuccess": {
+    "all-set": "Tout est prêt !",
+    "start": "Démarrage",
+    "your-account-has-been-activated": "Votre compte a été activé."
+  },
+  "profilerDecorator": {
+    "profiling": "Profilage",
+    "times-the-component": "fois le composant"
+  },
+  "profilingReporter": {
+    "average": "Moyenne",
+    "max": "Max",
+    "min": "Min",
+    "ms": "ms",
+    "p50": "P50",
+    "p80": "P80",
+    "p90": "P90",
+    "p95": "P95",
+    "p99": "P99",
+    "profiling-report": "Rapport de profilage",
+    "run": "Exécuter #",
+    "run-name": "Nom de l'exécution",
+    "status": "- Statut",
+    "total": "Total",
+    "variance": "Variance"
+  },
+  "recordBoardColumnFetchMoreLoader": {
+    "loading-more": "Plus d'informations..."
+  },
+  "recordBoardColumnNewButton": {
+    "new": "Nouveau"
+  },
+  "recordBoardColumnNewOpportunityButton": {
+    "new": "Nouveau"
+  },
+  "recordDetailDuplicatesSection": {
+    "duplicates": "Doublons"
+  },
+  "recordDetailRelationRecordsListEmptyState": {
+    "no": "Non"
+  },
+  "recordIndexOptionsDropdownButton": {
+    "options": "Options"
+  },
+  "recordIndexOptionsDropdownContent": {
+    "fields": "Domaines",
+    "hidden": "Caché",
+    "hidden-fields": "Champs cachés",
+    "visible": "Visible"
+  },
+  "recordIndexRemoveSortingModal": {
+    "this-is-required-to-enable-manual-row-re": "Ceci est nécessaire pour permettre la réorganisation manuelle des lignes."
+  },
+  "recordTableBodyFetchMoreLoader": {
+    "loading-more": "Plus d'informations..."
+  },
+  "releases": {
+    "releases": "Communiqués"
+  },
+  "rightDrawerEmailThread": {
+    "reply-view-in-gmail": "Répondre (Afficher dans Gmail)"
+  },
+  "rightDrawerRecord": {
+    "object-name-is-not-defined": "Le nom de l'objet n'est pas défini",
+    "record-id-is-not-defined": "L'identifiant de l'enregistrement n'est pas défini"
+  },
+  "saveButton": {
+    "save": "Économiser"
+  },
+  "selectHeaderStep": {
+    "continue": "Continuer",
+    "select-header-row": "Sélectionner la ligne d'en-tête"
+  },
+  "selectSheetStep": {
+    "next-step": "Prochaine étape",
+    "select-the-sheet-to-use": "Sélectionner la feuille à utiliser"
+  },
+  "settingsAccounts": {
+    "account": "Compte",
+    "connected-accounts": "Comptes connectés",
+    "manage-your-internet-accounts": "Gérer vos comptes internet."
+  },
+  "settingsAccountsBlocklistInput": {
+    "add-to-blocklist": "Ajouter à la liste de blocage"
+  },
+  "settingsAccountsBlocklistSection": {
+    "blocklist": "Liste de blocage",
+    "exclude-the-following-people-and-domains": "Exclure les personnes et domaines suivants de ma synchronisation d'emails"
+  },
+  "settingsAccountsBlocklistTable": {
+    "added-to-blocklist": "Ajouté à la liste de blocage",
+    "emaildomain": "Email/Domaine"
+  },
+  "settingsAccountsCalendarChannelDetails": {
+    "automatically-create-contacts-for-people": "Créez automatiquement des contacts pour les personnes avec lesquelles vous avez participé à un événement.",
+    "contact-auto-creation": "Contact auto-création",
+    "define-what-will-be-visible-to-other-use": "Définir ce qui sera visible par les autres utilisateurs de votre espace de travail",
+    "event-visibility": "Visibilité de l'événement"
+  },
+  "settingsAccountsCalendarChannelsGeneral": {
+    "color-code": "Code couleur",
+    "configure-how-we-should-display-your-eve": "Configurez l'affichage de vos événements dans votre calendrier",
+    "display": "Affichage",
+    "events-you-participated-in-are-displayed": "Les événements auxquels vous avez participé sont affichés en rouge."
+  },
+  "settingsAccountsListEmptyStateCard": {
+    "connect-with-google": "Se connecter à Google"
+  },
+  "settingsAccountsMessageChannelDetails": {
+    "automatically-create-people-records-when": "Création automatique d'enregistrements de personnes lors de la réception ou de l'envoi de courriels",
+    "contact-auto-creation": "Contact auto-création",
+    "define-what-will-be-visible-to-other-use": "Définir ce qui sera visible par les autres utilisateurs de votre espace de travail",
+    "visibility": "Visibilité"
+  },
+  "settingsAccountsSettingsSection": {
+    "calendar": "Calendrier",
+    "configure-and-customize-your-calendar-pr": "Configurez et personnalisez vos préférences en matière de calendrier.",
+    "configure-your-emails-and-calendar-setti": "Configurez vos courriels et votre calendrier.",
+    "emails": "Courriels",
+    "set-email-visibility-manage-your-blockli": "Définissez la visibilité des e-mails, gérez votre liste de blocage et bien plus encore.",
+    "settings": "Paramètres"
+  },
+  "settingsApiKeysTable": {
+    "expiration": "Expiration",
+    "name": "Nom"
+  },
+  "settingsAppearance": {
+    "appearance": "Apparence",
+    "configure-how-dates-are-displayed-across": "Configurer l'affichage des dates dans l'application",
+    "date-and-time": "Date et heure",
+    "theme": "Thème"
+  },
+  "settingsAvailableStandardObjectsSection": {
+    "available": "Disponible",
+    "description": "Description",
+    "fields": "Domaines",
+    "name": "Nom",
+    "select-one-or-several-standard-objects-t": "Sélectionnez un ou plusieurs objets standard à activer ci-dessous"
+  },
+  "settingsBilling": {
+    "billing": "Facturation",
+    "cancel-plan": "Annuler le plan",
+    "cancel-your-subscription": "Annuler votre abonnement",
+    "edit-billing-interval": "Modifier l'intervalle de facturation",
+    "edit-payment-method-see-your-invoices-an": "Modifier le mode de paiement, consulter vos factures et plus encore",
+    "manage-your-subscription": "Gérer votre abonnement",
+    "view-billing-details": "Voir les détails de la facturation",
+    "your-workspace-will-be-disabled": "Votre espace de travail sera désactivé"
+  },
+  "settingsDataModelFieldBooleanForm": {
+    "default-value": "Valeur par défaut"
+  },
+  "settingsDataModelFieldRelationForm": {
+    "field-on": "Champ sur"
+  },
+  "settingsDataModelObjectAboutForm": {
+    "icon": "Icône"
+  },
+  "settingsDataModelObjectSettingsFormCard": {
+    "preview": "Avant-première"
+  },
+  "settingsDataModelOverviewObject": {
+    "fields": "champs"
+  },
+  "settingsDataModelPreviewFormCard": {
+    "preview": "Avant-première"
+  },
+  "settingsDevelopers": {
+    "active-apis-keys-created-by-you-or-your-": "Clés API actives créées par vous ou votre équipe.",
+    "api-keys": "Clés API",
+    "create-api-key": "Créer une clé API",
+    "create-webhook": "Créer un Webhook",
+    "developers": "Développeurs",
+    "establish-webhook-endpoints-for-notifica": "Établir des points de terminaison Webhook pour les notifications d'événements asynchrones.",
+    "webhooks": "Crochets Web"
+  },
+  "settingsDevelopersApiKeyDetail": {
+    "api-key": "Clé API",
+    "copy-this-key-as-it-will-only-be-visible": "Copiez cette clé car elle ne sera visible qu'une seule fois.",
+    "danger-zone": "Zone de danger",
+    "delete": "Supprimer",
+    "delete-api-key": "Supprimer la clé API",
+    "delete-this-integration": "Supprimer cette intégration",
+    "expiration": "Expiration",
+    "if-youve-lost-this-key-you-can-regenerat": "Si vous avez perdu cette clé, vous pouvez la régénérer, mais sachez que tout script utilisant cette clé devra être mis à jour. Veuillez taper \"oui\" pour confirmer.",
+    "name": "Nom",
+    "name-of-your-api-key": "Nom de votre clé API",
+    "please-type-yes-to-confirm-you-want-to-d": "Veuillez taper \"oui\" pour confirmer que vous souhaitez supprimer cette clé API. Sachez que tout script utilisant cette clé cessera de fonctionner.",
+    "regenerate-an-api-key": "Régénérer une clé API",
+    "regenerate-key": "Régénérer la clé",
+    "when-the-key-will-be-diasbled": "Quand la clé sera diasblée"
+  },
+  "settingsDevelopersApiKeysNew": {
+    "expiration-date": "Date d'expiration",
+    "name": "Nom",
+    "name-of-your-api-key": "Nom de votre clé API",
+    "when-the-api-key-will-expire": "Date d'expiration de la clé API."
+  },
+  "settingsDevelopersWebhooksDetail": {
+    "an-optional-description": "Une description facultative",
+    "danger-zone": "Zone de danger",
+    "delete": "Supprimer",
+    "delete-this-integration": "Supprimer cette intégration",
+    "delete-webhook": "Supprimer le webhook",
+    "description": "Description",
+    "endpoint-url": "URL du point final",
+    "filters": "Filtres",
+    "please-type-yes-to-confirm-you-want-to-d": "Veuillez taper \"oui\" pour confirmer que vous souhaitez supprimer ce webhook.",
+    "select-the-event-you-wish-to-send-to-thi": "Sélectionnez l'événement que vous souhaitez envoyer à ce point de contact",
+    "we-will-send-post-requests-to-this-endpo": "Nous enverrons des requêtes POST à ce point de terminaison pour chaque nouvel événement."
+  },
+  "settingsDevelopersWebhooksNew": {
+    "endpoint-url": "URL du point final",
+    "we-will-send-post-requests-to-this-endpo": "Nous enverrons des requêtes POST à ce point de terminaison pour chaque nouvel événement."
+  },
+  "settingsIntegrationComponent": {
+    "": "→",
+    "add": "Ajouter",
+    "use": "Utilisation"
+  },
+  "settingsIntegrationDatabaseConnectionShowContainer": {
+    "about": "A propos de",
+    "about-this-remote-object": "À propos de cet objet à distance",
+    "select-the-tables-that-should-be-tracked": "Sélectionner les tables qui doivent être suivies",
+    "tables": "Tableaux"
+  },
+  "settingsIntegrationEditDatabaseConnectionContent": {
+    "edit-connection": "Modifier la connexion",
+    "edit-the-information-to-connect-your-dat": "Modifiez les informations pour connecter votre base de données"
+  },
+  "settingsIntegrationGroup": {
+    "": "→"
+  },
+  "settingsIntegrationNewDatabaseConnection": {
+    "connect-a-new-database": "Connecter une nouvelle base de données",
+    "provide-the-information-to-connect-your-": "Fournissez les informations nécessaires pour connecter votre base de données"
+  },
+  "settingsIntegrationPreview": {
+    "import-your-tables-as-remote-objects": "Importez vos tableaux en tant qu'objets distants"
+  },
+  "settingsIntegrationRemoteTableSchemaUpdate": {
+    "update": "Mise à jour"
+  },
+  "settingsIntegrationShowDatabaseConnection": {
+    "settings": "Paramètres"
+  },
+  "settingsIntegrations": {
+    "integrations": "Intégrations"
+  },
+  "settingsNewAccount": {
+    "new": "Nouveau"
+  },
+  "settingsNewAccountSection": {
+    "connect-a-new-account-to-your-workspace": "Connecter un nouveau compte à votre espace de travail",
+    "new-account": "Nouveau compte"
+  },
+  "settingsNewObject": {
+    "about": "A propos de",
+    "name-in-both-singular-eg-invoice-and-plu": "Nom au singulier (par exemple, \"Invoice\") et au pluriel (par exemple, \"Invoices\")."
+  },
+  "settingsObjectCoverImage": {
+    "visualize": "Visualiser"
+  },
+  "settingsObjectDetailPageContent": {
+    "about": "A propos de",
+    "add-field": "Ajouter un champ",
+    "fields": "Domaines",
+    "manage-your-object": "Gérer votre objet"
+  },
+  "settingsObjectEdit": {
+    "about": "A propos de",
+    "choose-the-fields-that-will-identify-you": "Choisissez les champs qui identifieront vos enregistrements",
+    "danger-zone": "Zone de danger",
+    "deactivate": "Désactiver",
+    "deactivate-object": "Désactiver l'objet",
+    "name-in-both-singular-eg-invoice-and-plu": "Nom au singulier (par exemple, \"Invoice\") et au pluriel (par exemple, \"Invoices\").",
+    "settings": "Paramètres"
+  },
+  "settingsObjectFieldEdit": {
+    "danger-zone": "Zone de danger",
+    "deactivate": "Désactiver",
+    "deactivate-this-field": "Désactiver ce champ",
+    "name-and-description": "Nom et description",
+    "the-fields-type-and-values": "Le type et les valeurs du champ.",
+    "the-name-and-description-of-this-field": "Le nom et la description de ce champ",
+    "type-and-values": "Type et valeurs"
+  },
+  "settingsObjectFieldTable": {
+    "active": "Actif",
+    "inactive": "Inactif"
+  },
+  "settingsObjectNewFieldStep1": {
+    "add-custom-field": "Ajouter un champ personnalisé",
+    "before-creating-a-custom-field-check-if-": "Avant de créer un champ personnalisé, vérifiez s'il n'existe pas déjà dans la section désactivée.",
+    "check-deactivated-fields": "Vérifier les champs désactivés"
+  },
+  "settingsObjectNewFieldStep2": {
+    "name-and-description": "Nom et description",
+    "settings": "Paramètres",
+    "the-fields-type-and-values": "Le type et les valeurs du champ.",
+    "the-name-and-description-of-this-field": "Le nom et la description de ce champ",
+    "type-and-values": "Type et valeurs"
+  },
+  "settingsObjects": {
+    "active": "Actif",
+    "add-object": "Ajouter un objet",
+    "data-model": "Modèle de données",
+    "existing-objects": "Objets existants",
+    "inactive": "Inactif"
+  },
+  "settingsProfile": {
+    "email": "Courriel",
+    "name": "Nom",
+    "picture": "Photo",
+    "profile": "Profil",
+    "the-email-associated-to-your-account": "L'email associé à votre compte",
+    "your-name-as-it-will-be-displayed": "Votre nom tel qu'il sera affiché"
+  },
+  "settingsReadDocumentationButton": {
+    "read-documentation": "Lire la documentation"
+  },
+  "settingsServerlessFunctionCodeEditorTab": {
+    "code-your-function": "Codez votre fonction",
+    "publish": "Publier",
+    "reset": "Remise à zéro",
+    "test": "Test",
+    "write-your-function-in-typescript-below": "Rédigez votre fonction (en caractères d'imprimerie) ci-dessous"
+  },
+  "settingsServerlessFunctionNewForm": {
+    "about": "A propos de",
+    "name-and-set-your-function": "Nommez et définissez votre fonction"
+  },
+  "settingsServerlessFunctionSettingsTab": {
+    "danger-zone": "Zone de danger",
+    "delete-function": "Supprimer la fonction",
+    "delete-this-function": "Supprimer cette fonction",
+    "function-deletion": "Suppression de fonction",
+    "please-type-in-the-function-name-to-conf": "Veuillez saisir le nom de la fonction pour confirmer.",
+    "this-action-cannot-be-undone-this-will-p": "Cette action ne peut être annulée. Elle supprimera définitivement votre fonction."
+  },
+  "settingsServerlessFunctionTestTab": {
+    "insert-a-json-input-then-press-run-to-te": "Insérez une entrée JSON, puis appuyez sur \"Run\" pour tester votre fonction.",
+    "run-function": "Fonction d'exécution",
+    "test-your-function": "Testez votre fonction"
+  },
+  "settingsServerlessFunctions": {
+    "functions": "Fonctions",
+    "new-function": "Nouvelle fonction"
+  },
+  "settingsServerlessFunctionsOutputMetadataInfo": {
+    "ms": "ms"
+  },
+  "settingsServerlessFunctionsTable": {
+    "name": "Nom",
+    "runtime": "Temps d'exécution"
+  },
+  "settingsServerlessFunctionsTableEmpty": {
+    "add-your-first-function": "Ajoutez votre première fonction",
+    "add-your-first-function-to-get-started": "Ajoutez votre première fonction pour commencer",
+    "new-function": "Nouvelle fonction"
+  },
+  "settingsWebhooksTable": {
+    "url": "Url"
+  },
+  "settingsWorkspace": {
+    "general": "Général",
+    "grant-twenty-support-temporary-access-to": "Accordez à Twenty support un accès temporaire à votre espace de travail afin que nous puissions résoudre des problèmes ou récupérer du contenu en votre nom. Vous pouvez révoquer l'accès à tout moment.",
+    "name": "Nom",
+    "name-of-your-workspace": "Nom de votre espace de travail",
+    "picture": "Photo",
+    "support": "Soutien"
+  },
+  "settingsWorkspaceMembers": {
+    "account-deletion": "Suppression de compte",
+    "copy-and-send-an-invite-link-directly": "Copier et envoyer directement un lien d'invitation",
+    "invite-by-email": "Inviter par courriel",
+    "manage-the-members-of-your-space-here": "Gérez les membres de votre espace ici",
+    "members": "Les membres",
+    "or-send-an-invite-link": "Ou envoyer un lien d'invitation",
+    "send-an-invite-email-to-your-team": "Envoyez un courriel d'invitation à votre équipe",
+    "this-action-cannot-be-undone-this-will-p": "Cette action ne peut être annulée. Cette action supprimera définitivement l'utilisateur et l'exclura de toutes ses affectations."
+  },
+  "showPageSummaryCard": {
+    "added": "Ajouté"
+  },
+  "signInBackgroundMockPage": {
+    "companies": "Entreprises"
+  },
+  "signInUpForm": {
+    "and": "et",
+    "by-using-twenty-you-agree-to-the": "En utilisant Twenty, vous acceptez les",
+    "continue-with-google": "Continuer avec Google",
+    "continue-with-microsoft": "Continuer avec Microsoft",
+    "forgot-your-password": "Vous avez oublié votre mot de passe ?",
+    "privacy-policy": "Politique de confidentialité",
+    "terms-of-service": "Conditions d'utilisation"
+  },
+  "snackBar": {
+    "cancel": "Annuler",
+    "close": "Fermer"
+  },
+  "stepNavigationButton": {
+    "back": "Retour"
+  },
+  "subscriptionCardPrice": {
+    "seat": "siège"
+  },
+  "supportButton": {
+    "support": "Soutien"
+  },
+  "supportDropdown": {
+    "support-field-active-action-dropdown": "support-field-active-action-dropdown"
+  },
+  "syncEmails": {
+    "continue-without-sync": "Continuer sans synchronisation",
+    "emails-and-calendar": "Emails et calendrier",
+    "sync-with-google": "Synchronisation avec Google",
+    "sync-your-emails-and-calendar-with-twent": "Synchronisez vos e-mails et votre calendrier avec Twenty. Choisissez vos paramètres de confidentialité."
+  },
+  "taskGroups": {
+    "all-tasks-addressed-maintain-the-momentu": "Toutes les tâches ont été abordées. Maintenir l'élan.",
+    "mission-accomplished": "Mission accomplie !",
+    "new-task": "Nouvelle tâche"
+  },
+  "taskRow": {
+    "task-title": "Titre de la tâche"
+  },
+  "threadBottomBar": {
+    "reply": "Répondre",
+    "reply-to-all": "Répondre à tous",
+    "share": "Partager"
+  },
+  "timelineActivities": {
+    "add-your-first-activity": "Ajoutez votre première activité",
+    "all": "Tous",
+    "there-are-no-activities-associated-with-": "Aucune activité n'est associée à cet enregistrement."
+  },
+  "timelineCreateButtonGroup": {
+    "file": "Fichier",
+    "note": "Note",
+    "task": "Tâche"
+  },
+  "translation": {
+    "imageInput": {
+      "abort": "Abandonner",
+      "profile": "profil",
+      "remove": "Retirer",
+      "upload": "Télécharger",
+      "we-support-your-best-pngs-jpegs-and-gifs": "Nous prenons en charge vos meilleurs portraits PNG, JPEG et GIF de moins de 10 Mo."
+    }
+  },
+  "updateViewButtonGroup": {
+    "save-as-new-view": "Enregistrer comme nouvelle vue",
+    "update-view": "Mise à jour de la vue"
+  },
+  "validationStep": {
+    "confirm": "Confirmer",
+    "correct-the-issues-and-fill-the-missing-": "Corrigez les problèmes et complétez les données manquantes.",
+    "remove": "Retirer",
+    "review-your-import": "Examinez vos importations",
+    "show-only-rows-with-errors": "Afficher uniquement les lignes contenant des erreurs",
+    "show-unmatched-columns": "Afficher les colonnes non appariées"
+  },
+  "viewBarDetails": {
+    "reset": "Remise à zéro"
+  },
+  "viewPickerCreateOrEditButton": {
+    "create": "Créer",
+    "delete": "Supprimer",
+    "go-to-settings": "Accéder aux paramètres"
+  },
+  "viewPickerCreateOrEditContent": {
+    "set-up-a-select-field-on-companies-to-cr": "Configurer un champ Select sur les entreprises pour créer un Kanban"
+  },
+  "workflowEditActionForm": {
+    "code": "Code",
+    "code-serverless-function": "Code - Fonction sans serveur"
+  },
+  "workflowEditTriggerForm": {
+    "is": "est",
+    "trigger-record-is": "Déclencheur . L'enregistrement est",
+    "when-a": "Lorsqu'un"
+  },
+  "workspaceInviteLink": {
+    "copy-link": "Copier le lien"
+  }
+}

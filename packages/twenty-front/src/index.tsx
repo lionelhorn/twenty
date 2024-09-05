@@ -11,6 +11,7 @@ import { ExceptionHandlerProvider } from '@/error-handler/components/ExceptionHa
 import { SnackBarProviderScope } from '@/ui/feedback/snack-bar-manager/scopes/SnackBarProviderScope';
 
 import '@emotion/react';
+import './utils/translation-utils'; // import i18n (needs to be bundled ;))
 
 import { App } from './App';
 

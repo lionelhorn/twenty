@@ -79,11 +79,7 @@ const readTranslations = (path: string, translationRoot?: string) => {
   }
 };
 
-const writeTranslations = (
-  path: string,
-  translations: Record<string, any>,
-  translationRoot?: string,
-) => {
+const writeTranslations = (path: string, translations: Record<string, any>, translationRoot?: string) => {
   if (translationRoot) {
     translations = { [translationRoot]: translations };
   }
@@ -92,12 +88,7 @@ const writeTranslations = (
   fs.writeFileSync(path, result);
 };
 
-const addTranslation = (
-  translations: Record<string, any>,
-  component: string,
-  key: string,
-  text: string,
-) => {
+const addTranslation = (translations: Record<string, any>, component: string, key: string, text: string) => {
   translations[component] = {
     ...translations[component],
     [key]: text,
@@ -161,10 +152,7 @@ const createTranslationHook = (j: JSCodeshift) =>
 
 const TRANSLATION_KEY_MAX_LENGTH = 40;
 
-const createTranslationKey = (
-  text: string,
-  keyMaxLength: number = TRANSLATION_KEY_MAX_LENGTH,
-) => {
+const createTranslationKey = (text: string, keyMaxLength: number = TRANSLATION_KEY_MAX_LENGTH) => {
   return slugify(text, {
     remove: /[*+~.()'"!:@]/g,
     lower: true,
@@ -173,11 +161,7 @@ const createTranslationKey = (
   }).slice(0, keyMaxLength);
 };
 
-const addTranslationPackageImport = (
-  j: JSCodeshift,
-  root: Collection<any>,
-  importPackage: string,
-) => {
+const addTranslationPackageImport = (j: JSCodeshift, root: Collection<any>, importPackage: string) => {
   const newUseTranslationImport = createUseTranslationImport(j, importPackage);
   root.find(j.ImportDeclaration).at(0).insertBefore(newUseTranslationImport);
 };
@@ -227,20 +211,13 @@ function traverseUpAST(path, callback, stopPredicate, depth = 0) {
   return traverseUpAST(path.parentPath, callback, stopPredicate, depth + 1);
 }
 
-// Example usage:
-
 // Callback function to log node types and depth
 const logNodeType = (path, depth) => {
-  console.log(`Depth ${depth}: ${path.value.type}`);
+  // console.log(`Depth ${depth}: ${path.value.type}`);
 };
 
 // Stop predicate function to break recursion at TaggedTemplateExpression
 const stopAtTaggedTemplate = (path) => path.value.type === 'TaggedTemplateExpression';
-
-
-
-
-
 
 /**
  * Translates template literals like `Hello ${name}` used as children of JSX elements
@@ -260,7 +237,8 @@ const translateTemplateLiterals = (
     .filter((path) => {
       // if the template literal is inside a JSX attribute, check if it's not blacklisted
       // for example <div className={`text-{color}`}"></div>
-      console.log(path);
+
+      // console.log(path);
       if (
         j.JSXAttribute.check(path.parentPath.parentPath.value) &&
         TEMPLATE_LITERAL_BLACKLIST.includes(
@@ -274,11 +252,17 @@ const translateTemplateLiterals = (
       }
 
       if (j.TaggedTemplateExpression.check(path.parentPath.value)) {
-        console.log('zzz0');
         return false;
       }
 
-      if(traverseUpAST(path, logNodeType, stopAtTaggedTemplate)) {
+      // Skip tagged template literals
+      if (traverseUpAST(path, logNodeType, stopAtTaggedTemplate)) {
+        return false;
+      }
+
+      // Don't translate template literals with expressions (for now) eg `Hello ${name}`
+      if (path.value.type == 'TemplateLiteral' && path.value.expressions.length > 0) {
+        console.warn('Skipped processing template literal with expressions');
         return false;
       }
 
@@ -485,12 +469,35 @@ const translateJSXTextContent = (
         `Found not translated text in "${componentName}": replacing "${value}" with "${componentName}.${key}".`,
       );
 
+      // Extract the leading and trailing whitespace
+      // To preserve the original formatting
+      /**
+       *    <StyledCreatedAt>
+       *      Created{' '}
+       *    </StyledCreatedAt>
+       *
+       *    <StyledCreatedAt>
+       *      {t('calendarEventDetails.created')}{' '}
+       *    </StyledCreatedAt>
+       *
+       **/
+      const leadingWhitespace = path.node.value.match(/^\s*/)[0];
+      const trailingWhitespace = path.node.value.match(/\s*$/)[0];
+
+      // TODO: Add patch or wait for fix for extra parentheses being added
+      // https://github.com/facebook/jscodeshift/issues/534
+
+
       // replace hardcoded text with t('key') call
-      return j.jsxExpressionContainer(
-        j.callExpression(j.identifier('t'), [
-          j.literal(`${componentName}.${key}`),
-        ]),
-      );
+      return [
+        leadingWhitespace && j.jsxText(leadingWhitespace),
+        j.jsxExpressionContainer(
+          j.callExpression(j.identifier('t'), [
+            j.literal(`${componentName}.${key}`),
+          ]),
+        ),
+        trailingWhitespace && j.jsxText(trailingWhitespace),
+      ]
     });
 };
 
@@ -526,9 +533,8 @@ const transform: Transform = (fileInfo, api, options) => {
 
   return root.toSource({
     quote: 'single',
-    reuseWhitespace: true, // Optional: prevents reuse of original whitespace
-    wrapColumn: 120, // Sets the column width, adjust if necessary
-    tabWidth: 0,
+    reuseWhitespace: true,
+    wrapColumn: 120
   });
 };
 
